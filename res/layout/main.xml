@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Starting with RelativeLayout-->
+<RelativeLayout 
+android:id="@+id/ParentRelativeLayout"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+xmlns:android="http://schemas.android.com/apk/res/android">
+	
+	<!--Creating a HorizontalScrollView and giving a pair of properties-->
+		<HorizontalScrollView android:id="@+id/HorizontalScrollView"
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+			android:scrollbars="none"
+			android:fadingEdgeLength="70px"
+			android:scrollX="450px">
+				
+	<!--Creating a LinearLayout and defining as Horizontal-->
+			
+			<LinearLayout android:id="@+id/ButtonsLinearLayout"
+				android:layout_width="wrap_content"
+				android:orientation="horizontal"
+				android:layout_height="fill_parent"
+				>
+	
+		<!--Lots of buttons for each section of newspaper-->	
+				
+				<Button android:text="Ultimas Noticias"
+					android:id="@+id/last_news_button"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content" />
+				<Button android:text="Nacional"
+					android:id="@+id/national_button"
+					android:layout_height="wrap_content"
+					android:layout_width="wrap_content" />
+				<Button android:text="Global"
+					android:id="@+id/global_button"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content" />
+				<Button android:text="Dinero"
+					android:id="@+id/money_button"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content" />
+				<Button android:text="Comunidad"
+					android:id="@+id/community_button"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content" />
+				<Button android:text="Adrenalina"
+					android:id="@+id/adrenaline_button"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content" />
+				<Button android:text="Funcion"
+					android:id="@+id/show_button"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content" />
+				<Button android:text="Opinión"
+					android:id="@+id/opinion_button"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content" />
+				<Button android:text="Suplementos"
+					android:id="@+id/supplements_button"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content" />
+				<Button android:text="Multimedia"
+					android:id="@+id/multimedia_button"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content" />
+		<!--Finishing buttons-->	
+					
+			</LinearLayout>
+		<!--Finishing Horizontal LinearLayout-->	
+			
+		</HorizontalScrollView>
+		
+	<!--Finishing HorizontalScrollView-->	
+		
+	<!--Starting Ads Space-->	
+		<TextView
+			android:text="AD Space"
+			android:layout_below="@+id/HorizontalScrollView"
+			android:gravity="center_horizontal|center_vertical"
+			android:id="@+id/multimedia_button"
+			android:layout_width="fill_parent"
+			android:layout_height="40px"
+			/>
+	
+	<!--Finishing Ads Space-->	
+	
+	
+		
+</RelativeLayout>
+	<!--Finishing XML Description-->	
