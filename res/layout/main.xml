@@ -11,7 +11,6 @@ xmlns:android="http://schemas.android.com/apk/res/android">
 			android:layout_height="wrap_content"
 			android:layout_width="wrap_content"
 			android:scrollbars="none"
-			android:fadingEdgeLength="70px"
 			android:scrollX="450px">
 				
 	<!--Creating a LinearLayout and defining as Horizontal-->
@@ -20,6 +19,7 @@ xmlns:android="http://schemas.android.com/apk/res/android">
 				android:layout_width="wrap_content"
 				android:orientation="horizontal"
 				android:layout_height="fill_parent"
+				android:fadingEdgeLength="0px"
 				>
 	
 		<!--Lots of buttons for each section of newspaper-->	
@@ -27,43 +27,43 @@ xmlns:android="http://schemas.android.com/apk/res/android">
 				<Button android:text="Ultimas Noticias"
 					android:id="@+id/last_news_button"
 					android:layout_width="wrap_content"
-					android:layout_height="wrap_content" />
+					android:layout_height="50dip" />
 				<Button android:text="Nacional"
 					android:id="@+id/national_button"
-					android:layout_height="wrap_content"
-					android:layout_width="wrap_content" />
+					android:layout_width="wrap_content"
+					android:layout_height="50dip"/>
 				<Button android:text="Global"
 					android:id="@+id/global_button"
 					android:layout_width="wrap_content"
-					android:layout_height="wrap_content" />
+					android:layout_height="50dip" />
 				<Button android:text="Dinero"
 					android:id="@+id/money_button"
 					android:layout_width="wrap_content"
-					android:layout_height="wrap_content" />
+					android:layout_height="50dip" />
 				<Button android:text="Comunidad"
 					android:id="@+id/community_button"
 					android:layout_width="wrap_content"
-					android:layout_height="wrap_content" />
+					android:layout_height="50dip" />
 				<Button android:text="Adrenalina"
 					android:id="@+id/adrenaline_button"
 					android:layout_width="wrap_content"
-					android:layout_height="wrap_content" />
+					android:layout_height="50dip" />
 				<Button android:text="Funcion"
 					android:id="@+id/show_button"
 					android:layout_width="wrap_content"
-					android:layout_height="wrap_content" />
+					android:layout_height="50dip" />
 				<Button android:text="Opinión"
 					android:id="@+id/opinion_button"
 					android:layout_width="wrap_content"
-					android:layout_height="wrap_content" />
+					android:layout_height="50dip" />
 				<Button android:text="Suplementos"
 					android:id="@+id/supplements_button"
 					android:layout_width="wrap_content"
-					android:layout_height="wrap_content" />
+					android:layout_height="50dip" />
 				<Button android:text="Multimedia"
 					android:id="@+id/multimedia_button"
 					android:layout_width="wrap_content"
-					android:layout_height="wrap_content" />
+					android:layout_height="50dip" />
 		<!--Finishing buttons-->	
 					
 			</LinearLayout>
@@ -80,7 +80,7 @@ xmlns:android="http://schemas.android.com/apk/res/android">
 			android:gravity="center_horizontal|center_vertical"
 			android:id="@+id/multimedia_button"
 			android:layout_width="fill_parent"
-			android:layout_height="40px"
+			android:layout_height="40dip"
 			/>
 	
 	<!--Finishing Ads Space-->	

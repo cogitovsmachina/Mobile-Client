@@ -4,14 +4,16 @@
     android:orientation="horizontal"
     android:layout_width="fill_parent"
     android:layout_height="50dip"
-    android:gravity="center_vertical"
+    android:gravity="center_vertical|center_horizontal"
     android:paddingLeft="5dip"
-    android:background="#323331">
+    android:background="#B6316C"
+    android:paddingBottom="3dip">
  
     <ImageView
-        android:id="@+id/header"
-        android:src="@drawable/header"
+        android:id="@+id/excelsior_logo_small"
+        android:src="@drawable/logo_excelsior_small"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        />
  
 </LinearLayout>
