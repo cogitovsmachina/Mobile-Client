@@ -25,26 +25,32 @@ public final class R {
     }
     public static final class drawable {
         public static final int b1_s1=0x7f020000;
-        public static final int b1a_s1=0x7f020001;
-        public static final int b2_s1=0x7f020002;
-        public static final int b2a_s1=0x7f020003;
-        public static final int b3_s1=0x7f020004;
-        public static final int b3a_s1=0x7f020005;
-        public static final int b4_s1=0x7f020006;
-        public static final int b4a_s1=0x7f020007;
-        public static final int b5_s1=0x7f020008;
-        public static final int b5a_s1=0x7f020009;
-        public static final int b6_s1=0x7f02000a;
-        public static final int b6a_s1=0x7f02000b;
-        public static final int b7_s1=0x7f02000c;
-        public static final int b7a_s1=0x7f02000d;
-        public static final int b8_s1=0x7f02000e;
-        public static final int b8a_s1=0x7f02000f;
-        public static final int header=0x7f020010;
-        public static final int icon=0x7f020011;
-        public static final int logo_excelsior_small=0x7f020012;
-        public static final int menu_info=0x7f020013;
-        public static final int menu_news=0x7f020014;
+        public static final int b1_s1_selected=0x7f020001;
+        public static final int b1_s1_unselected=0x7f020002;
+        public static final int b2_s1=0x7f020003;
+        public static final int b2_s1_selected=0x7f020004;
+        public static final int b2_s1_unselected=0x7f020005;
+        public static final int b3_s1=0x7f020006;
+        public static final int b3_s1_selected=0x7f020007;
+        public static final int b3_s1_unselected=0x7f020008;
+        public static final int b4_s1=0x7f020009;
+        public static final int b4_s1_selected=0x7f02000a;
+        public static final int b4_s1_unselected=0x7f02000b;
+        public static final int b5_s1=0x7f02000c;
+        public static final int b5_s1_selected=0x7f02000d;
+        public static final int b5_s1_unselected=0x7f02000e;
+        public static final int b6_s1=0x7f02000f;
+        public static final int b6_s1_selected=0x7f020010;
+        public static final int b6_s1_unselected=0x7f020011;
+        public static final int b7_s1=0x7f020012;
+        public static final int b7_s1_selected=0x7f020013;
+        public static final int b7_s1_unselected=0x7f020014;
+        public static final int b8_s1=0x7f020015;
+        public static final int b8_s1_selected=0x7f020016;
+        public static final int b8_s1_unselected=0x7f020017;
+        public static final int header=0x7f020018;
+        public static final int icon=0x7f020019;
+        public static final int logo_excelsior_small=0x7f02001a;
     }
     public static final class id {
         public static final int ButtonsLinearLayout=0x7f080002;
