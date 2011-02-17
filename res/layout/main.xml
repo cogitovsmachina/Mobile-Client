@@ -24,6 +24,7 @@ xmlns:android="http://schemas.android.com/apk/res/android">
 	
 		<!--Lots of buttons for each section of newspaper-->	
 				
+<<<<<<< HEAD
 				<ImageButton 
 					android:id="@+id/last_hour"
 					android:layout_width="wrap_content"
@@ -80,6 +81,64 @@ xmlns:android="http://schemas.android.com/apk/res/android">
 					android:layout_height="wrap_content" 
 					android:src="@drawable/b8_s1"
 					style="@style/HomeButton"
+=======
+				<ImageView android:text="Ultimas Noticias"
+					android:id="@+id/last_news_button"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content" 
+					android:src="@drawable/b1_s1"
+					android:clickable="true"
+					/>
+				<ImageView android:text="Nacional"
+					android:id="@+id/national_button"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content" 
+					android:src="@drawable/b2_s1"
+					android:clickable="true"
+					
+					/>
+				<ImageView android:text="Global"
+					android:id="@+id/global_button"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content" 
+					android:src="@drawable/b3_s1"
+					android:clickable="true"
+					/>
+				<ImageView android:text="Dinero"
+					android:id="@+id/money_button"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content" 
+					android:src="@drawable/b4_s1"
+					android:clickable="true"
+					/>
+				<ImageView android:text="Comunidad"
+					android:id="@+id/community_button"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content" 
+					android:src="@drawable/b5_s1"
+					android:clickable="true"
+					/>
+				<ImageView android:text="Adrenalina"
+					android:id="@+id/adrenaline_button"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content" 
+					android:src="@drawable/b6_s1"
+					android:clickable="true"
+					/>
+				<ImageView android:text="Funcion"
+					android:id="@+id/show_button"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content" 
+					android:src="@drawable/b7_s1"
+					android:clickable="true"
+					/>
+				<ImageView android:text="Opinión"
+					android:id="@+id/opinion_button"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content" 
+					android:src="@drawable/b8_s1"
+					android:clickable="true"
+>>>>>>> fd5453080570ab559b72e51fd8a35840d44556cb
 					/>
 				
 		<!--Finishing buttons-->	
