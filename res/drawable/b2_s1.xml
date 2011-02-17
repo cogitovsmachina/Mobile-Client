@@ -1,31 +1,6 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-<<<<<<< HEAD
     <item android:state_focused="true" android:state_pressed="true" android:drawable="@drawable/b2_s1_selected"/>
     <item android:state_focused="false" android:state_pressed="true" android:drawable="@drawable/b2_s1_selected"/>
     <item android:state_focused="true" android:drawable="@drawable/b2_s1_selected"/>
     <item android:state_focused="false" android:state_pressed="false" android:drawable="@drawable/b2_s1_unselected"/>
 </selector>
-
-<!--
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_focused="true" android:state_pressed="true" android:drawable="@drawable/home_btn_sandbox_pressed"/>
-    <item android:state_focused="false" android:state_pressed="true" android:drawable="@drawable/home_btn_sandbox_pressed"/>
-    <item android:state_focused="true" android:drawable="@drawable/home_btn_sandbox_selected"/>
-    <item android:state_focused="false" android:state_pressed="false" android:drawable="@drawable/home_btn_sandbox_default"/>
-</selector>
- -->
-=======
-    <item android:state_focused="true" android:state_pressed="true" android:drawable="@drawable/b2a_s1"/>
-    <item android:state_focused="false" android:state_pressed="true" android:drawable="@drawable/b2a_s1"/>
-    <item android:state_focused="true" android:drawable="@drawable/b2a_s1"/>
-    <item android:state_focused="false" android:state_pressed="false" android:drawable="@drawable/b2_s1"/>
-</selector>
-
-<!-- 
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_focused="true" android:state_pressed="true" android:drawable="@drawable/home_btn_map_pressed"/>
-    <item android:state_focused="false" android:state_pressed="true" android:drawable="@drawable/home_btn_map_pressed"/>
-    <item android:state_focused="true" android:drawable="@drawable/home_btn_map_selected"/>
-    <item android:state_focused="false" android:state_pressed="false" android:drawable="@drawable/home_btn_map_default"/>
-</selector> -->
->>>>>>> 10e2878c043b49cbd0d652aa8b6cebd9ed5aa523
