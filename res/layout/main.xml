@@ -4,7 +4,8 @@
 android:id="@+id/ParentRelativeLayout"
 android:layout_width="fill_parent"
 android:layout_height="fill_parent"
-xmlns:android="http://schemas.android.com/apk/res/android">
+xmlns:android="http://schemas.android.com/apk/res/android"
+style="@style/Theme.Excelsior">
 	
 	<!--Creating a HorizontalScrollView and giving a pair of properties-->
 		<HorizontalScrollView android:id="@+id/HorizontalScrollView"
@@ -213,6 +214,9 @@ xmlns:android="http://schemas.android.com/apk/res/android">
 			android:id="@+id/multimedia_button"
 			android:layout_width="fill_parent"
 			android:layout_height="40dip"
+			style="@style/AdSpace"
+			android:padding="4sp"
+			android:background="#ffcec5c1"
 			/>
 	
 	<!--Finishing Ads Space-->	

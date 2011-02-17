@@ -35,11 +35,11 @@ public class Home extends Activity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.icon:     Toast.makeText(this, "You pressed the icon!", Toast.LENGTH_LONG).show();
+            case R.id.news_image:     Toast.makeText(this, "You want to see news!", Toast.LENGTH_LONG).show();
                                 break;
-            case R.id.text:     Toast.makeText(this, "You pressed the text!", Toast.LENGTH_LONG).show();
+            case R.id.gallery_image:     Toast.makeText(this, "You want to go to gallery!", Toast.LENGTH_LONG).show();
                                 break;
-            case R.id.icontext: Toast.makeText(this, "You pressed the icon and text!", Toast.LENGTH_LONG).show();
+            case R.id.movies_image: Toast.makeText(this, "You want to go to movies!", Toast.LENGTH_LONG).show();
                                 break;
         }
         return true;

@@ -6,7 +6,7 @@
     android:layout_height="50dip"
     android:gravity="center_vertical|center_horizontal"
     android:paddingLeft="5dip"
-    android:background="#B6316C"
+    android:background="#ff9c203c"
     android:paddingBottom="3dip">
  
     <ImageView

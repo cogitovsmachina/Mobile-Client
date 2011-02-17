@@ -1,4 +1,15 @@
 <resources>
+
+<!-- Base application theme is the default theme. -->
+    <style name="Theme" parent="android:Theme"></style>
+
+    <!-- Variation on the Light theme that turns off the title -->
+    <style name="Theme.Excelsior" >
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:background">@color/background</item>
+    </style>
+    
     <style name="CustomWindowTitleBackground">
         <item name="android:background">#B6316C</item>
         <item name="android:shadowColor">#BB000000</item>
@@ -20,4 +31,9 @@
         <item name="android:textColor">@color/foreground1</item>
         <item name="android:background">@null</item>
     </style>
+    
+    <style name="AdSpace">
+    <item name="android:background">#ffcec5c1</item>
+    </style>
+    
 </resources>

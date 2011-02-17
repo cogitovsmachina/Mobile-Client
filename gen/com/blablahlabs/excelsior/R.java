@@ -11,13 +11,14 @@ public final class R {
     public static final class attr {
     }
     public static final class color {
+        public static final int background=0x7f040009;
         public static final int background1=0x7f040005;
         public static final int background2=0x7f040006;
         public static final int background3=0x7f040007;
         public static final int foreground1=0x7f040003;
         public static final int foreground2=0x7f040004;
-        public static final int pinned_header_background=0x7f04000a;
-        public static final int session_foreground_past=0x7f040009;
+        public static final int pinned_header_background=0x7f04000b;
+        public static final int session_foreground_past=0x7f04000a;
         public static final int title_background=0x7f040000;
         public static final int title_separator=0x7f040008;
         public static final int title_text=0x7f040001;
@@ -49,8 +50,11 @@ public final class R {
         public static final int b8_s1_selected=0x7f020016;
         public static final int b8_s1_unselected=0x7f020017;
         public static final int header=0x7f020018;
-        public static final int icon=0x7f020019;
-        public static final int logo_excelsior_small=0x7f02001a;
+        public static final int home=0x7f020019;
+        public static final int icon=0x7f02001a;
+        public static final int logo_excelsior_small=0x7f02001b;
+        public static final int movies=0x7f02001c;
+        public static final int photos=0x7f02001d;
     }
     public static final class id {
         public static final int ButtonsLinearLayout=0x7f080002;
@@ -61,22 +65,22 @@ public final class R {
         public static final int community=0x7f080007;
         public static final int community_button=0x7f08000f;
         public static final int excelsior_logo_small=0x7f080014;
+        public static final int gallery_image=0x7f080016;
         public static final int global=0x7f080005;
         public static final int global_button=0x7f08000d;
-        public static final int icon=0x7f080015;
-        public static final int icontext=0x7f080017;
         public static final int last_hour=0x7f080003;
         public static final int last_news_button=0x7f08000b;
         public static final int money=0x7f080006;
         public static final int money_button=0x7f08000e;
+        public static final int movies_image=0x7f080017;
         public static final int multimedia_button=0x7f080013;
         public static final int national=0x7f080004;
         public static final int national_button=0x7f08000c;
+        public static final int news_image=0x7f080015;
         public static final int opinion=0x7f08000a;
         public static final int opinion_button=0x7f080012;
         public static final int show=0x7f080009;
         public static final int show_button=0x7f080011;
-        public static final int text=0x7f080016;
     }
     public static final class layout {
         public static final int main=0x7f030000;
@@ -90,8 +94,15 @@ public final class R {
         public static final int hello=0x7f060000;
     }
     public static final class style {
-        public static final int CustomTheme=0x7f050001;
-        public static final int CustomWindowTitleBackground=0x7f050000;
-        public static final int HomeButton=0x7f050002;
+        public static final int AdSpace=0x7f050005;
+        public static final int CustomTheme=0x7f050003;
+        public static final int CustomWindowTitleBackground=0x7f050002;
+        public static final int HomeButton=0x7f050004;
+        /**  Base application theme is the default theme. 
+         */
+        public static final int Theme=0x7f050000;
+        /**  Variation on the Light theme that turns off the title 
+         */
+        public static final int Theme_Excelsior=0x7f050001;
     }
 }
