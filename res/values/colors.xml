@@ -12,6 +12,10 @@
     <color name="ad_background">#ffcdc5c1</color>
     <color name="background">#ffccc1be</color>
     <color name="ad_color">#ff000000</color>
+    <color name="transparent">#00000000</color>
+    <color name="ad_text">#ffffffff</color>
+    
+    
     
     
     

@@ -8,12 +8,30 @@
     android:paddingLeft="5dip"
     android:background="#ff9c203c"
     android:paddingBottom="3dip">
- 
+ <!-- 	<TextView
+ 		android:id="@+id/empty_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        /> -->
     <ImageView
         android:id="@+id/excelsior_logo_small"
         android:src="@drawable/logo_excelsior_small"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
+        
         />
+        
+   <!--  <ImageView
+ 		android:id="@+id/empty_text"
+        android:src="@drawable/reload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_alignParentRight="true"
+
+        />
+         -->
  
 </LinearLayout>

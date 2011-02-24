@@ -26,32 +26,54 @@ public class Home extends ListActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setCustomTitle();
+        setListViewHeaders();
         setContentView(R.layout.main);
-        
-        adapter.addSection("Original",
+	}
+
+	private void setListViewHeaders() {
+		adapter.addSection("Nacional",
 				new ArrayAdapter<String>(this,
 					android.R.layout.simple_list_item_1,
 					items));
-
-	List<String> list=Arrays.asList(items);
+		List<String> list=Arrays.asList(items);
 	
-	Collections.shuffle(list);
-	
-	adapter.addSection("Shuffled",
-						new ArrayAdapter<String>(this,
-						android.R.layout.simple_list_item_1,
-						list));
-	
-	list=Arrays.asList(items);
-	
-	Collections.shuffle(list);
-	
-	adapter.addSection("Re-shuffled",
-						new ArrayAdapter<String>(this,
-						android.R.layout.simple_list_item_1,
-						list));
-	
-	setListAdapter(adapter);
+		adapter.addSection("Global",
+							new ArrayAdapter<String>(this,
+							android.R.layout.simple_list_item_1,
+							list));
+		list=Arrays.asList(items);
+		
+		adapter.addSection("Dinero",
+							new ArrayAdapter<String>(this,
+							android.R.layout.simple_list_item_1,
+							list));
+		list=Arrays.asList(items);
+		
+		adapter.addSection("Comunidad",
+				new ArrayAdapter<String>(this,
+				android.R.layout.simple_list_item_1,
+				list));
+		list=Arrays.asList(items);
+		
+		adapter.addSection("Adrenalina",
+				new ArrayAdapter<String>(this,
+				android.R.layout.simple_list_item_1,
+				list));
+		list=Arrays.asList(items);
+		
+		adapter.addSection("Funci—n",
+				new ArrayAdapter<String>(this,
+				android.R.layout.simple_list_item_1,
+				list));
+		list=Arrays.asList(items);
+		
+		adapter.addSection("Opini—n",
+				new ArrayAdapter<String>(this,
+				android.R.layout.simple_list_item_1,
+				list));
+		list=Arrays.asList(items);
+		
+		setListAdapter(adapter);		
 	}
 
 	SectionedAdapter adapter=new SectionedAdapter() {
