@@ -11,14 +11,16 @@ public final class R {
     public static final class attr {
     }
     public static final class color {
-        public static final int background=0x7f040009;
+        public static final int ad_background=0x7f040009;
+        public static final int ad_color=0x7f04000b;
+        public static final int background=0x7f04000a;
         public static final int background1=0x7f040005;
         public static final int background2=0x7f040006;
         public static final int background3=0x7f040007;
         public static final int foreground1=0x7f040003;
         public static final int foreground2=0x7f040004;
-        public static final int pinned_header_background=0x7f04000b;
-        public static final int session_foreground_past=0x7f04000a;
+        public static final int pinned_header_background=0x7f04000d;
+        public static final int session_foreground_past=0x7f04000c;
         public static final int title_background=0x7f040000;
         public static final int title_separator=0x7f040008;
         public static final int title_text=0x7f040001;
@@ -55,36 +57,41 @@ public final class R {
         public static final int logo_excelsior_small=0x7f02001b;
         public static final int movies=0x7f02001c;
         public static final int photos=0x7f02001d;
+        public static final int row_photo=0x7f02001e;
     }
     public static final class id {
         public static final int ButtonsLinearLayout=0x7f080002;
         public static final int HorizontalScrollView=0x7f080001;
         public static final int ParentRelativeLayout=0x7f080000;
+        public static final int ad_space=0x7f080013;
+        public static final int address_text=0x7f080015;
         public static final int adrenaline=0x7f080008;
         public static final int adrenaline_button=0x7f080010;
         public static final int community=0x7f080007;
         public static final int community_button=0x7f08000f;
-        public static final int excelsior_logo_small=0x7f080014;
-        public static final int gallery_image=0x7f080016;
+        public static final int excelsior_logo_small=0x7f080016;
+        public static final int gallery_image=0x7f080018;
         public static final int global=0x7f080005;
         public static final int global_button=0x7f08000d;
         public static final int last_hour=0x7f080003;
         public static final int last_news_button=0x7f08000b;
         public static final int money=0x7f080006;
         public static final int money_button=0x7f08000e;
-        public static final int movies_image=0x7f080017;
-        public static final int multimedia_button=0x7f080013;
+        public static final int movies_image=0x7f080019;
         public static final int national=0x7f080004;
         public static final int national_button=0x7f08000c;
-        public static final int news_image=0x7f080015;
+        public static final int news_image=0x7f080017;
         public static final int opinion=0x7f08000a;
         public static final int opinion_button=0x7f080012;
+        public static final int row_image=0x7f080014;
         public static final int show=0x7f080009;
         public static final int show_button=0x7f080011;
     }
     public static final class layout {
-        public static final int main=0x7f030000;
-        public static final int window_title=0x7f030001;
+        public static final int header=0x7f030000;
+        public static final int main=0x7f030001;
+        public static final int row=0x7f030002;
+        public static final int window_title=0x7f030003;
     }
     public static final class menu {
         public static final int menu=0x7f070000;

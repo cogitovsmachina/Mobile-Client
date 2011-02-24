@@ -33,7 +33,9 @@
     </style>
     
     <style name="AdSpace">
-    <item name="android:background">#ffcec5c1</item>
+    <item name="android:background">#ff000000</item>
+    <item name="android:padding">40dp</item>	
+    <item name="android:textColor">@color/ad_color</item>
     </style>
     
 </resources>

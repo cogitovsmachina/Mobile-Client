@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	>
+	<ImageView
+		android:id="@+id/row_image"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:gravity="center_vertical"
+		android:src="@drawable/row_photo"/>
+		>
+	<TextView
+		android:id="@+id/address_text"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:color="#FFFFFF"
+	/>
+</LinearLayout>

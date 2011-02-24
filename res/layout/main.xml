@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--Starting with RelativeLayout-->
-<RelativeLayout 
+<!--Starting with TableLayout-->
+<TableLayout 
 android:id="@+id/ParentRelativeLayout"
 android:layout_width="fill_parent"
 android:layout_height="fill_parent"
@@ -208,20 +208,27 @@ style="@style/Theme.Excelsior">
 		
 	<!--Starting Ads Space-->	
 		<TextView
-			android:text="AD Space"
+			android:text="Publicidad"
 			android:layout_below="@+id/HorizontalScrollView"
 			android:gravity="center_horizontal|center_vertical"
-			android:id="@+id/multimedia_button"
+			android:id="@+id/ad_space"
 			android:layout_width="fill_parent"
 			android:layout_height="40dip"
 			style="@style/AdSpace"
-			android:padding="4sp"
-			android:background="#ffcec5c1"
 			/>
 	
 	<!--Finishing Ads Space-->	
 	
+	<!--Using a ListView with Headers-->
+	
+		<ListView
+			android:id="@android:id/list"
+			android:layout_width="fill_parent" 
+			android:layout_height="fill_parent"
+			android:layout_below="@id/ad_space"
+			android:headerDividersEnabled="true"
+		/>
 	
 		
-</RelativeLayout>
+</TableLayout>
 	<!--Finishing XML Description-->	
