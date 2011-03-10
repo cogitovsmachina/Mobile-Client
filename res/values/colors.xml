@@ -15,11 +15,37 @@
     <color name="transparent">#00000000</color>
     <color name="ad_text">#ffffffff</color>
     
-    
-    
-    
-    
+	<color name="color_foreground">#FFBBBBBB</color>
+	<color name="color_background">#FFBBBBBB</color>
+	<color name="color_foreground_inverse">#FF444444</color>
+	
+	<!-- Title Backgrounds for gradients -->
+	<color name="title_border">#FF282828</color>
+	
+		<!-- Title Backgrounds for Header gradients -->
+	<color name="national_header_start">#FFA41F3D</color>  
+	<color name="national_header_finish">#FF631325</color>
+	
+	<color name="global_header_start">#FF3A8A93</color>  
+	<color name="global_header_finish">#FF25555B</color>
 
+	<color name="money_header_start">#FF07547E</color>  
+	<color name="money_header_finish">#FF032435</color>
+	
+	<color name="community_header_start">#FF6D9F46</color>  
+	<color name="community_header_finish">#FF4A6A2F</color>
+	
+	<color name="adrenaline_header_start">#FFCC1821</color>  
+	<color name="adrenaline_header_finish">#FF891016</color>
+		
+	<color name="function_header_start">#FFF85B0A</color>  
+	<color name="function_header_finish">#FFB23F06</color>	
+
+	<color name="opinion_header_start">#FFA82341</color>  
+	<color name="opinion_header_finish">#FF6A1629</color>
+    
+    
+    
     <color name="session_foreground_past">#ff999999</color>
 
     <color name="pinned_header_background">#ff202020</color>

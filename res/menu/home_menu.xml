@@ -1,0 +1,17 @@
+<menu 
+xmlns:android="http://schemas.android.com/apk/res/android">
+       
+       <item android:id="@+id/share_image"
+        android:title="Compartir"
+        android:icon="@drawable/share" 
+        />
+      <item 
+      	android:id="@+id/gallery_image"
+      	android:icon="@drawable/photos"
+        android:title="Fotogalerias" 
+        /> 
+    <item android:id="@+id/movies_image"
+        android:title="Videos"
+        android:icon="@drawable/movies" 
+        />     
+</menu>

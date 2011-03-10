@@ -14,15 +14,37 @@ public final class R {
         public static final int ad_background=0x7f040009;
         public static final int ad_color=0x7f04000b;
         public static final int ad_text=0x7f04000d;
+        public static final int adrenaline_header_finish=0x7f04001b;
+        public static final int adrenaline_header_start=0x7f04001a;
         public static final int background=0x7f04000a;
         public static final int background1=0x7f040005;
         public static final int background2=0x7f040006;
         public static final int background3=0x7f040007;
+        public static final int color_background=0x7f04000f;
+        public static final int color_foreground=0x7f04000e;
+        public static final int color_foreground_inverse=0x7f040010;
+        public static final int community_header_finish=0x7f040019;
+        public static final int community_header_start=0x7f040018;
         public static final int foreground1=0x7f040003;
         public static final int foreground2=0x7f040004;
-        public static final int pinned_header_background=0x7f04000f;
-        public static final int session_foreground_past=0x7f04000e;
+        public static final int function_header_finish=0x7f04001d;
+        public static final int function_header_start=0x7f04001c;
+        public static final int global_header_finish=0x7f040015;
+        public static final int global_header_start=0x7f040014;
+        public static final int money_header_finish=0x7f040017;
+        public static final int money_header_start=0x7f040016;
+        public static final int national_header_finish=0x7f040013;
+        /**  Title Backgrounds for Header gradients 
+         */
+        public static final int national_header_start=0x7f040012;
+        public static final int opinion_header_finish=0x7f04001f;
+        public static final int opinion_header_start=0x7f04001e;
+        public static final int pinned_header_background=0x7f040021;
+        public static final int session_foreground_past=0x7f040020;
         public static final int title_background=0x7f040000;
+        /**  Title Backgrounds for gradients 
+         */
+        public static final int title_border=0x7f040011;
         public static final int title_separator=0x7f040008;
         public static final int title_text=0x7f040001;
         public static final int title_text_alt=0x7f040002;
@@ -53,19 +75,27 @@ public final class R {
         public static final int b8_s1=0x7f020015;
         public static final int b8_s1_selected=0x7f020016;
         public static final int b8_s1_unselected=0x7f020017;
-        public static final int home=0x7f020018;
-        public static final int icon=0x7f020019;
-        public static final int list_selector_background=0x7f02001a;
-        public static final int list_selector_background_disabled=0x7f02001b;
-        public static final int list_selector_background_focus=0x7f02001c;
-        public static final int list_selector_background_longpress=0x7f02001d;
-        public static final int list_selector_background_pressed=0x7f02001e;
-        public static final int list_selector_background_transition=0x7f02001f;
-        public static final int logo_excelsior_small=0x7f020020;
-        public static final int movies=0x7f020021;
-        public static final int photos=0x7f020022;
-        public static final int reload=0x7f020023;
-        public static final int row_photo=0x7f020024;
+        public static final int gradient_adrenaline_header=0x7f020018;
+        public static final int gradient_community_header=0x7f020019;
+        public static final int gradient_function_header=0x7f02001a;
+        public static final int gradient_global_header=0x7f02001b;
+        public static final int gradient_money_header=0x7f02001c;
+        public static final int gradient_national_header=0x7f02001d;
+        public static final int gradient_opinion_header=0x7f02001e;
+        public static final int home=0x7f02001f;
+        public static final int icon=0x7f020020;
+        public static final int list_selector_background=0x7f020021;
+        public static final int list_selector_background_disabled=0x7f020022;
+        public static final int list_selector_background_focus=0x7f020023;
+        public static final int list_selector_background_longpress=0x7f020024;
+        public static final int list_selector_background_pressed=0x7f020025;
+        public static final int list_selector_background_transition=0x7f020026;
+        public static final int logo_excelsior_small=0x7f020027;
+        public static final int movies=0x7f020028;
+        public static final int photos=0x7f020029;
+        public static final int reload=0x7f02002a;
+        public static final int row_photo=0x7f02002b;
+        public static final int share=0x7f02002c;
     }
     public static final class id {
         public static final int ButtonsLinearLayout=0x7f080002;
@@ -88,10 +118,10 @@ public final class R {
         public static final int movies_image=0x7f080019;
         public static final int national=0x7f080004;
         public static final int national_button=0x7f08000c;
-        public static final int news_image=0x7f080017;
         public static final int opinion=0x7f08000a;
         public static final int opinion_button=0x7f080012;
         public static final int row_image=0x7f080014;
+        public static final int share_image=0x7f080017;
         public static final int show=0x7f080009;
         public static final int show_button=0x7f080011;
     }
@@ -102,7 +132,7 @@ public final class R {
         public static final int window_title=0x7f030003;
     }
     public static final class menu {
-        public static final int menu=0x7f070000;
+        public static final int home_menu=0x7f070000;
     }
     public static final class string {
         public static final int app_name=0x7f060001;
