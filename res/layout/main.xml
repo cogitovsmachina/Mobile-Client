@@ -205,19 +205,6 @@ style="@style/Theme.Excelsior">
 		</HorizontalScrollView>
 		
 	<!--Finishing HorizontalScrollView-->	
-		
-	<!--Starting Ads Space-->	
-		<TextView
-			android:text="Publicidad"
-			android:layout_below="@+id/HorizontalScrollView"
-			android:gravity="center_horizontal|center_vertical"
-			android:id="@+id/ad_space"
-			android:layout_width="fill_parent"
-			android:layout_height="50dip"
-			style="@style/AdSpace"
-			/>
-	
-	<!--Finishing Ads Space-->	
 	
 	<!--Using a ListView with Headers-->
 	
@@ -225,7 +212,7 @@ style="@style/Theme.Excelsior">
 			android:id="@android:id/list"
 			android:layout_width="fill_parent" 
 			android:layout_height="fill_parent"
-			android:layout_below="@id/ad_space"
+			android:layout_below="@+id/HorizontalScrollView"
 			android:headerDividersEnabled="true"
 			android:cacheColorHint="#ccc1be"
 		/>

@@ -32,7 +32,7 @@ public class Home extends ListActivity {
         setCustomTitle();
         setContentView(R.layout.main);
         
- //Creating Headers and Adapters for each List
+        //Creating Headers and Adapters for each List
         
         mMergeAdapter=new MergeAdapter();
         
@@ -71,6 +71,7 @@ public class Home extends ListActivity {
 		setListAdapter(mMergeAdapter);
 	}
 	
+
 	//Last News
 	private ArrayAdapter<String> buildLastNewsList() {
 		return(new ArrayAdapter<String>(this,
