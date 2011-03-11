@@ -1,6 +1,5 @@
 <menu 
 xmlns:android="http://schemas.android.com/apk/res/android">
-       
        <item android:id="@+id/share_image"
         android:title="Compartir"
         android:icon="@drawable/share" 
@@ -13,5 +12,11 @@ xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/movies_image"
         android:title="Videos"
         android:icon="@drawable/movies" 
-        />     
+        />
+    <item android:id="@+id/refresh"
+        android:title="Actualizar"
+        android:icon="@android:drawable/ic_menu_rotate"
+        />          
 </menu>
+
+

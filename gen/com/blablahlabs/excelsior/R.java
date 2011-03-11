@@ -117,20 +117,22 @@ public final class R {
         public static final int ButtonsLinearLayout=0x7f080002;
         public static final int HorizontalScrollView=0x7f080001;
         public static final int ParentRelativeLayout=0x7f080000;
-        public static final int address_text=0x7f08000c;
         public static final int adrenaline=0x7f080008;
+        public static final int bottomtext=0x7f08000d;
         public static final int community=0x7f080007;
-        public static final int excelsior_logo_small=0x7f08000d;
-        public static final int gallery_image=0x7f08000f;
+        public static final int excelsior_logo_small=0x7f08000e;
+        public static final int gallery_image=0x7f080010;
         public static final int global=0x7f080005;
+        public static final int icon=0x7f08000b;
         public static final int last_hour=0x7f080003;
         public static final int money=0x7f080006;
-        public static final int movies_image=0x7f080010;
+        public static final int movies_image=0x7f080011;
         public static final int national=0x7f080004;
         public static final int opinion=0x7f08000a;
-        public static final int row_image=0x7f08000b;
-        public static final int share_image=0x7f08000e;
+        public static final int refresh=0x7f080012;
+        public static final int share_image=0x7f08000f;
         public static final int show=0x7f080009;
+        public static final int toptext=0x7f08000c;
     }
     public static final class layout {
         public static final int header=0x7f030000;

@@ -1,14 +1,16 @@
 package com.blablahlabs.excelsior;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
-
-
-import com.commonsware.cwac.merge.MergeAdapter;
+import java.util.List;
 
 import android.app.ListActivity;
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -21,17 +23,33 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.blablahlabs.excelsior.beans.ExcelsiorBean;
+import com.blablahlabs.excelsior.beans.notas.Nota;
+import com.blablahlabs.excelsior.beans.notas.NotaSeccion;
+import com.blablahlabs.excelsior.net.Net;
+import com.blablahlabs.excelsior.recursos.Recursos;
+import com.commonsware.cwac.merge.MergeAdapter;
 
 public class Home extends ListActivity {
+	
+	private ProgressDialog m_ProgressDialog = null; 
+    private ArrayList<Nota> m_orders = null;
+    private NotaAdapter m_adapter;
+    private Runnable viewOrders;
+    
 	private static String[] items={"lorem", "ipsum"};
 
-	private MergeAdapter mMergeAdapter=null;
+	public MergeAdapter mMergeAdapter=null;
 	private ArrayAdapter<String> mArrayAdapter=null;
+	private ProgressDialog dialog;
+	private ExcelsiorBean eBean;
+
 	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setCustomTitle();
+        //refresh();
         setContentView(R.layout.main);
         setupViews();
         showAllNews();
@@ -70,7 +88,6 @@ public class Home extends ListActivity {
 			public void onClick(View v) {
 				if (((RadioButton) v).isChecked()) {
 					showGlobal();
-					Toast.makeText(Home.this, "Selected", Toast.LENGTH_SHORT).show();
 				} 
 			}
 			
@@ -135,7 +152,8 @@ public class Home extends ListActivity {
 		        
 		        //Last News List
 		        mArrayAdapter=buildLastNewsList();
-				mMergeAdapter.addAdapter(mArrayAdapter);
+		        
+				mMergeAdapter.addAdapter(buildLastNewsList());
 				
 				//National
 				mMergeAdapter.addView(buildNationalHeader());
@@ -174,7 +192,9 @@ public class Home extends ListActivity {
 	private void showNational() {
 		  	mMergeAdapter=new MergeAdapter();
 			mMergeAdapter.addView(buildNationalHeader());
-			mMergeAdapter.addAdapter(buildNationalList());			
+			mMergeAdapter.addAdapter(buildNationalList());
+			
+			
 			setListAdapter(mMergeAdapter);		
 		
 	}
@@ -274,9 +294,11 @@ public class Home extends ListActivity {
 	 * 		National ListView
 	 */
 	private ListAdapter buildNationalList() {
+		
 		return(new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_1,
 				new ArrayList<String>(Arrays.asList(items))));
+
 	}
 
 	/*
@@ -477,11 +499,18 @@ public class Home extends ListActivity {
             case R.id.movies_image: 
             	Toast.makeText(this, "You want to go to movies!", Toast.LENGTH_LONG).show();
                                 break;
+            case R.id.refresh: 
+            	refresh();
+                                break;
         }
         return true;
     }
     
-    /*
+    private void refresh() {
+			new DownloadFilesTask().execute();
+	}
+
+	/*
 	*  Method to create ACTION_SEND Implementation :) 
 	*/
 	private void buildShareMenu() {
@@ -491,6 +520,53 @@ public class Home extends ListActivity {
 		startActivity(Intent.createChooser(mIntent, "Compartir en"));		
 	}
 	
+	
+	private class DownloadFilesTask extends AsyncTask<URL, Void, ExcelsiorBean> {
+        
+    	
+    	protected void onPreExecute(){
+    		dialog= ProgressDialog.show(Home.this, "Actualizando", "Actualizando los contenidos", true);
+    		return;
+    	}
+    	
+    	
+    	protected ExcelsiorBean doInBackground(URL... urls) {
+    		
+    		
+           // int count = urls.length;
+    		ExcelsiorBean ans = null;
+            try {
+            	ans = Net.getDataJson();
+            	
+
+
+			} catch (Exception e) {
+				Log.e(Recursos.APP,"Ocurrio un error");
+				Log.e(Recursos.APP,e.toString());
+				e.printStackTrace();
+			}
+			
+		
+            return ans ;
+        }
+        
+
+        protected void onPostExecute(ExcelsiorBean excelsiorBean) {
+        	dialog.dismiss();
+        	if (excelsiorBean == null)
+        		Toast.makeText(getApplicationContext(), "No lleg— :(", Toast.LENGTH_SHORT).show();
+        	else{
+        		        		
+        		NotaAdapter nAdapter;
+        		nAdapter = new NotaAdapter(Home.this, R.layout.row, (ArrayList<Nota>) excelsiorBean.getPrincipalPortada());
+        		setListAdapter(nAdapter);
+        		nAdapter.notifyDataSetChanged();
+        		Toast.makeText(getApplicationContext(), "Si lleg— :)", Toast.LENGTH_SHORT).show();
+        }
+        	}
+
+
+    }
 	
 		
 		 
