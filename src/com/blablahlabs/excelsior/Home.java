@@ -16,7 +16,9 @@ import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ListAdapter;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -33,7 +35,6 @@ public class Home extends ListActivity {
         super.onCreate(savedInstanceState);
         setCustomTitle();
         setContentView(R.layout.main);
-        setupViews();
         
         //Creating Headers and Adapters for each List
         
@@ -271,23 +272,13 @@ public class Home extends ListActivity {
 		startActivity(Intent.createChooser(mIntent, "Compartir en"));		
 	}
 	
-	//Giving logic to the Menu button
-	private void setupViews() {
-		 final ToggleButton lastNews = (ToggleButton) findViewById(R.id.last_hour);
-		lastNews.setOnClickListener(new OnClickListener(){
-		    public void onClick(View v) {
-		        // Perform action on clicks
-		        if (lastNews.isChecked()) {
-		        	lastNews.setButtonDrawable(R.drawable.b1_s1_selected);
-		        } else {
-		        	lastNews.setButtonDrawable(R.drawable.b1_s1);
-		        }
-		    }
-		});
+	
 		
-	}
+		 
+}
+	
+	
 	
     
    
     
-}

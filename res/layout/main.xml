@@ -6,7 +6,6 @@ android:layout_width="fill_parent"
 android:layout_height="fill_parent"
 xmlns:android="http://schemas.android.com/apk/res/android"
 style="@style/Theme.Excelsior">
-	
 	<!--Creating a HorizontalScrollView and giving a pair of properties-->
 		<HorizontalScrollView android:id="@+id/HorizontalScrollView"
 			android:layout_height="wrap_content"
@@ -24,72 +23,79 @@ style="@style/Theme.Excelsior">
 				>
 	
 		<!--Lots of buttons for each section of newspaper-->	
+			<RadioGroup
+				android:layout_width="fill_parent"
+	   		    android:layout_height="wrap_content"
+    		    android:orientation="horizontal">
 				
-				<ToggleButton 
+				<RadioButton 
 					android:id="@+id/last_hour"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content" 
-					android:src="@drawable/b1_s1"
-					style="@style/HomeButton"
-					android:background="@drawable/b1_s1"
-					android:textOn=""
-					android:textOff=""
+					android:background="@drawable/b1_s1_radio"
+					android:button="@color/transparent"
 					/>
 					
-				<ImageButton 
+				<RadioButton 
 					android:id="@+id/national"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content" 
-					android:src="@drawable/b2_s1"
-					style="@style/HomeButton"
+					style="@style/RadioButton"
+					android:background="@drawable/b2_s1_radio"
+					android:button="@color/transparent"
 					/>
-				<ImageButton 
+					
+				<RadioButton 
 					android:id="@+id/global"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content" 
-					android:src="@drawable/b3_s1"
-					style="@style/HomeButton"
+					style="@style/RadioButton"
+					android:background="@drawable/b3_s1_radio"
+					android:button="@color/transparent"
 					/>
-				<ImageButton 
+				<RadioButton 
 					android:id="@+id/money"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content" 
-					android:src="@drawable/b4_s1"
-					style="@style/HomeButton"
+					style="@style/RadioButton"
+					android:background="@drawable/b4_s1_radio"
+					android:button="@color/transparent"
 					/>
-				<ImageButton
+				<RadioButton
 					android:id="@+id/community"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content" 
-					android:src="@drawable/b5_s1"
-					style="@style/HomeButton"
+					style="@style/RadioButton"
+					android:background="@drawable/b5_s1_radio"
+					android:button="@color/transparent"
 					/>
-				<ImageButton
+				<RadioButton
 					android:id="@+id/adrenaline"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content" 
-					android:src="@drawable/b6_s1"
-					style="@style/HomeButton"
+					style="@style/RadioButton"
+					android:background="@drawable/b6_s1_radio"
+					android:button="@color/transparent"
 					/>
-				<ImageButton
+				<RadioButton
 					android:id="@+id/show"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content" 
-					android:src="@drawable/b7_s1"
-					style="@style/HomeButton"
+					style="@style/RadioButton"
+					android:background="@drawable/b7_s1_radio"
+					android:button="@color/transparent"
 					/>
-				<ImageButton 
+				<RadioButton 
 					android:id="@+id/opinion"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content" 
-					android:src="@drawable/b8_s1"
-					style="@style/HomeButton"
+					style="@style/RadioButton"
+					android:background="@drawable/b8_s1_radio"
+					android:button="@color/transparent"
 					/>
-				
-				
-				
-				
-		<!--Finishing buttons-->	
+					</RadioGroup>
+			
+		<!--Finishing ToggleButtons-->	
 					
 			</LinearLayout>
 		<!--Finishing Horizontal LinearLayout-->	
