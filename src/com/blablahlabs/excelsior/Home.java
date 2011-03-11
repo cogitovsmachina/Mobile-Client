@@ -16,12 +16,10 @@ import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
-import android.widget.ImageButton;
 import android.widget.ListAdapter;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.ToggleButton;
 
 
 public class Home extends ListActivity {
@@ -35,45 +33,212 @@ public class Home extends ListActivity {
         super.onCreate(savedInstanceState);
         setCustomTitle();
         setContentView(R.layout.main);
-        
-        //Creating Headers and Adapters for each List
-        
-        mMergeAdapter=new MergeAdapter();
-        
-        //Last News List
-        mArrayAdapter=buildLastNewsList();
-		mMergeAdapter.addAdapter(mArrayAdapter);
+        setupViews();
+        showAllNews();
+  
+	}
+
+	private void setupViews() {
+		final RadioButton rLastNews = (RadioButton)findViewById(R.id.last_hour);
+		final RadioButton rNational = (RadioButton)findViewById(R.id.national);
+		final RadioButton rGlobal = (RadioButton)findViewById(R.id.global);
+		final RadioButton rMoney = (RadioButton)findViewById(R.id.money);
+		final RadioButton rCommunity = (RadioButton)findViewById(R.id.community);
+		final RadioButton rAdrenaline = (RadioButton)findViewById(R.id.adrenaline);
+		final RadioButton rFunction = (RadioButton)findViewById(R.id.show);
+		final RadioButton rOpinion = (RadioButton)findViewById(R.id.opinion);
 		
-		//National
-		mMergeAdapter.addView(buildNationalHeader());
-		mMergeAdapter.addAdapter(buildNationalList());
+		rLastNews.setPressed(true);
 		
-		//Global
-		mMergeAdapter.addView(buildGlobalHeader());
-		mMergeAdapter.addAdapter(buildGlobalList());
+		rLastNews.setOnClickListener(new OnClickListener() {
+		    public void onClick(View v) {
+		        // Perform action on clicks, depending on whether it's now checked
+		        if (((RadioButton) v).isChecked()) {
+					showAllNews();
+		        } 
+		    }
+		});
+		
+		rNational.setOnClickListener(new OnClickListener() {
+		    public void onClick(View v) {
+		        // Perform action on clicks, depending on whether it's now checked
+		        if (((RadioButton) v).isChecked()) {
+					showNational();
+		        } 
+		    }
+		});
+		
+		rGlobal.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				// Perform action on clicks, depending on whether it's now checked
+				if (((RadioButton) v).isChecked()) {
+					showGlobal();
+					Toast.makeText(Home.this, "Selected", Toast.LENGTH_SHORT).show();
+				} 
+			}
+			
+		});
+		
+		rMoney.setOnClickListener(new OnClickListener() {
+		    public void onClick(View v) {
+		        // Perform action on clicks, depending on whether it's now checked
+		        if (((RadioButton) v).isChecked()) {
+					showMoney();
+		        } 
+		    }
+
+		});
+		
+		rCommunity.setOnClickListener(new OnClickListener() {
+		    public void onClick(View v) {
+		        // Perform action on clicks, depending on whether it's now checked
+		        if (((RadioButton) v).isChecked()) {
+					showCommunity();
+		        } 
+		    }
+
+		});
+		
+		rAdrenaline.setOnClickListener(new OnClickListener() {
+		    public void onClick(View v) {
+		        // Perform action on clicks, depending on whether it's now checked
+		        if (((RadioButton) v).isChecked()) {
+					showAdrenaline();
+		        } 
+		    }
+
+		});
+		
+		rFunction.setOnClickListener(new OnClickListener() {
+		    public void onClick(View v) {
+		        // Perform action on clicks, depending on whether it's now checked
+		        if (((RadioButton) v).isChecked()) {
+		        	showFunction();
+		        } 
+		    }
+
+		});
+		
+		rOpinion.setOnClickListener(new OnClickListener() {
+		    public void onClick(View v) {
+		        // Perform action on clicks, depending on whether it's now checked
+		        if (((RadioButton) v).isChecked()) {
+		        	showOpinion();
+		        } 
+		    }
+
+		});
+		
+		
+
+	}
+
+
+	private void showAllNews() {
+		//Creating Headers and Adapters for each List
+		        
+		        mMergeAdapter=new MergeAdapter();
+		        
+		        //Last News List
+		        mArrayAdapter=buildLastNewsList();
+				mMergeAdapter.addAdapter(mArrayAdapter);
+				
+				//National
+				mMergeAdapter.addView(buildNationalHeader());
+				mMergeAdapter.addAdapter(buildNationalList());
+				
+				//Global
+				mMergeAdapter.addView(buildGlobalHeader());
+				mMergeAdapter.addAdapter(buildGlobalList());
+				
+				//Money
+				mMergeAdapter.addView(buildMoneylHeader());
+				mMergeAdapter.addAdapter(buildMoneyList());
+				
+				//Community
+				mMergeAdapter.addView(buildCommunityHeader());
+				mMergeAdapter.addAdapter(buildCommunityList());
+				
+				//Adrenaline
+				mMergeAdapter.addView(buildAdrenalineHeader());
+				mMergeAdapter.addAdapter(buildAdrenalineList());
+				
+				//Function
+				mMergeAdapter.addView(buildFuntionHeader());
+				mMergeAdapter.addAdapter(buildFunctionList());
+				
+				//Opinion
+				mMergeAdapter.addView(buildOpinionnHeader());
+				mMergeAdapter.addAdapter(buildOpinionList());
+				
+				setListAdapter(mMergeAdapter);		
+			}
+	
+	private void showNational() {
+		  	mMergeAdapter=new MergeAdapter();
+			
+			//National
+			mMergeAdapter.addView(buildNationalHeader());
+			mMergeAdapter.addAdapter(buildNationalList());			
+			setListAdapter(mMergeAdapter);		
+		
+	}
+	protected void showMoney() {
+		mMergeAdapter=new MergeAdapter();
 		
 		//Money
 		mMergeAdapter.addView(buildMoneylHeader());
-		mMergeAdapter.addAdapter(buildMoneyList());
+		mMergeAdapter.addAdapter(buildMoneyList());			
+		setListAdapter(mMergeAdapter);	
+	}
+
+	private void showGlobal() {
+		mMergeAdapter=new MergeAdapter();
+		
+		//Global
+		mMergeAdapter.addView(buildGlobalHeader());
+		mMergeAdapter.addAdapter(buildGlobalList());			
+		setListAdapter(mMergeAdapter);	
+	}
+	
+	private void showCommunity() {
+		mMergeAdapter=new MergeAdapter();
 		
 		//Community
 		mMergeAdapter.addView(buildCommunityHeader());
-		mMergeAdapter.addAdapter(buildCommunityList());
-		
-		//Adrenaline
-		mMergeAdapter.addView(buildAdrenalineHeader());
-		mMergeAdapter.addAdapter(buildAdrenalineList());
-		
-		//Function
-		mMergeAdapter.addView(buildFuntionHeader());
-		mMergeAdapter.addAdapter(buildFunctionList());
-		
-		//Opinion
-		mMergeAdapter.addView(buildOpinionnHeader());
-		mMergeAdapter.addAdapter(buildOpinionList());
-		
-		setListAdapter(mMergeAdapter);
+		mMergeAdapter.addAdapter(buildCommunityList());			
+		setListAdapter(mMergeAdapter);	
 	}
+	
+	private void showAdrenaline() {
+		mMergeAdapter=new MergeAdapter();
+		
+		//Community
+		mMergeAdapter.addView(buildAdrenalineHeader());
+		mMergeAdapter.addAdapter(buildAdrenalineList());			
+		setListAdapter(mMergeAdapter);	
+	}
+	
+	private void showFunction() {
+		mMergeAdapter=new MergeAdapter();
+		
+		//Community
+		mMergeAdapter.addView(buildFuntionHeader());
+		mMergeAdapter.addAdapter(buildFunctionList());			
+		setListAdapter(mMergeAdapter);	
+	}
+	
+	private void showOpinion() {
+		mMergeAdapter=new MergeAdapter();
+		
+		//Community
+		mMergeAdapter.addView(buildOpinionnHeader());
+		mMergeAdapter.addAdapter(buildOpinionList());			
+		setListAdapter(mMergeAdapter);	
+	}
+
+	
+	
 
 	//Last News
 	private ArrayAdapter<String> buildLastNewsList() {

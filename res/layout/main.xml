@@ -112,7 +112,7 @@ style="@style/Theme.Excelsior">
 			android:layout_height="fill_parent"
 			android:layout_below="@+id/HorizontalScrollView"
 			android:headerDividersEnabled="true"
-			android:cacheColorHint="#ccc1be"
+			android:cacheColorHint="#D5D3CD"
 		/>
 	
 		
