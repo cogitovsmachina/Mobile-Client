@@ -52,7 +52,6 @@ public class Home extends ListActivity {
 		
 		rLastNews.setOnClickListener(new OnClickListener() {
 		    public void onClick(View v) {
-		        // Perform action on clicks, depending on whether it's now checked
 		        if (((RadioButton) v).isChecked()) {
 					showAllNews();
 		        } 
@@ -61,7 +60,6 @@ public class Home extends ListActivity {
 		
 		rNational.setOnClickListener(new OnClickListener() {
 		    public void onClick(View v) {
-		        // Perform action on clicks, depending on whether it's now checked
 		        if (((RadioButton) v).isChecked()) {
 					showNational();
 		        } 
@@ -70,7 +68,6 @@ public class Home extends ListActivity {
 		
 		rGlobal.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				// Perform action on clicks, depending on whether it's now checked
 				if (((RadioButton) v).isChecked()) {
 					showGlobal();
 					Toast.makeText(Home.this, "Selected", Toast.LENGTH_SHORT).show();
@@ -81,7 +78,6 @@ public class Home extends ListActivity {
 		
 		rMoney.setOnClickListener(new OnClickListener() {
 		    public void onClick(View v) {
-		        // Perform action on clicks, depending on whether it's now checked
 		        if (((RadioButton) v).isChecked()) {
 					showMoney();
 		        } 
@@ -91,7 +87,6 @@ public class Home extends ListActivity {
 		
 		rCommunity.setOnClickListener(new OnClickListener() {
 		    public void onClick(View v) {
-		        // Perform action on clicks, depending on whether it's now checked
 		        if (((RadioButton) v).isChecked()) {
 					showCommunity();
 		        } 
@@ -101,7 +96,6 @@ public class Home extends ListActivity {
 		
 		rAdrenaline.setOnClickListener(new OnClickListener() {
 		    public void onClick(View v) {
-		        // Perform action on clicks, depending on whether it's now checked
 		        if (((RadioButton) v).isChecked()) {
 					showAdrenaline();
 		        } 
@@ -111,7 +105,6 @@ public class Home extends ListActivity {
 		
 		rFunction.setOnClickListener(new OnClickListener() {
 		    public void onClick(View v) {
-		        // Perform action on clicks, depending on whether it's now checked
 		        if (((RadioButton) v).isChecked()) {
 		        	showFunction();
 		        } 
@@ -121,7 +114,6 @@ public class Home extends ListActivity {
 		
 		rOpinion.setOnClickListener(new OnClickListener() {
 		    public void onClick(View v) {
-		        // Perform action on clicks, depending on whether it's now checked
 		        if (((RadioButton) v).isChecked()) {
 		        	showOpinion();
 		        } 
@@ -133,10 +125,12 @@ public class Home extends ListActivity {
 
 	}
 
-
+	/*
+	 * 		Creating Headers and Adapters for each List
+	 */ 
 	private void showAllNews() {
-		//Creating Headers and Adapters for each List
-		        
+		
+		  
 		        mMergeAdapter=new MergeAdapter();
 		        
 		        //Last News List
@@ -174,55 +168,61 @@ public class Home extends ListActivity {
 				setListAdapter(mMergeAdapter);		
 			}
 	
+	/*
+	 * 		Building National Adapter
+	 */
 	private void showNational() {
 		  	mMergeAdapter=new MergeAdapter();
-			
-			//National
 			mMergeAdapter.addView(buildNationalHeader());
 			mMergeAdapter.addAdapter(buildNationalList());			
 			setListAdapter(mMergeAdapter);		
 		
 	}
+	/*
+	 * 		Building Money Adapter
+	 */
 	protected void showMoney() {
 		mMergeAdapter=new MergeAdapter();
-		
-		//Money
 		mMergeAdapter.addView(buildMoneylHeader());
 		mMergeAdapter.addAdapter(buildMoneyList());			
 		setListAdapter(mMergeAdapter);	
 	}
 
+	/*
+	 * 		Building Global Adapter
+	 */
 	private void showGlobal() {
 		mMergeAdapter=new MergeAdapter();
-		
-		//Global
 		mMergeAdapter.addView(buildGlobalHeader());
 		mMergeAdapter.addAdapter(buildGlobalList());			
 		setListAdapter(mMergeAdapter);	
 	}
 	
+	/*
+	 * 		Building Community Adapter
+	 */
 	private void showCommunity() {
 		mMergeAdapter=new MergeAdapter();
-		
-		//Community
 		mMergeAdapter.addView(buildCommunityHeader());
 		mMergeAdapter.addAdapter(buildCommunityList());			
 		setListAdapter(mMergeAdapter);	
 	}
 	
+	/*
+	 * 		Building Adrenaline Adapter
+	 */
 	private void showAdrenaline() {
-		mMergeAdapter=new MergeAdapter();
-		
-		//Community
+		mMergeAdapter=new MergeAdapter();	
 		mMergeAdapter.addView(buildAdrenalineHeader());
 		mMergeAdapter.addAdapter(buildAdrenalineList());			
 		setListAdapter(mMergeAdapter);	
 	}
 	
+	/*
+	 * 		Building Function Adapter
+	 */
 	private void showFunction() {
 		mMergeAdapter=new MergeAdapter();
-		
-		//Community
 		mMergeAdapter.addView(buildFuntionHeader());
 		mMergeAdapter.addAdapter(buildFunctionList());			
 		setListAdapter(mMergeAdapter);	
@@ -231,7 +231,10 @@ public class Home extends ListActivity {
 	private void showOpinion() {
 		mMergeAdapter=new MergeAdapter();
 		
-		//Community
+		
+		/*
+		 * 		Building Opinion Adapter
+		 */
 		mMergeAdapter.addView(buildOpinionnHeader());
 		mMergeAdapter.addAdapter(buildOpinionList());			
 		setListAdapter(mMergeAdapter);	
@@ -240,14 +243,20 @@ public class Home extends ListActivity {
 	
 	
 
-	//Last News
+	
+	/*
+	 * 		Last News
+	 */
 	private ArrayAdapter<String> buildLastNewsList() {
 		return(new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_1,
 				new ArrayList<String>(Arrays.asList(items))));
 	}
 	
-	//National Header
+	
+	/*
+	 * 		National Header
+	 */
 	private View buildNationalHeader() {
 		TextView national = new TextView(this);		
 		national.setCursorVisible(false);
@@ -261,14 +270,18 @@ public class Home extends ListActivity {
 		return(national);  	
 	}	
 	
-	//National ListView
+	/*
+	 * 		National ListView
+	 */
 	private ListAdapter buildNationalList() {
 		return(new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_1,
 				new ArrayList<String>(Arrays.asList(items))));
 	}
 
-	//Global Header
+	/*
+	 * 		Global Header
+	 */
 	private View buildGlobalHeader() {
 		TextView global = new TextView(this);		
 		global.setCursorVisible(false);
@@ -282,14 +295,20 @@ public class Home extends ListActivity {
 		return(global);  	
 	}
         
-	//Global ListView
+	
+	/*
+	 * 		Global ListView
+	 */
 	private ListAdapter buildGlobalList() {
 		return(new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_1,
 				new ArrayList<String>(Arrays.asList(items))));
 	}
 	
-	//Money Header
+	
+	/*
+	 * 		Money Header
+	 */
 	private View buildMoneylHeader() {
 		TextView money = new TextView(this);		
 		money.setCursorVisible(false);
@@ -303,14 +322,20 @@ public class Home extends ListActivity {
 		return(money);    	
 	}
 	
-	//Money ListView
+	
+	/*
+	 * 		Money ListView
+	 */
 	private ListAdapter buildMoneyList() {
 		return(new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_1,
 				new ArrayList<String>(Arrays.asList(items))));
 	}
 	
-	//Community Header
+	
+	/*
+	 * 		Community Header
+	 */
 	private View buildCommunityHeader() {
 		TextView community = new TextView(this);		
 		community.setCursorVisible(false);
@@ -324,14 +349,20 @@ public class Home extends ListActivity {
 		return(community);  
 	}
 	
-	//Community ListView
+	
+	
+	/*
+	 * 		Community ListView
+	 */
 	private ListAdapter buildCommunityList() {
 		return(new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_1,
 				new ArrayList<String>(Arrays.asList(items))));
 	}
 
-	//Adrenaline Header
+	/*
+	 * 		Adrenaline Header
+	 */
 	private View buildAdrenalineHeader() {
 		TextView adrenaline = new TextView(this);		
 		adrenaline.setCursorVisible(false);
@@ -345,14 +376,20 @@ public class Home extends ListActivity {
 		return(adrenaline);  
 	}
 	
-	//Adrenaline ListView
+	/*
+	*          Adrenaline ListView
+	*/
+	
 	private ListAdapter buildAdrenalineList() {
 		return(new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_1,
 				new ArrayList<String>(Arrays.asList(items))));
 	}
 	
-    //Opinion Header
+	/*
+	*          Opinion Header
+	*/
+	
 	private View buildOpinionnHeader() {
 		TextView opinion = new TextView(this);		
 		opinion.setCursorVisible(false);
@@ -373,7 +410,9 @@ public class Home extends ListActivity {
 				new ArrayList<String>(Arrays.asList(items))));
 	}
     
-	//Function Header
+    /*
+	*      	Function Header
+	*/
 	private View buildFuntionHeader() {
 		TextView function = new TextView(this);		
 		function.setCursorVisible(false);
@@ -387,7 +426,9 @@ public class Home extends ListActivity {
 		return(function); 	
 		}
 	
-	//Function ListView
+	/*
+	*      	Function ListView
+	*/
 	private ListAdapter buildFunctionList() {
 		return(new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_1,
@@ -397,14 +438,22 @@ public class Home extends ListActivity {
 
 	//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx	
 
-	//Setting Custom Title :)
+	
+	/*
+	*      Setting Custom Title :)
+	*/
+	
     private void setCustomTitle() {
     	requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
         setContentView(R.layout.main);
         getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.window_title);
         
 	}
-    //Inflating the option Menu
+    
+    /*
+	*      Inflating the option Menu
+	*/
+    
 	@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -413,7 +462,9 @@ public class Home extends ListActivity {
     }
     
 	
-	//Giving logic to the option menu
+	/*
+	*  Giving logic to the option menu 
+	*/
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -429,7 +480,10 @@ public class Home extends ListActivity {
         }
         return true;
     }
-    //Method to create ACTION_SEND Implementation :)
+    
+    /*
+	*  Method to create ACTION_SEND Implementation :) 
+	*/
 	private void buildShareMenu() {
 		Intent mIntent = new Intent(android.content.Intent.ACTION_SEND);
 		mIntent.setType("text/plain");
