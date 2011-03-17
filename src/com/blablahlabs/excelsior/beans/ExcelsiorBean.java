@@ -28,7 +28,7 @@ public class ExcelsiorBean {
 
 	private List<NotaModulo> moduloC = new ArrayList<NotaModulo>();
 
-	private List<NotaUltimaHora> ultimaHora = new ArrayList<NotaUltimaHora>();	
+	private ArrayList<NotaUltimaHora> ultimaHora = new ArrayList<NotaUltimaHora>();	
 
 	private List<NotaStage> stage = new ArrayList<NotaStage>();
 
@@ -301,11 +301,11 @@ public class ExcelsiorBean {
 		this.moduloC = moduloC;
 	}
 
-	public List<NotaUltimaHora> getUltimaHora() {
+	public ArrayList<NotaUltimaHora> getUltimaHora() {
 		return ultimaHora;
 	}
 
-	public void setUltimaHora(List<NotaUltimaHora> ultimaHora) {
+	public void setUltimaHora(ArrayList<NotaUltimaHora> ultimaHora) {
 		this.ultimaHora = ultimaHora;
 	}
 

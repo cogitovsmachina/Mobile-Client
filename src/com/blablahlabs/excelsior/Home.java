@@ -3,7 +3,9 @@ package com.blablahlabs.excelsior;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
+
 
 import android.app.ListActivity;
 import android.app.ProgressDialog;
@@ -24,35 +26,37 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.blablahlabs.excelsior.beans.ExcelsiorBean;
+import com.blablahlabs.excelsior.beans.SeccionNacional;
 import com.blablahlabs.excelsior.beans.notas.Nota;
 import com.blablahlabs.excelsior.beans.notas.NotaSeccion;
+import com.blablahlabs.excelsior.beans.notas.NotaUltimaHora;
 import com.blablahlabs.excelsior.net.Net;
 import com.blablahlabs.excelsior.recursos.Recursos;
 import com.commonsware.cwac.merge.MergeAdapter;
 
 public class Home extends ListActivity {
 	
-	private ProgressDialog m_ProgressDialog = null; 
-    private ArrayList<Nota> m_orders = null;
-    private NotaAdapter m_adapter;
-    private Runnable viewOrders;
     
 	private static String[] items={"lorem", "ipsum"};
 
-	public MergeAdapter mMergeAdapter=null;
-	private ArrayAdapter<String> mArrayAdapter=null;
-	private ProgressDialog dialog;
-	private ExcelsiorBean eBean;
+	private MergeAdapter mMergeAdapter=null;
+	private ListAdapter mNotaAdapter=null;
+	private ArrayAdapter<String> mArrayAdapter = null;
+	ProgressDialog dialog;
+	private Net net;
+
 
 	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
+		net = new Net(getApplicationContext());
         super.onCreate(savedInstanceState);
         setCustomTitle();
         //refresh();
         setContentView(R.layout.main);
         setupViews();
-        showAllNews();
+        refresh();
+       // showAllNews();
   
 	}
 
@@ -152,7 +156,6 @@ public class Home extends ListActivity {
 		        
 		        //Last News List
 		        mArrayAdapter=buildLastNewsList();
-		        
 				mMergeAdapter.addAdapter(buildLastNewsList());
 				
 				//National
@@ -185,19 +188,20 @@ public class Home extends ListActivity {
 				
 				setListAdapter(mMergeAdapter);		
 			}
-	
 	/*
 	 * 		Building National Adapter
 	 */
 	private void showNational() {
-		  	mMergeAdapter=new MergeAdapter();
-			mMergeAdapter.addView(buildNationalHeader());
-			mMergeAdapter.addAdapter(buildNationalList());
-			
-			
-			setListAdapter(mMergeAdapter);		
+
+		mMergeAdapter=new MergeAdapter();
+		mMergeAdapter.addView(buildNationalHeader());
+		mMergeAdapter.addAdapter(buildNationalList());
+		
+		
+		setListAdapter(mMergeAdapter);		
 		
 	}
+	
 	/*
 	 * 		Building Money Adapter
 	 */
@@ -262,7 +266,22 @@ public class Home extends ListActivity {
 
 	
 	
-
+	/*
+	 * 		Last News Header
+	 */
+	private View buildLastNewsHeader() {
+		TextView national = new TextView(this);		
+		national.setCursorVisible(false);
+		national.setFocusable(false);
+		national.setClickable(false);
+		national.setText("Ultimas Noticias");
+		national.setTextSize(15);
+		national.setClickable(false);
+		national.setFocusableInTouchMode(false);
+		national.setBackgroundResource(R.drawable.gradient_national_header);
+		return(national);  	
+	}	
+	
 	
 	/*
 	 * 		Last News
@@ -294,12 +313,26 @@ public class Home extends ListActivity {
 	 * 		National ListView
 	 */
 	private ListAdapter buildNationalList() {
+		//ExcelsiorBean excelsiorBean = null ;
+		//excelsiorBean.getSeccionNacional();
+		//ArrayList<SeccionNacional> list = new ArrayList<SeccionNacional>();
+		
+		
+
+//		return(new ArrayAdapter<String>(this,
+//											android.R.layout.simple_list_item_1,
+//											list));
+//		return(new ArrayAdapter<NotaSeccion>(this,
+//								R.layout.row,
+//								 list));
+
 		
 		return(new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_1,
 				new ArrayList<String>(Arrays.asList(items))));
 
-	}
+	}	
+
 
 	/*
 	 * 		Global Header
@@ -506,25 +539,29 @@ public class Home extends ListActivity {
         return true;
     }
     
+    /*
+     *  Method to create ACTION_SEND Implementation :) 
+     */
+    private void buildShareMenu() {
+    	Intent mIntent = new Intent(android.content.Intent.ACTION_SEND);
+    	mIntent.setType("text/plain");
+    	mIntent.putExtra(Intent.EXTRA_TEXT, "Yo estoy informado con Excelsior para Android http://excelsior.com.mx");
+    	startActivity(Intent.createChooser(mIntent, "Compartir en"));		
+    }
+    
+    
     private void refresh() {
 			new DownloadFilesTask().execute();
 	}
 
-	/*
-	*  Method to create ACTION_SEND Implementation :) 
-	*/
-	private void buildShareMenu() {
-		Intent mIntent = new Intent(android.content.Intent.ACTION_SEND);
-		mIntent.setType("text/plain");
-		mIntent.putExtra(Intent.EXTRA_TEXT, "Yo estoy informado con Excelsior para Android http://excelsior.com.mx");
-		startActivity(Intent.createChooser(mIntent, "Compartir en"));		
-	}
-	
 	
 	private class DownloadFilesTask extends AsyncTask<URL, Void, ExcelsiorBean> {
         
     	
-    	protected void onPreExecute(){
+    	private MergeAdapter adapter;
+
+
+		protected void onPreExecute(){
     		dialog= ProgressDialog.show(Home.this, "Actualizando", "Actualizando los contenidos", true);
     		return;
     	}
@@ -536,7 +573,7 @@ public class Home extends ListActivity {
            // int count = urls.length;
     		ExcelsiorBean ans = null;
             try {
-            	ans = Net.getDataJson();
+            	ans = net.getDataBean();
             	
 
 
@@ -556,13 +593,32 @@ public class Home extends ListActivity {
         	if (excelsiorBean == null)
         		Toast.makeText(getApplicationContext(), "No lleg— :(", Toast.LENGTH_SHORT).show();
         	else{
-        		        		
-        		NotaAdapter nAdapter;
-        		nAdapter = new NotaAdapter(Home.this, R.layout.row, (ArrayList<Nota>) excelsiorBean.getPrincipalPortada());
-        		setListAdapter(nAdapter);
-        		nAdapter.notifyDataSetChanged();
+        		
         		Toast.makeText(getApplicationContext(), "Si lleg— :)", Toast.LENGTH_SHORT).show();
-        }
+        		
+        		adapter=new MergeAdapter();
+	
+        		//Ultima Hora
+        		NotaAdapter nAdapter;
+        		nAdapter = new NotaAdapter(Home.this, R.layout.row, (ArrayList<NotaUltimaHora>) excelsiorBean.getUltimaHora());
+        		adapter.addAdapter(nAdapter);
+        		
+        		//Nacional
+        		adapter.addView(buildNationalHeader());
+        		
+        		
+        		
+        		
+        		
+        		//commit para actualizar la vista 
+				setListAdapter(adapter);
+				
+				
+
+        
+        		Toast.makeText(getApplicationContext(), "Si lleg— :)", Toast.LENGTH_SHORT).show();
+        }        		        		
+        		
         	}
 
 

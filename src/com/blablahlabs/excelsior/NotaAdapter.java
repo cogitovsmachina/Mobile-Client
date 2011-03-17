@@ -3,6 +3,7 @@ package com.blablahlabs.excelsior;
 import java.util.ArrayList;
 
 import com.blablahlabs.excelsior.beans.notas.Nota;
+import com.blablahlabs.excelsior.beans.notas.NotaUltimaHora;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,12 +12,13 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-class NotaAdapter extends ArrayAdapter<Nota> {
+class NotaAdapter extends ArrayAdapter<NotaUltimaHora> {
+//class NotaAdapter extends ArrayAdapter<Nota> {
 
-    private ArrayList<Nota> items;
+    private ArrayList<NotaUltimaHora> items;
 	private Context context;
 
-    public NotaAdapter(Context context, int textViewResourceId, ArrayList<Nota> items) {
+    public NotaAdapter(Context context, int textViewResourceId, ArrayList<NotaUltimaHora> items) {
             super(context, textViewResourceId, items);
             this.items = items;
             this.context = context;
@@ -28,14 +30,14 @@ class NotaAdapter extends ArrayAdapter<Nota> {
                 LayoutInflater vi = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 v = vi.inflate(R.layout.row, null);
             }
-            Nota o = items.get(position);
-            if (o != null) {
-                    TextView tt = (TextView) v.findViewById(R.id.toptext);
-                    TextView bt = (TextView) v.findViewById(R.id.bottomtext);
+            Nota mnota = items.get(position);
+            if (mnota != null) {
+                    TextView tt = (TextView) v.findViewById(R.id.title);
+                    TextView bt = (TextView) v.findViewById(R.id.shot);
                     if (tt != null) {
-                          tt.setText("Name: "+o.titulo);                            }
+                          tt.setText(""+mnota.titulo);                            }
                     if(bt != null){
-                          bt.setText("Status: "+ o.balazo);
+                          bt.setText(""+ mnota.balazo);
                     }
             }
             return v;
