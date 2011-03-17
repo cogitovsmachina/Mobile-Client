@@ -3,6 +3,7 @@ package com.blablahlabs.excelsior;
 import java.util.ArrayList;
 
 import com.blablahlabs.excelsior.beans.notas.Nota;
+import com.blablahlabs.excelsior.beans.notas.NotaSeccion;
 import com.blablahlabs.excelsior.beans.notas.NotaUltimaHora;
 
 import android.content.Context;
@@ -13,13 +14,12 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-class NotaAdapter extends ArrayAdapter<NotaUltimaHora> {
-//class NotaAdapter extends ArrayAdapter<Nota> {
+class NotaAdapterSeccion extends ArrayAdapter<NotaSeccion> {
 
-    private ArrayList<NotaUltimaHora> items;
+    private ArrayList<NotaSeccion> items;
 	private Context context;
 
-    public NotaAdapter(Context context, int textViewResourceId, ArrayList<NotaUltimaHora> items) {
+    public NotaAdapterSeccion(Context context, int textViewResourceId, ArrayList<NotaSeccion> items) {
             super(context, textViewResourceId, items);
             this.items = items;
             this.context = context;
@@ -36,9 +36,9 @@ class NotaAdapter extends ArrayAdapter<NotaUltimaHora> {
                     TextView tt = (TextView) v.findViewById(R.id.title);
                     TextView bt = (TextView) v.findViewById(R.id.shot);
                     if (tt != null) {
-                          tt.setText(""+mnota.titulo);                            }
+                          tt.setText(mnota.titulo);                            }
                     if(bt != null){
-                    	 bt.setText(Html.fromHtml(mnota.balazo));
+                          bt.setText(Html.fromHtml(mnota.balazo));
                     }
             }
             return v;

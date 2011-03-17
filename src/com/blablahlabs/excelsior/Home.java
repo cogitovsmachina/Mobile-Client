@@ -3,9 +3,6 @@ package com.blablahlabs.excelsior;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
-
 
 import android.app.ListActivity;
 import android.app.ProgressDialog;
@@ -20,14 +17,13 @@ import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.blablahlabs.excelsior.beans.ExcelsiorBean;
-import com.blablahlabs.excelsior.beans.SeccionNacional;
-import com.blablahlabs.excelsior.beans.notas.Nota;
 import com.blablahlabs.excelsior.beans.notas.NotaSeccion;
 import com.blablahlabs.excelsior.beans.notas.NotaUltimaHora;
 import com.blablahlabs.excelsior.net.Net;
@@ -46,6 +42,9 @@ public class Home extends ListActivity {
 	private Net net;
 
 
+	private ExcelsiorBean excelsiorBean;
+	private MergeAdapter adapter;
+	
 	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -151,42 +150,102 @@ public class Home extends ListActivity {
 	 */ 
 	private void showAllNews() {
 		
+   		adapter=new MergeAdapter();
+		
+		//Ultima Hora
+		
+		NotaAdapter nAdapter;
+		ArrayList<NotaSeccion> itemsSeccionNacional= new ArrayList<NotaSeccion>();
+		ArrayList<NotaSeccion> itemsSeccionGlobal = new ArrayList<NotaSeccion>();
+		
+		ArrayList<NotaSeccion> itemsSeccionDinero = new ArrayList<NotaSeccion>();
+		ArrayList<NotaSeccion> itemsSeccionComunidad = new ArrayList<NotaSeccion>();
+		ArrayList<NotaSeccion> itemsSeccionAdrenalina = new ArrayList<NotaSeccion>();
+		ArrayList<NotaSeccion> itemsSeccionFuncion = new ArrayList<NotaSeccion>();
+		
+		
+		NotaAdapterSeccion nAdapterSeccion;
+		
+		
+		nAdapter = new NotaAdapter(Home.this, R.layout.row, (ArrayList<NotaUltimaHora>) excelsiorBean.getUltimaHora());
+		adapter.addAdapter(nAdapter);
+		
+		//Nacional
+		adapter.addView(buildNationalHeader());
+		
+		 
+		itemsSeccionNacional.add(excelsiorBean.getSeccionNacional().get(0));
+		itemsSeccionNacional.add(excelsiorBean.getSeccionNacional().get(1));
+		
+		
+		 nAdapterSeccion = new NotaAdapterSeccion(Home.this, R.layout.row, (ArrayList<NotaSeccion>) itemsSeccionNacional);
+		 adapter.addAdapter(nAdapterSeccion);
+		
+		 
+		 
+		//Global
+		adapter.addView(buildGlobalHeader());
+		
+
+		itemsSeccionGlobal.add(excelsiorBean.getSeccionGlobal().get(0));
+		itemsSeccionGlobal.add(excelsiorBean.getSeccionGlobal().get(1));
+		
+		nAdapterSeccion = new NotaAdapterSeccion(Home.this, R.layout.row, (ArrayList<NotaSeccion>) itemsSeccionGlobal);
+		 	adapter.addAdapter(nAdapterSeccion);
+		
+		 	
+		//Dinero
+		adapter.addView(buildMoneylHeader());
+
+		itemsSeccionDinero.add(excelsiorBean.getSeccionDinero().get(0));
+		itemsSeccionDinero.add(excelsiorBean.getSeccionDinero().get(1));
+		
+		nAdapterSeccion = new NotaAdapterSeccion(Home.this, R.layout.row, (ArrayList<NotaSeccion>) itemsSeccionDinero);
+		 	adapter.addAdapter(nAdapterSeccion);
+		
+		 	
+		 	
+		//Comunidad
+		adapter.addView(buildCommunityHeader());
+
+		itemsSeccionComunidad.add(excelsiorBean.getSeccionComunidad().get(0));
+		itemsSeccionComunidad.add(excelsiorBean.getSeccionComunidad().get(1));
+		
+		nAdapterSeccion = new NotaAdapterSeccion(Home.this, R.layout.row, (ArrayList<NotaSeccion>) itemsSeccionComunidad);
+		 	adapter.addAdapter(nAdapterSeccion);
+		
+		 	
+		//Adrenalina
+		adapter.addView(buildAdrenalineHeader());
+
+		itemsSeccionAdrenalina.add(excelsiorBean.getSeccionAdrenalina().get(0));
+		itemsSeccionAdrenalina.add(excelsiorBean.getSeccionAdrenalina().get(1));
+		
+		nAdapterSeccion = new NotaAdapterSeccion(Home.this, R.layout.row, (ArrayList<NotaSeccion>) itemsSeccionAdrenalina);
+		 	adapter.addAdapter(nAdapterSeccion);
+		 	
+		 	
+		 	
+		//Funcion
+		adapter.addView(buildFuntionHeader());
+
+		itemsSeccionFuncion.add(excelsiorBean.getSeccionFuncion().get(0));
+		itemsSeccionFuncion.add(excelsiorBean.getSeccionFuncion().get(1));
+		
+		nAdapterSeccion = new NotaAdapterSeccion(Home.this, R.layout.row, (ArrayList<NotaSeccion>) itemsSeccionFuncion);
+		 	adapter.addAdapter(nAdapterSeccion);
+		 	
+		 	
+		 	
+		 	
+		 	
+		 	
+		//commit para actualizar la vista 
+		setListAdapter(adapter);
+		
+		
 		  
-		        mMergeAdapter=new MergeAdapter();
-		        
-		        //Last News List
-		        mArrayAdapter=buildLastNewsList();
-				mMergeAdapter.addAdapter(buildLastNewsList());
-				
-				//National
-				mMergeAdapter.addView(buildNationalHeader());
-				mMergeAdapter.addAdapter(buildNationalList());
-				
-				//Global
-				mMergeAdapter.addView(buildGlobalHeader());
-				mMergeAdapter.addAdapter(buildGlobalList());
-				
-				//Money
-				mMergeAdapter.addView(buildMoneylHeader());
-				mMergeAdapter.addAdapter(buildMoneyList());
-				
-				//Community
-				mMergeAdapter.addView(buildCommunityHeader());
-				mMergeAdapter.addAdapter(buildCommunityList());
-				
-				//Adrenaline
-				mMergeAdapter.addView(buildAdrenalineHeader());
-				mMergeAdapter.addAdapter(buildAdrenalineList());
-				
-				//Function
-				mMergeAdapter.addView(buildFuntionHeader());
-				mMergeAdapter.addAdapter(buildFunctionList());
-				
-				//Opinion
-				mMergeAdapter.addView(buildOpinionnHeader());
-				mMergeAdapter.addAdapter(buildOpinionList());
-				
-				setListAdapter(mMergeAdapter);		
+		       
 			}
 	/*
 	 * 		Building National Adapter
@@ -558,7 +617,7 @@ public class Home extends ListActivity {
 	private class DownloadFilesTask extends AsyncTask<URL, Void, ExcelsiorBean> {
         
     	
-    	private MergeAdapter adapter;
+    	
 
 
 		protected void onPreExecute(){
@@ -588,39 +647,22 @@ public class Home extends ListActivity {
         }
         
 
-        protected void onPostExecute(ExcelsiorBean excelsiorBean) {
+        protected void onPostExecute(ExcelsiorBean excelsiorBean_) {
         	dialog.dismiss();
-        	if (excelsiorBean == null)
-        		Toast.makeText(getApplicationContext(), "No lleg— :(", Toast.LENGTH_SHORT).show();
+        	if (excelsiorBean_ == null)
+        		Toast.makeText(getApplicationContext(), "Hubo un error al realizar la conexi—n con el servidor.", Toast.LENGTH_SHORT).show();
         	else{
         		
-        		Toast.makeText(getApplicationContext(), "Si lleg— :)", Toast.LENGTH_SHORT).show();
+        		excelsiorBean=excelsiorBean_;
         		
-        		adapter=new MergeAdapter();
+        		showAllNews();
 	
-        		//Ultima Hora
-        		NotaAdapter nAdapter;
-        		nAdapter = new NotaAdapter(Home.this, R.layout.row, (ArrayList<NotaUltimaHora>) excelsiorBean.getUltimaHora());
-        		adapter.addAdapter(nAdapter);
-        		
-        		//Nacional
-        		adapter.addView(buildNationalHeader());
-        		
-        		
-        		
-        		
-        		
-        		//commit para actualizar la vista 
-				setListAdapter(adapter);
-				
-				
-
-        
-        		Toast.makeText(getApplicationContext(), "Si lleg— :)", Toast.LENGTH_SHORT).show();
         }        		        		
         		
         	}
 
+
+		
 
     }
 	
