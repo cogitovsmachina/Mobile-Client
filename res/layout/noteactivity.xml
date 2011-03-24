@@ -7,26 +7,34 @@ android:layout_height="fill_parent"
 xmlns:android="http://schemas.android.com/apk/res/android"
 style="@style/Theme.Excelsior"
 >
+
+		<ImageView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:src="@drawable/note_default_image"
+			android:id="@+id/note_image"
+			android:layout_alignParentTop="true"
+			android:scaleType="center"
+			/>
 		<TextView
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
 			android:id="@+id/note_title"
-			android:layout_alignParentTop="true"
 			android:text="Titulo"
+			android:layout_below="@id/note_image"
 			android:typeface="sans"
-			android:textSize="15dip"
+			android:textSize="19dip"
 			android:textStyle="bold"
 			android:layout_marginTop="15dip"
-			android:layout_marginBottom="15dip"
+			android:layout_marginBottom="1dip"
 			android:layout_marginLeft="15dip"
 			android:layout_marginRight="15dip"
-			android:textColor="#ffffffff"
+			android:textColor="#ff000000"
 		/>
 		<ScrollView
 			android:orientation="vertical"
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
-			android:textColor="#ffffffff"
 			android:layout_marginTop="15dip"
 			android:layout_marginBottom="15dip"
 			android:layout_marginLeft="15dip"
@@ -38,6 +46,8 @@ style="@style/Theme.Excelsior"
 					android:layout_height="wrap_content"
 					android:id="@+id/note_content"
 					android:text="Contenido"
+					android:textColor="#ff000000"
+					
 				/>
 		</ScrollView>
 		

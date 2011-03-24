@@ -4,7 +4,6 @@ import java.net.URL;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -98,13 +97,15 @@ public class NoteActivity extends Activity {
 
 
 
+		@Override
 		protected void onPreExecute(){
     		dialog= ProgressDialog.show(NoteActivity.this, "Actualizando", "Actualizando los contenidos", true);
     		return;
     	}
     	
     	
-    	protected NotaBean doInBackground(URL... urls) {
+    	@Override
+		protected NotaBean doInBackground(URL... urls) {
     		
     		
            // int count = urls.length;
@@ -125,7 +126,8 @@ public class NoteActivity extends Activity {
         }
         
 
-        protected void onPostExecute(NotaBean bean_) {
+        @Override
+		protected void onPostExecute(NotaBean bean_) {
         	dialog.dismiss();
         	if (bean_ == null){
         		IU.showInfoDialog(activity);

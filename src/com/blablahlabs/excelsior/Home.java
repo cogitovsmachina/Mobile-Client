@@ -4,11 +4,10 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import android.app.Activity;
 import android.app.ListActivity;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,7 +18,6 @@ import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RadioButton;
@@ -28,7 +26,6 @@ import android.widget.Toast;
 
 import com.blablahlabs.excelsior.beans.ExcelsiorBean;
 import com.blablahlabs.excelsior.beans.notas.NotaSeccion;
-import com.blablahlabs.excelsior.beans.notas.NotaUltimaHora;
 import com.blablahlabs.excelsior.net.Net;
 import com.blablahlabs.excelsior.recursos.IU;
 import com.blablahlabs.excelsior.recursos.Recursos;
@@ -37,32 +34,21 @@ import com.blablahlabs.excelsior.recursos.ShareMenu;
 import com.commonsware.cwac.merge.MergeAdapter;
 
 public class Home extends ListActivity {
-	
-    
-
-
 	private static String[] items={"lorem", "ipsum"};
 
 	private MergeAdapter mMergeAdapter=null;
-	private ListAdapter mNotaAdapter=null;
-	private ArrayAdapter<String> mArrayAdapter = null;
 	private ProgressDialog dialog;
 	private Net net;
 	private Seccion seccion = Seccion.ULTIMA_HORA;
-
-
 	private ExcelsiorBean excelsiorBean;
-	private MergeAdapter lastNewsAdapter;
-
-	private MergeAdapter nationalAdapter;
-	
+	private MergeAdapter lastNewsAdapter;	
 	
 	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
 		net = new Net(getApplicationContext());
         super.onCreate(savedInstanceState);
-        setCustomTitle();
+        setCustomTitle();	
         setContentView(R.layout.main);
         setupViews();
         refresh();       
@@ -176,72 +162,72 @@ public class Home extends ListActivity {
 		NotaAdapterSeccion nAdapterSeccion;
 		
 		
-		nAdapter = new NotaAdapter(Home.this, R.layout.row, (ArrayList<NotaUltimaHora>) excelsiorBean.getUltimaHora());
+		nAdapter = new NotaAdapter(Home.this, R.layout.row, excelsiorBean.getUltimaHora());
 		lastNewsAdapter.addAdapter(nAdapter);
 		
 		//Nacional
-		lastNewsAdapter.addView(buildNationalHeader());
+		lastNewsAdapter.addView(buildHeader("Nacional", R.drawable.gradient_national_header));
 		
 		 
 		itemsSeccionNacional.add(excelsiorBean.getSeccionNacional().get(0));
 		itemsSeccionNacional.add(excelsiorBean.getSeccionNacional().get(1));
 		
 		
-		 nAdapterSeccion = new NotaAdapterSeccion(Home.this, R.layout.row, (ArrayList<NotaSeccion>) itemsSeccionNacional);
+		 nAdapterSeccion = new NotaAdapterSeccion(Home.this, R.layout.row, itemsSeccionNacional);
 		 lastNewsAdapter.addAdapter(nAdapterSeccion);
 		
 		 
 		 
 		//Global
-		lastNewsAdapter.addView(buildGlobalHeader());
+		lastNewsAdapter.addView(buildHeader("Global", R.drawable.gradient_global_header));
 		
 
 		itemsSeccionGlobal.add(excelsiorBean.getSeccionGlobal().get(0));
 		itemsSeccionGlobal.add(excelsiorBean.getSeccionGlobal().get(1));
 		
-		nAdapterSeccion = new NotaAdapterSeccion(Home.this, R.layout.row, (ArrayList<NotaSeccion>) itemsSeccionGlobal);
+		nAdapterSeccion = new NotaAdapterSeccion(Home.this, R.layout.row, itemsSeccionGlobal);
 		 	lastNewsAdapter.addAdapter(nAdapterSeccion);
 		
 		 	
 		//Dinero
-		lastNewsAdapter.addView(buildMoneylHeader());
+		lastNewsAdapter.addView(buildHeader("Dinero", R.drawable.gradient_money_header));
 
 		itemsSeccionDinero.add(excelsiorBean.getSeccionDinero().get(0));
 		itemsSeccionDinero.add(excelsiorBean.getSeccionDinero().get(1));
 		
-		nAdapterSeccion = new NotaAdapterSeccion(Home.this, R.layout.row, (ArrayList<NotaSeccion>) itemsSeccionDinero);
+		nAdapterSeccion = new NotaAdapterSeccion(Home.this, R.layout.row, itemsSeccionDinero);
 		 	lastNewsAdapter.addAdapter(nAdapterSeccion);
 		
 		 	
 		 	
 		//Comunidad
-		lastNewsAdapter.addView(buildCommunityHeader());
+		lastNewsAdapter.addView(buildHeader("Comunidad", R.drawable.gradient_community_header));
 
 		itemsSeccionComunidad.add(excelsiorBean.getSeccionComunidad().get(0));
 		itemsSeccionComunidad.add(excelsiorBean.getSeccionComunidad().get(1));
 		
-		nAdapterSeccion = new NotaAdapterSeccion(Home.this, R.layout.row, (ArrayList<NotaSeccion>) itemsSeccionComunidad);
+		nAdapterSeccion = new NotaAdapterSeccion(Home.this, R.layout.row, itemsSeccionComunidad);
 		 	lastNewsAdapter.addAdapter(nAdapterSeccion);
 		
 		 	
 		//Adrenalina
-		lastNewsAdapter.addView(buildAdrenalineHeader());
+		lastNewsAdapter.addView(buildHeader("Adrenalina", R.drawable.gradient_adrenaline_header));
 
 		itemsSeccionAdrenalina.add(excelsiorBean.getSeccionAdrenalina().get(0));
 		itemsSeccionAdrenalina.add(excelsiorBean.getSeccionAdrenalina().get(1));
 		
-		nAdapterSeccion = new NotaAdapterSeccion(Home.this, R.layout.row, (ArrayList<NotaSeccion>) itemsSeccionAdrenalina);
+		nAdapterSeccion = new NotaAdapterSeccion(Home.this, R.layout.row, itemsSeccionAdrenalina);
 		 	lastNewsAdapter.addAdapter(nAdapterSeccion);
 		 	
 		 	
 		 	
 		//Funcion
-		lastNewsAdapter.addView(buildFuntionHeader());
+		lastNewsAdapter.addView(buildHeader("Función", R.drawable.gradient_function_header));
 
 		itemsSeccionFuncion.add(excelsiorBean.getSeccionFuncion().get(0));
 		itemsSeccionFuncion.add(excelsiorBean.getSeccionFuncion().get(1));
 		
-		nAdapterSeccion = new NotaAdapterSeccion(Home.this, R.layout.row, (ArrayList<NotaSeccion>) itemsSeccionFuncion);
+		nAdapterSeccion = new NotaAdapterSeccion(Home.this, R.layout.row, itemsSeccionFuncion);
 		 	lastNewsAdapter.addAdapter(nAdapterSeccion);	
 		 	
 		//commit para actualizar la vista 
@@ -318,203 +304,9 @@ public class Home extends ListActivity {
 		/*
 		 * 		Building Opinion Adapter
 		 */
-		mMergeAdapter.addView(buildOpinionnHeader());
+		mMergeAdapter.addView(buildHeader("Opinión", R.drawable.gradient_opinion_header));
 		mMergeAdapter.addAdapter(buildOpinionList());			
 		setListAdapter(mMergeAdapter);	
-	}
-
-	
-	
-	/*
-	 * 		Last News Header
-	 */
-	private View buildLastNewsHeader() {
-		TextView national = new TextView(this);		
-		national.setCursorVisible(false);
-		national.setFocusable(false);
-		national.setClickable(false);
-		national.setText("Ultimas Noticias");
-		national.setTextSize(15);
-		national.setClickable(false);
-		national.setFocusableInTouchMode(false);
-		national.setBackgroundResource(R.drawable.gradient_national_header);
-		return(national);  	
-	}	
-	
-	
-	/*
-	 * 		Last News
-	 */
-	private ArrayAdapter<String> buildLastNewsList() {
-		return(new ArrayAdapter<String>(this,
-				android.R.layout.simple_list_item_1,
-				new ArrayList<String>(Arrays.asList(items))));
-	}
-	
-	
-	/*
-	 * 		National Header
-	 */
-	private View buildNationalHeader() {
-		TextView national = new TextView(this);		
-		national.setCursorVisible(false);
-		national.setFocusable(false);
-		national.setClickable(false);
-		national.setText("Nacional");
-		national.setTextSize(30);
-		national.setClickable(false);
-		national.setFocusableInTouchMode(false);
-		national.setBackgroundResource(R.drawable.gradient_national_header);
-		return(national);  	
-	}	
-	
-	/*
-	 * 		National ListView
-	 */
-	private ListAdapter buildNationalList() {
-		//ExcelsiorBean excelsiorBean = null ;
-		//excelsiorBean.getSeccionNacional();
-		//ArrayList<SeccionNacional> list = new ArrayList<SeccionNacional>();
-		
-		
-
-//		return(new ArrayAdapter<String>(this,
-//											android.R.layout.simple_list_item_1,
-//											list));
-//		return(new ArrayAdapter<NotaSeccion>(this,
-//								R.layout.row,
-//								 list));
-
-		
-		return(new ArrayAdapter<String>(this,
-				android.R.layout.simple_list_item_1,
-				new ArrayList<String>(Arrays.asList(items))));
-
-	}	
-
-
-	/*
-	 * 		Global Header
-	 */
-	private View buildGlobalHeader() {
-		TextView global = new TextView(this);		
-		global.setCursorVisible(false);
-		global.setFocusable(false);
-		global.setClickable(false);
-		global.setText("Global");
-		global.setTextSize(30);
-		global.setClickable(false);
-		global.setFocusableInTouchMode(false);
-		global.setBackgroundResource(R.drawable.gradient_global_header);
-		return(global);  	
-	}
-        
-	
-	/*
-	 * 		Global ListView
-	 */
-	private ListAdapter buildGlobalList() {
-		return(new ArrayAdapter<String>(this,
-				android.R.layout.simple_list_item_1,
-				new ArrayList<String>(Arrays.asList(items))));
-	}
-	
-	
-	/*
-	 * 		Money Header
-	 */
-	private View buildMoneylHeader() {
-		TextView money = new TextView(this);		
-		money.setCursorVisible(false);
-		money.setFocusable(false);
-		money.setClickable(false);
-		money.setText("Dinero");
-		money.setTextSize(30);
-		money.setClickable(false);
-		money.setFocusableInTouchMode(false);
-		money.setBackgroundResource(R.drawable.gradient_money_header);
-		return(money);    	
-	}
-	
-	
-	/*
-	 * 		Money ListView
-	 */
-	private ListAdapter buildMoneyList() {
-		return(new ArrayAdapter<String>(this,
-				android.R.layout.simple_list_item_1,
-				new ArrayList<String>(Arrays.asList(items))));
-	}
-	
-	
-	/*
-	 * 		Community Header
-	 */
-	private View buildCommunityHeader() {
-		TextView community = new TextView(this);		
-		community.setCursorVisible(false);
-		community.setFocusable(false);
-		community.setClickable(false);
-		community.setText("Comunidad");
-		community.setTextSize(30);
-		community.setClickable(false);
-		community.setFocusableInTouchMode(false);
-		community.setBackgroundResource(R.drawable.gradient_community_header);
-		return(community);  
-	}
-	
-	
-	
-	/*
-	 * 		Community ListView
-	 */
-	private ListAdapter buildCommunityList() {
-		return(new ArrayAdapter<String>(this,
-				android.R.layout.simple_list_item_1,
-				new ArrayList<String>(Arrays.asList(items))));
-	}
-
-	/*
-	 * 		Adrenaline Header
-	 */
-	private View buildAdrenalineHeader() {
-		TextView adrenaline = new TextView(this);		
-		adrenaline.setCursorVisible(false);
-		adrenaline.setFocusable(false);
-		adrenaline.setClickable(false);
-		adrenaline.setText("Adrenalina");
-		adrenaline.setTextSize(30);
-		adrenaline.setClickable(false);
-		adrenaline.setFocusableInTouchMode(false);
-		adrenaline.setBackgroundResource(R.drawable.gradient_adrenaline_header);
-		return(adrenaline);  
-	}
-	
-	/*
-	*          Adrenaline ListView
-	*/
-	
-	private ListAdapter buildAdrenalineList() {
-		return(new ArrayAdapter<String>(this,
-				android.R.layout.simple_list_item_1,
-				new ArrayList<String>(Arrays.asList(items))));
-	}
-	
-	/*
-	*          Opinion Header
-	*/
-	
-	private View buildOpinionnHeader() {
-		TextView opinion = new TextView(this);		
-		opinion.setCursorVisible(false);
-		opinion.setFocusable(false);
-		opinion.setClickable(false);
-		opinion.setText("Opinión");
-		opinion.setTextSize(30);
-		opinion.setClickable(false);
-		opinion.setFocusableInTouchMode(false);
-		opinion.setBackgroundResource(R.drawable.gradient_opinion_header);
-		return(opinion);
 	}
 	
 	//Opinion ListView
@@ -524,34 +316,21 @@ public class Home extends ListActivity {
 				new ArrayList<String>(Arrays.asList(items))));
 	}
     
-    /*
-	*      	Function Header
-	*/
-	private View buildFuntionHeader() {
-		TextView function = new TextView(this);		
-		function.setCursorVisible(false);
-		function.setFocusable(false);
-		function.setClickable(false);
-		function.setText("Función");
-		function.setTextSize(30);
-		function.setClickable(false);
-		function.setFocusableInTouchMode(false);
-		function.setBackgroundResource(R.drawable.gradient_function_header);
-		return(function); 	
-		}
-	
-	/*
-	*      	Function ListView
-	*/
-	private ListAdapter buildFunctionList() {
-		return(new ArrayAdapter<String>(this,
-				android.R.layout.simple_list_item_1,
-				new ArrayList<String>(Arrays.asList(items))));
+	private View buildHeader(String title, int background){
+		
+		TextView textview = new TextView(this);		
+		textview.setTextColor(R.color.header_text);
+		textview.setCursorVisible(false);
+		textview.setFocusable(false);
+		textview.setClickable(false);
+		textview.setFocusableInTouchMode(false);
+		textview.setText(title);
+		textview.setTextSize(25);
+		textview.setTypeface(Typeface.DEFAULT_BOLD);
+		textview.setBackgroundResource(background);
+		return(textview);	  	
+		
 	}
-
-
-	//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx	
-
 	
 	/*
 	*      Setting Custom Title :)
@@ -584,7 +363,6 @@ public class Home extends ListActivity {
         switch (item.getItemId()) {
             case R.id.share_image: 
             	ShareMenu.buildHomeShareMenu(getApplicationContext());
-            	//buildShareMenu();
             	IU.showToast(getApplicationContext(), "this");
                                 break;
             case R.id.gallery_image:     
@@ -599,18 +377,6 @@ public class Home extends ListActivity {
         }
         return true;
     }
-    
-//    /*
-//     *  Method to create ACTION_SEND Implementation :) 
-//     */
-//    private void buildShareMenu() {
-//    	Intent mIntent = new Intent(android.content.Intent.ACTION_SEND);
-//    	mIntent.setType("text/plain");
-//    	mIntent.putExtra(Intent.EXTRA_TEXT, "Yo estoy informado con Excelsior para Android http://excelsior.com.mx");
-//    	startActivity(Intent.createChooser(mIntent, "Compartir en"));		
-//    }
-    
-    
     private void refresh() {
 			new DownloadFilesTask().execute();
 	}
@@ -618,13 +384,15 @@ public class Home extends ListActivity {
 	
 	private class DownloadFilesTask extends AsyncTask<URL, Void, ExcelsiorBean> {
         
+		@Override
 		protected void onPreExecute(){
-    		dialog= ProgressDialog.show(Home.this, "Actualizando", "Actualizando los contenidos", true);
+    		dialog= ProgressDialog.show(Home.this, "Actualizando", "Descargando noticias, espere un momento", true);
     		return;
     	}
     	
     	
-    	protected ExcelsiorBean doInBackground(URL... urls) {
+    	@Override
+		protected ExcelsiorBean doInBackground(URL... urls) {
     		
     		ExcelsiorBean ans = null;
             try {
@@ -643,13 +411,12 @@ public class Home extends ListActivity {
         }
         
 
-        protected void onPostExecute(ExcelsiorBean excelsiorBean_) {
+        @Override
+		protected void onPostExecute(ExcelsiorBean excelsiorBean_) {
         	dialog.dismiss();
         	if (excelsiorBean_ == null){
         		Toast.makeText(getApplicationContext(), "Ha ocurrido un error, inténtalo más tarde", Toast.LENGTH_SHORT).show();
-        		
-        	
-        	}else{
+        		        	}else{
         		
         		excelsiorBean=excelsiorBean_;
         		

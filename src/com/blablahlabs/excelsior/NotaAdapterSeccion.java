@@ -4,8 +4,6 @@ import java.util.ArrayList;
 
 import com.blablahlabs.excelsior.beans.notas.Nota;
 import com.blablahlabs.excelsior.beans.notas.NotaSeccion;
-import com.blablahlabs.excelsior.beans.notas.NotaUltimaHora;
-
 import android.content.Context;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -25,7 +23,8 @@ class NotaAdapterSeccion extends ArrayAdapter<NotaSeccion> {
             this.context = context;
     }
 
-    public View getView(int position, View convertView, ViewGroup parent) {
+    @Override
+	public View getView(int position, View convertView, ViewGroup parent) {
             View v = convertView;
             if (v == null) {
                 LayoutInflater vi = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);

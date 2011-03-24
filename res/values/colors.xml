@@ -1,16 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="title_background">#ff355689</color>
-    <color name="title_text">#ff000000</color>
+     <color name="title_text">#ff000000</color>
     <color name="title_separator">#40ffffff</color>
     <color name="background">#ffD5D3CD</color>
-    <color name="ad_color">#ff000000</color>
     <color name="transparent">#00000000</color>
     <color name="ad_text">#ff000000</color>
-    
-	<color name="color_foreground">#FFBBBBBB</color>
-	<color name="color_background">#FFBBBBBB</color>
-	<color name="color_foreground_inverse">#FF444444</color>
+    <color name="header_text">#ffffffff</color>
 	
 	<!-- Title Backgrounds for gradients -->
 	<color name="title_border">#FF282828</color>
@@ -36,10 +31,4 @@
 
 	<color name="opinion_header_start">#FFA82341</color>  
 	<color name="opinion_header_finish">#FF6A1629</color>
-    
-    
-    
-    <color name="session_foreground_past">#ff999999</color>
-
-    <color name="pinned_header_background">#ff202020</color>
 </resources>

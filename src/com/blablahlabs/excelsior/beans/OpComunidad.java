@@ -13,6 +13,7 @@ public class OpComunidad {
 	@SerializedName("Comunidad_2")
 	public NotaOpinion n2;
 	
+	
 	@SerializedName("Comunidad_3")
 	public NotaOpinion n3;
 
