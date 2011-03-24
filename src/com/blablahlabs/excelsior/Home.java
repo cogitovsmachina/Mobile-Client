@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RadioButton;
@@ -70,7 +71,7 @@ public class Home extends ListActivity {
 		rLastNews.setOnClickListener(new OnClickListener() {
 		    public void onClick(View v) {
 		        if (((RadioButton) v).isChecked()) {
-					showAllNews();
+					showMainList();
 		        } 
 		    }
 		});
@@ -141,12 +142,13 @@ public class Home extends ListActivity {
 	/*
 	 * 		Creating Headers and Adapters for each List
 	 */ 
-	private void showAllNews() {
+	private void showMainList() {
 		
 		seccion = Seccion.ULTIMA_HORA;
 		
    		lastNewsAdapter=new MergeAdapter();
 		
+   		
 		//Ultima Hora
 		
 		NotaAdapter nAdapter;
@@ -161,6 +163,8 @@ public class Home extends ListActivity {
 		
 		NotaAdapterSeccion nAdapterSeccion;
 		
+		lastNewsAdapter.addView(setTempAd(R.drawable.ad_space));
+
 		
 		nAdapter = new NotaAdapter(Home.this, R.layout.row, excelsiorBean.getUltimaHora());
 		lastNewsAdapter.addAdapter(nAdapter);
@@ -332,6 +336,13 @@ public class Home extends ListActivity {
 		
 	}
 	
+private View setTempAd(int drawable){
+		ImageView imageView = new ImageView(this);		
+		imageView.setBackgroundResource(drawable);
+		imageView.setAdjustViewBounds(true);
+		return(imageView);	  	
+	}
+	
 	/*
 	*      Setting Custom Title :)
 	*/
@@ -420,7 +431,7 @@ public class Home extends ListActivity {
         		
         		excelsiorBean=excelsiorBean_;
         		
-        		showAllNews();
+        		showMainList();
         }        		        		
         		
         	}
