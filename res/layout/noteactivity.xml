@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Starting with TableLayout-->
+<RelativeLayout 
+android:id="@+id/ParentRelativeLayout"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+xmlns:android="http://schemas.android.com/apk/res/android"
+style="@style/Theme.Excelsior"
+>
+		<TextView
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:id="@+id/note_title"
+			android:layout_alignParentTop="true"
+			android:text="Titulo"
+			android:typeface="sans"
+			android:textSize="15dip"
+			android:textStyle="bold"
+			android:layout_marginTop="15dip"
+			android:layout_marginBottom="15dip"
+			android:layout_marginLeft="15dip"
+			android:layout_marginRight="15dip"
+			android:textColor="#ffffffff"
+		/>
+		<ScrollView
+			android:orientation="vertical"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:textColor="#ffffffff"
+			android:layout_marginTop="15dip"
+			android:layout_marginBottom="15dip"
+			android:layout_marginLeft="15dip"
+			android:layout_marginRight="15dip"
+			android:layout_below="@id/note_title"
+	   		>
+				<TextView
+					android:layout_width="fill_parent"
+					android:layout_height="wrap_content"
+					android:id="@+id/note_content"
+					android:text="Contenido"
+				/>
+		</ScrollView>
+		
+</RelativeLayout>
+	<!--Finishing XML Description-->	

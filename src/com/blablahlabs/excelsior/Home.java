@@ -4,8 +4,10 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import android.app.Activity;
 import android.app.ListActivity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -19,6 +21,7 @@ import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,23 +30,32 @@ import com.blablahlabs.excelsior.beans.ExcelsiorBean;
 import com.blablahlabs.excelsior.beans.notas.NotaSeccion;
 import com.blablahlabs.excelsior.beans.notas.NotaUltimaHora;
 import com.blablahlabs.excelsior.net.Net;
+import com.blablahlabs.excelsior.recursos.IU;
 import com.blablahlabs.excelsior.recursos.Recursos;
+import com.blablahlabs.excelsior.recursos.Recursos.Seccion;
+import com.blablahlabs.excelsior.recursos.ShareMenu;
 import com.commonsware.cwac.merge.MergeAdapter;
 
 public class Home extends ListActivity {
 	
     
+
+
 	private static String[] items={"lorem", "ipsum"};
 
 	private MergeAdapter mMergeAdapter=null;
 	private ListAdapter mNotaAdapter=null;
 	private ArrayAdapter<String> mArrayAdapter = null;
-	ProgressDialog dialog;
+	private ProgressDialog dialog;
 	private Net net;
+	private Seccion seccion = Seccion.ULTIMA_HORA;
 
 
 	private ExcelsiorBean excelsiorBean;
-	private MergeAdapter adapter;
+	private MergeAdapter lastNewsAdapter;
+
+	private MergeAdapter nationalAdapter;
+	
 	
 	
 	@Override
@@ -51,12 +63,10 @@ public class Home extends ListActivity {
 		net = new Net(getApplicationContext());
         super.onCreate(savedInstanceState);
         setCustomTitle();
-        //refresh();
         setContentView(R.layout.main);
         setupViews();
-        refresh();
-       // showAllNews();
-  
+        refresh();       
+        
 	}
 
 	private void setupViews() {
@@ -140,9 +150,6 @@ public class Home extends ListActivity {
 		    }
 
 		});
-		
-		
-
 	}
 
 	/*
@@ -150,7 +157,9 @@ public class Home extends ListActivity {
 	 */ 
 	private void showAllNews() {
 		
-   		adapter=new MergeAdapter();
+		seccion = Seccion.ULTIMA_HORA;
+		
+   		lastNewsAdapter=new MergeAdapter();
 		
 		//Ultima Hora
 		
@@ -168,10 +177,10 @@ public class Home extends ListActivity {
 		
 		
 		nAdapter = new NotaAdapter(Home.this, R.layout.row, (ArrayList<NotaUltimaHora>) excelsiorBean.getUltimaHora());
-		adapter.addAdapter(nAdapter);
+		lastNewsAdapter.addAdapter(nAdapter);
 		
 		//Nacional
-		adapter.addView(buildNationalHeader());
+		lastNewsAdapter.addView(buildNationalHeader());
 		
 		 
 		itemsSeccionNacional.add(excelsiorBean.getSeccionNacional().get(0));
@@ -179,69 +188,64 @@ public class Home extends ListActivity {
 		
 		
 		 nAdapterSeccion = new NotaAdapterSeccion(Home.this, R.layout.row, (ArrayList<NotaSeccion>) itemsSeccionNacional);
-		 adapter.addAdapter(nAdapterSeccion);
+		 lastNewsAdapter.addAdapter(nAdapterSeccion);
 		
 		 
 		 
 		//Global
-		adapter.addView(buildGlobalHeader());
+		lastNewsAdapter.addView(buildGlobalHeader());
 		
 
 		itemsSeccionGlobal.add(excelsiorBean.getSeccionGlobal().get(0));
 		itemsSeccionGlobal.add(excelsiorBean.getSeccionGlobal().get(1));
 		
 		nAdapterSeccion = new NotaAdapterSeccion(Home.this, R.layout.row, (ArrayList<NotaSeccion>) itemsSeccionGlobal);
-		 	adapter.addAdapter(nAdapterSeccion);
+		 	lastNewsAdapter.addAdapter(nAdapterSeccion);
 		
 		 	
 		//Dinero
-		adapter.addView(buildMoneylHeader());
+		lastNewsAdapter.addView(buildMoneylHeader());
 
 		itemsSeccionDinero.add(excelsiorBean.getSeccionDinero().get(0));
 		itemsSeccionDinero.add(excelsiorBean.getSeccionDinero().get(1));
 		
 		nAdapterSeccion = new NotaAdapterSeccion(Home.this, R.layout.row, (ArrayList<NotaSeccion>) itemsSeccionDinero);
-		 	adapter.addAdapter(nAdapterSeccion);
+		 	lastNewsAdapter.addAdapter(nAdapterSeccion);
 		
 		 	
 		 	
 		//Comunidad
-		adapter.addView(buildCommunityHeader());
+		lastNewsAdapter.addView(buildCommunityHeader());
 
 		itemsSeccionComunidad.add(excelsiorBean.getSeccionComunidad().get(0));
 		itemsSeccionComunidad.add(excelsiorBean.getSeccionComunidad().get(1));
 		
 		nAdapterSeccion = new NotaAdapterSeccion(Home.this, R.layout.row, (ArrayList<NotaSeccion>) itemsSeccionComunidad);
-		 	adapter.addAdapter(nAdapterSeccion);
+		 	lastNewsAdapter.addAdapter(nAdapterSeccion);
 		
 		 	
 		//Adrenalina
-		adapter.addView(buildAdrenalineHeader());
+		lastNewsAdapter.addView(buildAdrenalineHeader());
 
 		itemsSeccionAdrenalina.add(excelsiorBean.getSeccionAdrenalina().get(0));
 		itemsSeccionAdrenalina.add(excelsiorBean.getSeccionAdrenalina().get(1));
 		
 		nAdapterSeccion = new NotaAdapterSeccion(Home.this, R.layout.row, (ArrayList<NotaSeccion>) itemsSeccionAdrenalina);
-		 	adapter.addAdapter(nAdapterSeccion);
+		 	lastNewsAdapter.addAdapter(nAdapterSeccion);
 		 	
 		 	
 		 	
 		//Funcion
-		adapter.addView(buildFuntionHeader());
+		lastNewsAdapter.addView(buildFuntionHeader());
 
 		itemsSeccionFuncion.add(excelsiorBean.getSeccionFuncion().get(0));
 		itemsSeccionFuncion.add(excelsiorBean.getSeccionFuncion().get(1));
 		
 		nAdapterSeccion = new NotaAdapterSeccion(Home.this, R.layout.row, (ArrayList<NotaSeccion>) itemsSeccionFuncion);
-		 	adapter.addAdapter(nAdapterSeccion);
-		 	
-		 	
-		 	
-		 	
-		 	
+		 	lastNewsAdapter.addAdapter(nAdapterSeccion);	
 		 	
 		//commit para actualizar la vista 
-		setListAdapter(adapter);
+		setListAdapter(lastNewsAdapter);
 		
 		
 		  
@@ -250,68 +254,64 @@ public class Home extends ListActivity {
 	/*
 	 * 		Building National Adapter
 	 */
-	private void showNational() {
+	private void showNational() {	
+		seccion = Seccion.NACIONAL;
 
-		mMergeAdapter=new MergeAdapter();
-		mMergeAdapter.addView(buildNationalHeader());
-		mMergeAdapter.addAdapter(buildNationalList());
-		
-		
-		setListAdapter(mMergeAdapter);		
-		
+		setListAdapter(new NotaAdapterSeccion(Home.this, R.layout.row, (ArrayList<NotaSeccion>) excelsiorBean.getSeccionNacional()));
+	
+	}
+	
+	/*
+	 * 		Building Global Adapter
+	 */
+	private void showGlobal() {
+		seccion = Seccion.GLOBAL;
+
+		setListAdapter(new NotaAdapterSeccion(Home.this, R.layout.row, (ArrayList<NotaSeccion>) excelsiorBean.getSeccionGlobal()));
 	}
 	
 	/*
 	 * 		Building Money Adapter
 	 */
 	protected void showMoney() {
-		mMergeAdapter=new MergeAdapter();
-		mMergeAdapter.addView(buildMoneylHeader());
-		mMergeAdapter.addAdapter(buildMoneyList());			
-		setListAdapter(mMergeAdapter);	
+		seccion = Seccion.DINERO;
+
+		setListAdapter(new NotaAdapterSeccion(Home.this, R.layout.row, (ArrayList<NotaSeccion>) excelsiorBean.getSeccionDinero()));
 	}
 
-	/*
-	 * 		Building Global Adapter
-	 */
-	private void showGlobal() {
-		mMergeAdapter=new MergeAdapter();
-		mMergeAdapter.addView(buildGlobalHeader());
-		mMergeAdapter.addAdapter(buildGlobalList());			
-		setListAdapter(mMergeAdapter);	
-	}
 	
 	/*
 	 * 		Building Community Adapter
 	 */
 	private void showCommunity() {
-		mMergeAdapter=new MergeAdapter();
-		mMergeAdapter.addView(buildCommunityHeader());
-		mMergeAdapter.addAdapter(buildCommunityList());			
-		setListAdapter(mMergeAdapter);	
+		seccion = Seccion.COMUNIDAD;
+
+		setListAdapter(new NotaAdapterSeccion(Home.this, R.layout.row, (ArrayList<NotaSeccion>) excelsiorBean.getSeccionComunidad()));
 	}
 	
 	/*
 	 * 		Building Adrenaline Adapter
 	 */
 	private void showAdrenaline() {
-		mMergeAdapter=new MergeAdapter();	
-		mMergeAdapter.addView(buildAdrenalineHeader());
-		mMergeAdapter.addAdapter(buildAdrenalineList());			
-		setListAdapter(mMergeAdapter);	
+		seccion = Seccion.ADRENALINA;
+
+		setListAdapter(new NotaAdapterSeccion(Home.this, R.layout.row, (ArrayList<NotaSeccion>) excelsiorBean.getSeccionAdrenalina()));
+
 	}
 	
 	/*
 	 * 		Building Function Adapter
 	 */
 	private void showFunction() {
-		mMergeAdapter=new MergeAdapter();
-		mMergeAdapter.addView(buildFuntionHeader());
-		mMergeAdapter.addAdapter(buildFunctionList());			
-		setListAdapter(mMergeAdapter);	
+		seccion = Seccion.FUNCION;
+
+		setListAdapter(new NotaAdapterSeccion(Home.this, R.layout.row, (ArrayList<NotaSeccion>) excelsiorBean.getSeccionFuncion()));
+
 	}
 	
 	private void showOpinion() {
+		seccion = Seccion.OPINION;
+
 		mMergeAdapter=new MergeAdapter();
 		
 		
@@ -557,7 +557,7 @@ public class Home extends ListActivity {
 	*      Setting Custom Title :)
 	*/
 	
-    private void setCustomTitle() {
+    public void setCustomTitle() {
     	requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
         setContentView(R.layout.main);
         getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.window_title);
@@ -582,8 +582,10 @@ public class Home extends ListActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.share_image:   
-            	buildShareMenu();
+            case R.id.share_image: 
+            	ShareMenu.buildHomeShareMenu(getApplicationContext());
+            	//buildShareMenu();
+            	IU.showToast(getApplicationContext(), "this");
                                 break;
             case R.id.gallery_image:     
             	Toast.makeText(this, "You want to go to gallery!", Toast.LENGTH_LONG).show();
@@ -598,15 +600,15 @@ public class Home extends ListActivity {
         return true;
     }
     
-    /*
-     *  Method to create ACTION_SEND Implementation :) 
-     */
-    private void buildShareMenu() {
-    	Intent mIntent = new Intent(android.content.Intent.ACTION_SEND);
-    	mIntent.setType("text/plain");
-    	mIntent.putExtra(Intent.EXTRA_TEXT, "Yo estoy informado con Excelsior para Android http://excelsior.com.mx");
-    	startActivity(Intent.createChooser(mIntent, "Compartir en"));		
-    }
+//    /*
+//     *  Method to create ACTION_SEND Implementation :) 
+//     */
+//    private void buildShareMenu() {
+//    	Intent mIntent = new Intent(android.content.Intent.ACTION_SEND);
+//    	mIntent.setType("text/plain");
+//    	mIntent.putExtra(Intent.EXTRA_TEXT, "Yo estoy informado con Excelsior para Android http://excelsior.com.mx");
+//    	startActivity(Intent.createChooser(mIntent, "Compartir en"));		
+//    }
     
     
     private void refresh() {
@@ -616,10 +618,6 @@ public class Home extends ListActivity {
 	
 	private class DownloadFilesTask extends AsyncTask<URL, Void, ExcelsiorBean> {
         
-    	
-    	
-
-
 		protected void onPreExecute(){
     		dialog= ProgressDialog.show(Home.this, "Actualizando", "Actualizando los contenidos", true);
     		return;
@@ -628,8 +626,6 @@ public class Home extends ListActivity {
     	
     	protected ExcelsiorBean doInBackground(URL... urls) {
     		
-    		
-           // int count = urls.length;
     		ExcelsiorBean ans = null;
             try {
             	ans = net.getDataBean();
@@ -649,14 +645,15 @@ public class Home extends ListActivity {
 
         protected void onPostExecute(ExcelsiorBean excelsiorBean_) {
         	dialog.dismiss();
-        	if (excelsiorBean_ == null)
-        		Toast.makeText(getApplicationContext(), "Hubo un error al realizar la conexi—n con el servidor.", Toast.LENGTH_SHORT).show();
-        	else{
+        	if (excelsiorBean_ == null){
+        		Toast.makeText(getApplicationContext(), "Ha ocurrido un error, intŽntalo m‡s tarde", Toast.LENGTH_SHORT).show();
+        		
+        	
+        	}else{
         		
         		excelsiorBean=excelsiorBean_;
         		
         		showAllNews();
-	
         }        		        		
         		
         	}
@@ -665,7 +662,76 @@ public class Home extends ListActivity {
 		
 
     }
+
+
+	@Override
+	protected void onListItemClick(ListView l, View v, int position, long id) {
+		super.onListItemClick(l, v, position, id);
+	 	lastNewsAdapter.getItem(position);
+	 	
+	 	Integer idNota = null;
+	 			
+	 	switch (seccion) {
+		case ULTIMA_HORA:
+			
+			if (position >=0 && position <= 14){
+				idNota= excelsiorBean.getUltimaHora().get(position).idNota;
+			}
+
+			else if (position >=16 && position <= 17){
+				idNota= excelsiorBean.getSeccionNacional().get(position-16).idNota;
+			}
+			else if (position >=19 && position <= 20){
+				idNota= excelsiorBean.getSeccionGlobal().get(position-19).idNota;
+			}
+			else if (position >=22 && position <= 23){
+				idNota= excelsiorBean.getSeccionDinero().get(position-22).idNota;
+			}
+			else if (position >=25 && position <= 26){
+				idNota= excelsiorBean.getSeccionComunidad().get(position-25).idNota;
+			}
+			else if (position >=28 && position <= 29){
+				idNota= excelsiorBean.getSeccionAdrenalina().get(position-28).idNota;
+			}
+			else if (position >=31 && position <= 32){
+				idNota= excelsiorBean.getSeccionFuncion().get(position-31).idNota;
+			}
+			
+			break;
+		case NACIONAL:
+			idNota= excelsiorBean.getSeccionNacional().get(position).idNota;
+			break;
+		case GLOBAL:
+			idNota= excelsiorBean.getSeccionGlobal().get(position).idNota;
+			break;
+		case DINERO:
+			idNota= excelsiorBean.getSeccionDinero().get(position).idNota;
+			break;
+		case COMUNIDAD:
+			idNota= excelsiorBean.getSeccionComunidad().get(position).idNota;
+			break;
+		case ADRENALINA:
+			idNota= excelsiorBean.getSeccionAdrenalina().get(position).idNota;
+			break;
+		case FUNCION:
+			idNota= excelsiorBean.getSeccionFuncion().get(position).idNota;
+			break;	
+		
+		case OPINION:	
+			break;
+			
+		default: 
+			break;
+				
+	}
+	 	
+	 	if (idNota != null){	 	
+			Intent i = new Intent(getApplication(), NoteActivity.class);  
+			i.putExtra("id_nota", idNota);
+			startActivity(i);
+	 	}
 	
+	}
 		
 		 
 }

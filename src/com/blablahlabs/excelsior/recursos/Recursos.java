@@ -19,5 +19,19 @@ public class Recursos {
 	
 	public static final String URL_VIDEOS = "ttp://148.240.229.64/Video/";
 	
+	public static final String ERROR_NOTA = "Al parecer no tienes conexión a internet. Inténtalo más tarde.";
+
+	public static final String COMPARTIR_HOME = "Yo estoy informado con Excelsior para Android http://excelsior.com.mx";
+	
+	public static final String TITULO_COMPARTIR = "Compartir en";
+	
+	public static final String COMPARTIR_NOTA = "Yo estoy informado con Excelsior para Android http://excelsior.com.mx";
+
+	
+	public static enum Seccion {
+	    ULTIMA_HORA, NACIONAL, GLOBAL, DINERO, 
+	    COMUNIDAD, ADRENALINA, FUNCION, OPINION 
+	}
+	
 	
 }

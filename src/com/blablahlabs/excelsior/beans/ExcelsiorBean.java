@@ -114,7 +114,7 @@ public class ExcelsiorBean {
 		stage.add(excelsiorGson.stage.n3);
 		stage.add(excelsiorGson.stage.n3);
 		
-		seccionNacional.add(excelsiorGson.seccionNacional.nP);
+//		seccionNacional.add(excelsiorGson.seccionNacional.nP);
 		seccionNacional.add(excelsiorGson.seccionNacional.n1);
 		seccionNacional.add(excelsiorGson.seccionNacional.n2);
 		seccionNacional.add(excelsiorGson.seccionNacional.n3);
@@ -131,7 +131,7 @@ public class ExcelsiorBean {
 		seccionNacional.add(excelsiorGson.seccionNacional.n14);
 		seccionNacional.add(excelsiorGson.seccionNacional.n15);
 
-		seccionGlobal.add(excelsiorGson.seccionGlobal.nP);
+//		seccionGlobal.add(excelsiorGson.seccionGlobal.nP);
 		seccionGlobal.add(excelsiorGson.seccionGlobal.n1);
 		seccionGlobal.add(excelsiorGson.seccionGlobal.n2);
 		seccionGlobal.add(excelsiorGson.seccionGlobal.n3);
@@ -148,7 +148,7 @@ public class ExcelsiorBean {
 		seccionGlobal.add(excelsiorGson.seccionGlobal.n14);
 		seccionGlobal.add(excelsiorGson.seccionGlobal.n15);
 		
-		seccionDinero.add(excelsiorGson.seccionDinero.nP);
+//		seccionDinero.add(excelsiorGson.seccionDinero.nP);
 		seccionDinero.add(excelsiorGson.seccionDinero.n1);
 		seccionDinero.add(excelsiorGson.seccionDinero.n2);
 		seccionDinero.add(excelsiorGson.seccionDinero.n3);
@@ -165,7 +165,7 @@ public class ExcelsiorBean {
 		seccionDinero.add(excelsiorGson.seccionDinero.n14);
 		seccionDinero.add(excelsiorGson.seccionDinero.n15);
 		
-		seccionAdrenalina.add(excelsiorGson.seccionAdrenalina.nP);
+//		seccionAdrenalina.add(excelsiorGson.seccionAdrenalina.nP);
 		seccionAdrenalina.add(excelsiorGson.seccionAdrenalina.n1);
 		seccionAdrenalina.add(excelsiorGson.seccionAdrenalina.n2);
 		seccionAdrenalina.add(excelsiorGson.seccionAdrenalina.n3);
@@ -182,7 +182,7 @@ public class ExcelsiorBean {
 		seccionAdrenalina.add(excelsiorGson.seccionAdrenalina.n14);
 		seccionAdrenalina.add(excelsiorGson.seccionAdrenalina.n15);
 		
-		seccionComunidad.add(excelsiorGson.seccionComunidad.nP);
+//		seccionComunidad.add(excelsiorGson.seccionComunidad.nP);
 		seccionComunidad.add(excelsiorGson.seccionComunidad.n1);
 		seccionComunidad.add(excelsiorGson.seccionComunidad.n2);
 		seccionComunidad.add(excelsiorGson.seccionComunidad.n3);
@@ -199,7 +199,7 @@ public class ExcelsiorBean {
 		seccionComunidad.add(excelsiorGson.seccionComunidad.n14);
 		seccionComunidad.add(excelsiorGson.seccionComunidad.n15);
 		
-		seccionFuncion.add(excelsiorGson.seccionFuncion.nP);
+//		seccionFuncion.add(excelsiorGson.seccionFuncion.nP);
 		seccionFuncion.add(excelsiorGson.seccionFuncion.n1);
 		seccionFuncion.add(excelsiorGson.seccionFuncion.n2);
 		seccionFuncion.add(excelsiorGson.seccionFuncion.n3);

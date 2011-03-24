@@ -35,11 +35,10 @@ class NotaAdapterSeccion extends ArrayAdapter<NotaSeccion> {
             if (mnota != null) {
                     TextView tt = (TextView) v.findViewById(R.id.title);
                     TextView bt = (TextView) v.findViewById(R.id.shot);
-                    if (tt != null) {
-                          tt.setText(mnota.titulo);                            }
-                    if(bt != null){
+                    if (tt != null)
+                          tt.setText(Html.fromHtml(mnota.titulo));
+                    if(bt != null)
                           bt.setText(Html.fromHtml(mnota.balazo));
-                    }
             }
             return v;
     }
