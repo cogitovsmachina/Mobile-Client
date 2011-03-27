@@ -163,7 +163,7 @@ public class Home extends ListActivity {
 		
 		NotaAdapterSeccion nAdapterSeccion;
 		
-		lastNewsAdapter.addView(setTempAd(R.drawable.ad_space));
+		//lastNewsAdapter.addView(setTempAd(R.drawable.ad_space));
 
 		
 		nAdapter = new NotaAdapter(Home.this, R.layout.row, excelsiorBean.getUltimaHora());
@@ -448,6 +448,7 @@ private View setTempAd(int drawable){
 	 	lastNewsAdapter.getItem(position);
 	 	
 	 	Integer idNota = null;
+	 	Integer idFoto = null;
 	 			
 	 	switch (seccion) {
 		case ULTIMA_HORA:
@@ -458,41 +459,53 @@ private View setTempAd(int drawable){
 
 			else if (position >=16 && position <= 17){
 				idNota= excelsiorBean.getSeccionNacional().get(position-16).idNota;
+				idFoto= excelsiorBean.getSeccionNacional().get(position-16).idFotoPortada;
 			}
 			else if (position >=19 && position <= 20){
 				idNota= excelsiorBean.getSeccionGlobal().get(position-19).idNota;
+				idFoto= excelsiorBean.getSeccionGlobal().get(position-19).idFotoPortada;
 			}
 			else if (position >=22 && position <= 23){
 				idNota= excelsiorBean.getSeccionDinero().get(position-22).idNota;
+				idFoto= excelsiorBean.getSeccionDinero().get(position-22).idFotoPortada;
 			}
 			else if (position >=25 && position <= 26){
 				idNota= excelsiorBean.getSeccionComunidad().get(position-25).idNota;
+				idFoto= excelsiorBean.getSeccionComunidad().get(position-25).idFotoPortada;
 			}
 			else if (position >=28 && position <= 29){
 				idNota= excelsiorBean.getSeccionAdrenalina().get(position-28).idNota;
+				idFoto= excelsiorBean.getSeccionAdrenalina().get(position-28).idFotoPortada;
 			}
 			else if (position >=31 && position <= 32){
 				idNota= excelsiorBean.getSeccionFuncion().get(position-31).idNota;
+				idFoto= excelsiorBean.getSeccionFuncion().get(position-31).idFotoPortada;
 			}
 			
 			break;
 		case NACIONAL:
 			idNota= excelsiorBean.getSeccionNacional().get(position).idNota;
+			idFoto= excelsiorBean.getSeccionNacional().get(position).idFotoPortada;
 			break;
 		case GLOBAL:
 			idNota= excelsiorBean.getSeccionGlobal().get(position).idNota;
+			idFoto= excelsiorBean.getSeccionGlobal().get(position).idFotoPortada;
 			break;
 		case DINERO:
 			idNota= excelsiorBean.getSeccionDinero().get(position).idNota;
+			idFoto= excelsiorBean.getSeccionDinero().get(position).idFotoPortada;
 			break;
 		case COMUNIDAD:
 			idNota= excelsiorBean.getSeccionComunidad().get(position).idNota;
+			idFoto= excelsiorBean.getSeccionComunidad().get(position).idFotoPortada;
 			break;
 		case ADRENALINA:
 			idNota= excelsiorBean.getSeccionAdrenalina().get(position).idNota;
+			idFoto= excelsiorBean.getSeccionAdrenalina().get(position).idFotoPortada;
 			break;
 		case FUNCION:
 			idNota= excelsiorBean.getSeccionFuncion().get(position).idNota;
+			idFoto= excelsiorBean.getSeccionFuncion().get(position).idFotoPortada;
 			break;	
 		
 		case OPINION:	
@@ -506,6 +519,7 @@ private View setTempAd(int drawable){
 	 	if (idNota != null){	 	
 			Intent i = new Intent(getApplication(), NoteActivity.class);  
 			i.putExtra("id_nota", idNota);
+			i.putExtra("id_foto", idFoto);
 			startActivity(i);
 	 	}
 	

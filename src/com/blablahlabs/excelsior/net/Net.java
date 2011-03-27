@@ -17,6 +17,8 @@ import org.json.JSONException;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.preference.PreferenceManager;
@@ -45,7 +47,7 @@ public class Net {
 		ExcelsiorBean excelsiorBean = null;
 		
 		if (isOnline() )
-			ansHttpGet = getHttpGet(Recursos.URL_GENERAL);
+			ansHttpGet = inputStreamToString (getHttpGet(Recursos.URL_GENERAL) );
 		else{
 			ansHttpGet = loadData();			
 		}
@@ -67,7 +69,7 @@ public class Net {
 		NotaBean notaBean = null;
 	
 		if (isOnline() )
-			ansHttpGet = getHttpGet(Recursos.URL_NOTA_DETALLE_INTRO + idNota + Recursos.URL_NOTA_DETALLE_OUTTRO);
+			ansHttpGet = inputStreamToString (getHttpGet(Recursos.URL_NOTA_DETALLE_INTRO + idNota + Recursos.URL_NOTA_DETALLE_OUTTRO) ) ;
 		
 		if (ansHttpGet != null){
 			notaBean = gson.fromJson(ansHttpGet, NotaBean.class);
@@ -78,7 +80,34 @@ public class Net {
 		return notaBean;
 	}
 	
-	private  String getHttpGet(String url) throws IllegalStateException, IOException, URISyntaxException{
+	
+	public Bitmap getImagenDetalle (int idNota)throws IllegalStateException, IOException, URISyntaxException{
+		
+		Bitmap image = null;
+		String url;
+		InputStream input;
+		
+		if (isOnline() ){
+			url = Recursos.URL_IMAGEN_NOTA_INTRO + idNota + Recursos.URL_IMAGEN_NOTA_OUTTRO;
+			input = getHttpGet(url);
+			image = inputStreamToBitMap (input ) ;
+		}
+		return image;
+	}
+	
+	public Bitmap getImagenLista (int idNota)throws IllegalStateException, IOException, URISyntaxException{
+		
+		Bitmap image = null;
+		
+		if (isOnline() )
+			image = inputStreamToBitMap (getHttpGet(Recursos.URL_IMAGEN_NOTA_LISTA_INTRO + idNota + Recursos.URL_IMAGEN_NOTA_OUTTRO) ) ;
+		
+		return image;
+	}
+	
+	
+	
+	private  InputStream getHttpGet(String url) throws IllegalStateException, IOException, URISyntaxException{
 		
 		URI myURI = null;
 		InputStream input = null;
@@ -106,12 +135,12 @@ public class Net {
 			 input = httpEntity.getContent();
 		}
 		
-		
-		return slurp(input);
+		return input;
+		//return slurp(input);
 	}
 	
 		
-	private String slurp (InputStream in) throws IOException {
+	public String inputStreamToString (InputStream in) throws IOException {
 	    StringBuilder out = new StringBuilder();
 	    byte[] b = new byte[4096];
 	    for (int n; (n = in.read(b)) != -1;) {
@@ -120,6 +149,16 @@ public class Net {
 	    return out.toString();
 	}
 
+	public  Bitmap inputStreamToBitMap (InputStream in) throws IOException {
+		Bitmap bitmap = null;
+		
+		bitmap=BitmapFactory.decodeStream( in ); 
+		
+		
+		return bitmap;
+	}
+	
+	
 	
 	private  boolean isOnline() {		
 		ConnectivityManager cm = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);

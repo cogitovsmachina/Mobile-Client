@@ -5,6 +5,7 @@ import java.net.URL;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Html;
@@ -13,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.Window;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,12 +26,12 @@ import com.blablahlabs.excelsior.recursos.Recursos;
 public class NoteActivity extends Activity {
 	
 	private ProgressDialog dialog;
-	private Net net;
 	private int idNota;
+	private int idFoto;
 	private TextView title;
 	private TextView content;
 	private NotaBean bean;
-	private Activity activity;
+	private ImageView image;
 
 
 
@@ -38,14 +40,14 @@ public class NoteActivity extends Activity {
 		super.onCreate(savedInstanceState);
         setCustomTitle();
 		setContentView(R.layout.noteactivity);
-		net = new Net(getApplicationContext());
 	     Bundle extras = getIntent().getExtras();
          idNota = extras != null ? extras.getInt("id_nota") : -1;
+         idFoto = extras != null ? extras.getInt("id_foto") : -1;
          
           title = (TextView)findViewById(R.id.note_title);
           content = (TextView)findViewById(R.id.note_content);
-          activity = this;
-          new PostNote().execute();
+          image = (ImageView)findViewById(R.id.note_image);
+          new PostNote(this, idNota, idFoto).execute();
 	}
 
     
@@ -90,63 +92,86 @@ public class NoteActivity extends Activity {
     	startActivity(Intent.createChooser(mIntent, "Compartir en"));		
     }
     
-    
-    private class PostNote extends AsyncTask<URL, Void, NotaBean> {
+    private class PostNote extends AsyncTask<URL, Void, ImageBean> {
+
+    	
+    	private Activity activity;
+		private int idNota;
+		private int idFoto;
+		private Net net;
 
 
-
-
-
+		public PostNote (Activity activity, int idNota, int idFoto){
+    		
+    			this.activity = activity;
+    			this.idNota = idNota;
+    			this.idFoto = idFoto;
+    		
+    		return;
+    	}
+    	
+    	
 		@Override
 		protected void onPreExecute(){
-    		dialog= ProgressDialog.show(NoteActivity.this, "Actualizando", "Actualizando los contenidos", true);
+			this.net = new Net(activity.getApplicationContext());
+    		dialog= ProgressDialog.show(activity, "Actualizando", "Actualizando los contenidos", true);
     		return;
     	}
     	
     	
     	@Override
-		protected NotaBean doInBackground(URL... urls) {
-    		
-    		
-           // int count = urls.length;
-    		NotaBean ans = null;
+		protected ImageBean doInBackground(URL... urls) {
+
+    		NotaBean bean = null;
+    		Bitmap imagen = null;
             try {
-            	ans = net.getNotaBean(idNota);
-            	
-
-
+            	bean = net.getNotaBean(idNota);
+            	imagen = net.getImagenDetalle(idFoto);
 			} catch (Exception e) {
 				Log.e(Recursos.APP,"Ocurrio un error");
 				Log.e(Recursos.APP,e.toString());
 				e.printStackTrace();
 			}
 			
-		
-            return ans ;
+			ImageBean imagenBean = new ImageBean();
+			imagenBean.bean = bean;
+			imagenBean.imagen = imagen;
+			
+            return imagenBean;
         }
         
 
         @Override
-		protected void onPostExecute(NotaBean bean_) {
+		protected void onPostExecute(ImageBean bean_) {
         	dialog.dismiss();
-        	if (bean_ == null){
+        	if (bean_.bean == null){
         		IU.showInfoDialog(activity);
-        		
         	}
         	else{
-        		title.setText(Html.fromHtml(bean_.singleResponse.titulo));
-        		content.setText(Html.fromHtml(bean_.singleResponse.contenido));
-        		
-        		bean = bean_ ;
+        		title.setText(Html.fromHtml(bean_.bean.singleResponse.titulo));
+        		content.setText(Html.fromHtml(bean_.bean.singleResponse.contenido));
+        		bean = bean_.bean ;
         	}        		        		
-        		
+        	
+        	if (bean_.imagen != null)
+        		image.setImageBitmap(bean_.imagen);
+        	else
+        		image.setBackgroundResource(R.drawable.note_default_image);
         }
+        
+        
 
-
-		
+        
 
     }
 	
+    
+    public class ImageBean {
+    	public NotaBean bean = null;
+		public Bitmap imagen = null; 
+    	
+    }
+    
     public void setCustomTitle() {
     	requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
         setContentView(R.layout.main);

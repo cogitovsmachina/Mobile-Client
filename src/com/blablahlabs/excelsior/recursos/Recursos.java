@@ -9,7 +9,12 @@ public class Recursos {
 	public static final String URL_GENERAL = "http://www.excelsior.com.mx/iPad/jsonGET.txt";
 	
 	public static final String URL_NOTA_DETALLE_INTRO = "http://excelsior.com.mx/iPad/?mode=single&notaid=";
-	public static final String URL_NOTA_DETALLE_OUTTRO = "&json=1&json=1";
+	public static final String URL_NOTA_DETALLE_OUTTRO = "&json=1";
+	
+	public static final String URL_IMAGEN_NOTA_INTRO = "http://www.excelsior.com.mx/Media/640x129_";
+	public static final String URL_IMAGEN_NOTA_LISTA_INTRO = "http://www.excelsior.com.mx/Media/195x312_";
+	public static final String URL_IMAGEN_NOTA_OUTTRO = ".jpg";
+	
 
 	public static final String URL_GALERIA_FOTOS = "http://excelsior.com.mx/iPad/?mode=getGallery&galleryID=";
 	
