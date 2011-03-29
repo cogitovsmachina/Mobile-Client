@@ -6,5 +6,6 @@
 	<classpathentry kind="lib" path="libs/CWAC-MergeAdapter.jar"/>
 	<classpathentry kind="lib" path="libs/CWAC-SackOfViewsAdapter.jar"/>
 	<classpathentry kind="lib" path="libs/gson-1.6.jar"/>
+	<classpathentry kind="lib" path="libs/ShareMenu.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

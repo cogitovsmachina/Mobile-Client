@@ -32,6 +32,9 @@ public class Recursos {
 	
 	public static final String COMPARTIR_NOTA = "Yo estoy informado con Excelsior para Android http://excelsior.com.mx";
 
+	public static final String TITULO_PROGRESSDIALOG = "Actualizando";
+	
+	public static final String MENSAJE_PROGRESSDIALOG = "Actualizando contenido";
 	
 	public static enum Seccion {
 	    ULTIMA_HORA, NACIONAL, GLOBAL, DINERO, 

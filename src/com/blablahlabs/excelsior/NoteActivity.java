@@ -4,7 +4,6 @@ import java.net.URL;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -22,7 +21,7 @@ import com.blablahlabs.excelsior.beans.NotaBean;
 import com.blablahlabs.excelsior.net.Net;
 import com.blablahlabs.excelsior.recursos.IU;
 import com.blablahlabs.excelsior.recursos.Recursos;
-
+import org.androidtitlan.ac.sharemenu.ShareMenu;
 public class NoteActivity extends Activity {
 	
 	private ProgressDialog dialog;
@@ -69,8 +68,11 @@ public class NoteActivity extends Activity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.share_image:   
-            	buildShareMenu();
+            case R.id.share_image:  
+            	ShareMenu.buildShareMenu(getApplicationContext(), Recursos.TITULO_COMPARTIR,
+            			bean.singleResponse.titulo +"  " +
+            			" http://www.excelsior.com.mx/index.php?m=nota&id_nota="
+            			+ bean.singleResponse.idNota);
                                 break;
             case R.id.gallery_image:     
             	Toast.makeText(this, "You want to go to gallery!", Toast.LENGTH_LONG).show();
@@ -82,18 +84,9 @@ public class NoteActivity extends Activity {
         return true;
     }
     
-    /*
-     *  Method to create ACTION_SEND Implementation :) 
-     */
-    private void buildShareMenu() {
-    	Intent mIntent = new Intent(android.content.Intent.ACTION_SEND);
-    	mIntent.setType("text/plain");
-    	mIntent.putExtra(Intent.EXTRA_TEXT, bean.singleResponse.titulo +"   http://www.excelsior.com.mx/index.php?m=nota&id_nota=" + bean.singleResponse.idNota);
-    	startActivity(Intent.createChooser(mIntent, "Compartir en"));		
-    }
+   
     
     private class PostNote extends AsyncTask<URL, Void, ImageBean> {
-
     	
     	private Activity activity;
 		private int idNota;
@@ -158,11 +151,6 @@ public class NoteActivity extends Activity {
         	else
         		image.setBackgroundResource(R.drawable.note_default_image);
         }
-        
-        
-
-        
-
     }
 	
     
@@ -171,11 +159,9 @@ public class NoteActivity extends Activity {
 		public Bitmap imagen = null; 
     	
     }
-    
     public void setCustomTitle() {
     	requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
         setContentView(R.layout.main);
         getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.window_title);
-        
 	}
 }

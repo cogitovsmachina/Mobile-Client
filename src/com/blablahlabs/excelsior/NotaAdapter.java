@@ -40,6 +40,8 @@ class NotaAdapter extends ArrayAdapter<NotaUltimaHora> {
                           tt.setText(Html.fromHtml(mnota.titulo));
                     if(bt != null)
                     	 bt.setText(Html.fromHtml(mnota.balazo));
+                    
+                    
             }
             return v;
     }

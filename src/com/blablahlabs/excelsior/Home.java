@@ -1,22 +1,20 @@
 package com.blablahlabs.excelsior;
 
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import org.androidtitlan.ac.sharemenu.ShareMenu;
+
 import android.app.ListActivity;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Typeface;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
@@ -25,36 +23,29 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.blablahlabs.excelsior.asynctasks.AsyncNotes;
 import com.blablahlabs.excelsior.beans.ExcelsiorBean;
 import com.blablahlabs.excelsior.beans.notas.NotaSeccion;
-import com.blablahlabs.excelsior.net.Net;
-import com.blablahlabs.excelsior.recursos.IU;
 import com.blablahlabs.excelsior.recursos.Recursos;
 import com.blablahlabs.excelsior.recursos.Recursos.Seccion;
-import com.blablahlabs.excelsior.recursos.ShareMenu;
 import com.commonsware.cwac.merge.MergeAdapter;
 
 public class Home extends ListActivity {
 	private static String[] items={"lorem", "ipsum"};
 
 	private MergeAdapter mMergeAdapter=null;
-	private ProgressDialog dialog;
-	private Net net;
 	private Seccion seccion = Seccion.ULTIMA_HORA;
-	private ExcelsiorBean excelsiorBean;
-	private MergeAdapter lastNewsAdapter;	
-	
+	public ExcelsiorBean excelsiorBean;
+	private MergeAdapter lastNewsAdapter;
+
 	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
-		net = new Net(getApplicationContext());
         super.onCreate(savedInstanceState);
         setCustomTitle();	
         setContentView(R.layout.main);
         setupViews();
-        refresh();       
-        
-	}
+        refresh();}
 
 	private void setupViews() {
 		final RadioButton rLastNews = (RadioButton)findViewById(R.id.last_hour);
@@ -136,13 +127,12 @@ public class Home extends ListActivity {
 		        } 
 		    }
 
-		});
-	}
+		});}
 
 	/*
 	 * 		Creating Headers and Adapters for each List
 	 */ 
-	private void showMainList() {
+	public void showMainList() {
 		
 		seccion = Seccion.ULTIMA_HORA;
 		
@@ -246,7 +236,6 @@ public class Home extends ListActivity {
 	 */
 	private void showNational() {	
 		seccion = Seccion.NACIONAL;
-
 		setListAdapter(new NotaAdapterSeccion(Home.this, R.layout.row, (ArrayList<NotaSeccion>) excelsiorBean.getSeccionNacional()));
 	
 	}
@@ -336,6 +325,7 @@ public class Home extends ListActivity {
 		
 	}
 	
+@SuppressWarnings("unused")
 private View setTempAd(int drawable){
 		ImageView imageView = new ImageView(this);		
 		imageView.setBackgroundResource(drawable);
@@ -373,8 +363,9 @@ private View setTempAd(int drawable){
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.share_image: 
-            	ShareMenu.buildHomeShareMenu(getApplicationContext());
-            	IU.showToast(getApplicationContext(), "this");
+            	ShareMenu.buildShareMenu(getApplicationContext(),
+            			 Recursos.TITULO_COMPARTIR,
+            			 Recursos.COMPARTIR_HOME);
                                 break;
             case R.id.gallery_image:     
             	Toast.makeText(this, "You want to go to gallery!", Toast.LENGTH_LONG).show();
@@ -389,58 +380,65 @@ private View setTempAd(int drawable){
         return true;
     }
     private void refresh() {
-			new DownloadFilesTask().execute();
+			new AsyncNotes(this).execute();
 	}
 
-	
-	private class DownloadFilesTask extends AsyncTask<URL, Void, ExcelsiorBean> {
-        
-		@Override
-		protected void onPreExecute(){
-    		dialog= ProgressDialog.show(Home.this, "Actualizando", "Descargando noticias, espere un momento", true);
+/*    
+private class ImageLoaderAsyncTask extends AsyncTask<URL, Void, Bitmap> {
+    	
+    	private Activity activity;
+		private int idFoto;
+		private Net net;
+		private View imagen;
+		
+
+
+		public ImageLoaderAsyncTask (Activity activity, int idFoto, View imagen ){
+    		
+    			this.activity = activity;
+    			this.idFoto = idFoto;
+    			this.imagen = imagen;
+    		
     		return;
     	}
     	
     	
+		@Override
+		protected void onPreExecute(){
+			this.net = new Net(this.activity.getApplicationContext());
+			image.setBackgroundResource(R.drawable.row_photo);
+			return;
+    	}
+    	
+    	
     	@Override
-		protected ExcelsiorBean doInBackground(URL... urls) {
-    		
-    		ExcelsiorBean ans = null;
+		protected Bitmap doInBackground(URL... urls) {
+
+    		Bitmap img = null;
             try {
-            	ans = net.getDataBean();
-            	
-
-
+            	img = net.getImagenLista(this.idFoto);
 			} catch (Exception e) {
 				Log.e(Recursos.APP,"Ocurrio un error");
 				Log.e(Recursos.APP,e.toString());
 				e.printStackTrace();
 			}
 			
-		
-            return ans ;
+
+			
+            return img;
         }
         
 
         @Override
-		protected void onPostExecute(ExcelsiorBean excelsiorBean_) {
-        	dialog.dismiss();
-        	if (excelsiorBean_ == null){
-        		Toast.makeText(getApplicationContext(), "Ha ocurrido un error, inténtalo más tarde", Toast.LENGTH_SHORT).show();
-        		        	}else{
-        		
-        		excelsiorBean=excelsiorBean_;
-        		
-        		showMainList();
-        }        		        		
-        		
-        	}
-
-
-		
-
+		protected void onPostExecute(Bitmap imagen) {    	
+        	if (imagen != null)
+        		image.setImageBitmap(imagen);
+        }
     }
+	
+*/    
 
+   
 
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
@@ -524,8 +522,7 @@ private View setTempAd(int drawable){
 	 	}
 	
 	}
-		
-		 
+	
 }
 	
 	
