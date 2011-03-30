@@ -22,6 +22,7 @@ public class AsyncImage extends AsyncTask<URL, Void, Bitmap> {
 	private int idFoto;
 	private Net net;
 	private ImageView imagen;
+	private Bitmap img2;
 	
 
 
@@ -60,7 +61,11 @@ public class AsyncImage extends AsyncTask<URL, Void, Bitmap> {
 
     @Override
 	protected void onPostExecute(Bitmap img) {    	
-    	if (img != null)
-    		imagen.setImageBitmap(img);
+    	int dstWidth = 101;
+		int dstHeight = 160;
+		boolean filter = false;
+		if (img != null)
+		img2 = Bitmap.createScaledBitmap(img, dstWidth, dstHeight, filter);
+    	imagen.setImageBitmap(img2);
     }
 }
