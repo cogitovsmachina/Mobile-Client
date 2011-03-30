@@ -1,5 +1,7 @@
 package com.blablahlabs.excelsior;
 
+import com.blablahlabs.excelsior.recursos.IU;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.widget.MediaController;
@@ -11,6 +13,7 @@ public class VideoPlayer extends Activity {
 	  @Override
 	    public void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
+	        IU.setCustomTitle(this);
 	        setContentView(R.layout.video_player);
 	       
 	        Bundle extras = getIntent().getExtras();

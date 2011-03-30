@@ -110,7 +110,7 @@ public final class R {
         public static final int adrenaline=0x7f080008;
         public static final int community=0x7f080007;
         public static final int excelsior_logo_small=0x7f080012;
-        public static final int gallery_image=0x7f080014;
+        public static final int gallery_image=0x7f080016;
         public static final int global=0x7f080005;
         public static final int home_image=0x7f080017;
         public static final int icon=0x7f08000e;
@@ -122,7 +122,7 @@ public final class R {
         public static final int note_image=0x7f08000b;
         public static final int note_title=0x7f08000c;
         public static final int opinion=0x7f08000a;
-        public static final int refresh=0x7f080016;
+        public static final int refresh=0x7f080014;
         public static final int share_image=0x7f080013;
         public static final int shot=0x7f080010;
         public static final int show=0x7f080009;

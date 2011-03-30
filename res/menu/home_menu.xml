@@ -4,19 +4,19 @@ xmlns:android="http://schemas.android.com/apk/res/android">
         android:title="Compartir"
         android:icon="@drawable/share" 
         />
+    <item android:id="@+id/refresh"
+        android:title="Actualizar"
+        android:icon="@android:drawable/ic_menu_rotate"
+        />          
+    <item android:id="@+id/movies_image"
+        android:title="Videos"
+        android:icon="@drawable/movies" 
+        />
       <item 
       	android:id="@+id/gallery_image"
       	android:icon="@drawable/photos"
         android:title="Fotogalerias" 
         /> 
-    <item android:id="@+id/movies_image"
-        android:title="Videos"
-        android:icon="@drawable/movies" 
-        />
-    <item android:id="@+id/refresh"
-        android:title="Actualizar"
-        android:icon="@android:drawable/ic_menu_rotate"
-        />          
 </menu>
 
 
