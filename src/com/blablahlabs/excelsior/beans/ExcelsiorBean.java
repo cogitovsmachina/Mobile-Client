@@ -53,8 +53,8 @@ public class ExcelsiorBean  implements Serializable{
 	private List<NotaOpinion> opinion  = new ArrayList<NotaOpinion>();
 
 
-	private List<FotoGaleria> fotoGaleria  = new LinkedList<FotoGaleria>();//.fotoGaleria;
-	private List<VideosPagina> videosPagina = new LinkedList<VideosPagina>();
+	private List<FotoGaleria> fotoGaleria  = new ArrayList<FotoGaleria>();//.fotoGaleria;
+	private List<VideosPagina> videosPagina = new ArrayList<VideosPagina>();
 
 
 	
@@ -253,7 +253,7 @@ public class ExcelsiorBean  implements Serializable{
 		
 		videosPagina.addAll(excelsiorGson.videosPagina1);
 		videosPagina.addAll(excelsiorGson.videosPagina2);
-		videosPagina.addAll(excelsiorGson.videosPagina2);
+		videosPagina.addAll(excelsiorGson.videosPagina3);
 		
 		/*
 		videosPagina.add((VideosPagina) excelsiorGson.videosPagina2);

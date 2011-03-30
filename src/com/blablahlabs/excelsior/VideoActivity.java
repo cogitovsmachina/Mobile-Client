@@ -3,29 +3,39 @@ package com.blablahlabs.excelsior;
 import java.io.ByteArrayInputStream;
 import java.io.ObjectInput;
 import java.io.ObjectInputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.androidtitlan.ac.sharemenu.ShareMenu;
 
-import android.app.Activity;
+import android.app.ListActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 
+import com.blablahlabs.excelsior.beans.ExcelsiorBean;
 import com.blablahlabs.excelsior.beans.notas.VideosPagina;
 import com.blablahlabs.excelsior.recursos.IU;
 import com.blablahlabs.excelsior.recursos.Recursos;
+import com.commonsware.cwac.merge.MergeAdapter;
 
 
 
-public class VideoActivity extends Activity {
+public class VideoActivity extends ListActivity {
 	
 	 List<VideosPagina> bean;
 	
-	boolean temp;
+	private MergeAdapter listVideoAdapter;
+
+	private ExcelsiorBean excelsiorBean;
+
+	private VideoCustomAdapter nAdapter;
 	
-	@SuppressWarnings("unchecked")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -44,11 +54,24 @@ public class VideoActivity extends Activity {
 			e.printStackTrace();
 			IU.showToast(VideoActivity.this , "Hubo un error al deserializar: " + e.getLocalizedMessage());
 		}
-		
-		temp = false;
+				
+		buildVideoList();
 		
 	}
 	
+	private void buildVideoList() {
+   		listVideoAdapter=new MergeAdapter();
+		
+   		
+		
+		 nAdapter = new VideoCustomAdapter(VideoActivity.this, R.layout.row_video, (ArrayList<VideosPagina>) bean);
+		 listVideoAdapter.addAdapter(nAdapter);	
+		
+		//commit para actualizar la vista 
+		setListAdapter(listVideoAdapter);
+
+	}
+
 	@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -78,6 +101,17 @@ public class VideoActivity extends Activity {
                                 break;
         }
         return true;
+    }
+    
+    @Override
+	protected void onListItemClick(ListView l, View v, int position, long id) {
+		super.onListItemClick(l, v, position, id);
+		
+		String temp = bean.get(position).nombreVideo;
+		startActivity( new Intent(this, VideoPlayer.class).putExtra("nombre_video", temp));
+		
+			
+		
     }
 
 

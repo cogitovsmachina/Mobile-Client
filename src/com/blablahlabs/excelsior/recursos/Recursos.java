@@ -22,7 +22,7 @@ public class Recursos {
 	
 	public static final String URL_FOTO_OPINION = "http://www.excelsior.com.mx/Media/opinion/";
 	
-	public static final String URL_VIDEOS = "ttp://148.240.229.64/Video/";
+	public static final String URL_VIDEOS = "http://148.240.229.64/Video/";
 	
 	public static final String ERROR_NOTA = "Al parecer no tienes conexión a internet. Inténtalo más tarde.";
 

@@ -365,9 +365,7 @@ private View setTempAd(int drawable){
             	
             	break;
             	
-            case R.id.movies_image:
-            	IU.showToast(getApplicationContext(), "Quieres ir a una videoGaleria!");
-            	
+            case R.id.movies_image:            	
             	ByteArrayOutputStream bos = new ByteArrayOutputStream();
             	ObjectOutput out;
             	try {
@@ -396,7 +394,7 @@ private View setTempAd(int drawable){
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		super.onListItemClick(l, v, position, id);
-	 	lastNewsAdapter.getItem(position);
+//	 	lastNewsAdapter.getItem(position);
 	 	
 	 	Integer idNota = null;
 	 	Integer idFoto = null;
