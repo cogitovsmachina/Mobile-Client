@@ -1,5 +1,9 @@
 package com.blablahlabs.excelsior;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -14,18 +18,17 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.blablahlabs.excelsior.asynctasks.AsyncNotes;
 import com.blablahlabs.excelsior.beans.ExcelsiorBean;
 import com.blablahlabs.excelsior.beans.notas.NotaSeccion;
+import com.blablahlabs.excelsior.recursos.IU;
 import com.blablahlabs.excelsior.recursos.Recursos;
 import com.blablahlabs.excelsior.recursos.Recursos.Seccion;
 import com.commonsware.cwac.merge.MergeAdapter;
@@ -42,10 +45,15 @@ public class Home extends ListActivity {
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setCustomTitle();	
+        IU.setCustomTitle(this);	
         setContentView(R.layout.main);
         setupViews();
-        refresh();}
+        refresh();
+        
+        
+		@SuppressWarnings("unused")
+		boolean temp = false;
+    }
 
 	private void setupViews() {
 		final RadioButton rLastNews = (RadioButton)findViewById(R.id.last_hour);
@@ -141,7 +149,7 @@ public class Home extends ListActivity {
    		
 		//Ultima Hora
 		
-		NotaAdapter nAdapter;
+//		NotaAdapter nAdapter;
 		ArrayList<NotaSeccion> itemsSeccionNacional= new ArrayList<NotaSeccion>();
 		ArrayList<NotaSeccion> itemsSeccionGlobal = new ArrayList<NotaSeccion>();
 		
@@ -152,12 +160,7 @@ public class Home extends ListActivity {
 		
 		
 		NotaAdapterSeccion nAdapterSeccion;
-		
-		//lastNewsAdapter.addView(setTempAd(R.drawable.ad_space));
 
-		
-		nAdapter = new NotaAdapter(Home.this, R.layout.row, excelsiorBean.getUltimaHora());
-		lastNewsAdapter.addAdapter(nAdapter);
 		
 		//Nacional
 		lastNewsAdapter.addView(buildHeader("Nacional", R.drawable.gradient_national_header));
@@ -332,17 +335,6 @@ private View setTempAd(int drawable){
 		imageView.setAdjustViewBounds(true);
 		return(imageView);	  	
 	}
-	
-	/*
-	*      Setting Custom Title :)
-	*/
-	
-    public void setCustomTitle() {
-    	requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
-        setContentView(R.layout.main);
-        getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.window_title);
-        
-	}
     
     /*
 	*      Inflating the option Menu
@@ -364,81 +356,42 @@ private View setTempAd(int drawable){
         switch (item.getItemId()) {
             case R.id.share_image: 
             	ShareMenu.buildShareMenu(getApplicationContext(),
-            			 Recursos.TITULO_COMPARTIR,
-            			 Recursos.COMPARTIR_HOME);
-                                break;
+            	Recursos.TITULO_COMPARTIR,
+            	Recursos.COMPARTIR_HOME);
+            	break;
+            	
             case R.id.gallery_image:     
-            	Toast.makeText(this, "You want to go to gallery!", Toast.LENGTH_LONG).show();
-                                break;
-            case R.id.movies_image: 
-            	Toast.makeText(this, "You want to go to movies!", Toast.LENGTH_LONG).show();
-                                break;
+            	IU.showToast(getApplicationContext(), "Quieres ir a una fotoGaleria!");
+            	
+            	break;
+            	
+            case R.id.movies_image:
+            	IU.showToast(getApplicationContext(), "Quieres ir a una videoGaleria!");
+            	
+            	ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            	ObjectOutput out;
+            	try {
+            		out = new ObjectOutputStream(bos);
+            		out.writeObject(excelsiorBean.getVideosPagina());
+            	} catch (IOException e) {
+            		e.printStackTrace();
+            		IU.showToast(Home.this , "Hubo un error al serializar: " + e.getLocalizedMessage());
+            		
+            	}   
+            	byte[] bytes = bos.toByteArray();
+            	
+				startActivity( new Intent(this, VideoActivity.class).putExtra("bean", bytes));
+				break;
+				
             case R.id.refresh: 
-            	refresh();
-                                break;
+            	refresh(); //refrescar las noticias
+            	break;
         }
         return true;
     }
     private void refresh() {
 			new AsyncNotes(this).execute();
-	}
-
-/*    
-private class ImageLoaderAsyncTask extends AsyncTask<URL, Void, Bitmap> {
-    	
-    	private Activity activity;
-		private int idFoto;
-		private Net net;
-		private View imagen;
-		
-
-
-		public ImageLoaderAsyncTask (Activity activity, int idFoto, View imagen ){
-    		
-    			this.activity = activity;
-    			this.idFoto = idFoto;
-    			this.imagen = imagen;
-    		
-    		return;
-    	}
-    	
-    	
-		@Override
-		protected void onPreExecute(){
-			this.net = new Net(this.activity.getApplicationContext());
-			image.setBackgroundResource(R.drawable.row_photo);
-			return;
-    	}
-    	
-    	
-    	@Override
-		protected Bitmap doInBackground(URL... urls) {
-
-    		Bitmap img = null;
-            try {
-            	img = net.getImagenLista(this.idFoto);
-			} catch (Exception e) {
-				Log.e(Recursos.APP,"Ocurrio un error");
-				Log.e(Recursos.APP,e.toString());
-				e.printStackTrace();
-			}
-			
-
-			
-            return img;
-        }
-        
-
-        @Override
-		protected void onPostExecute(Bitmap imagen) {    	
-        	if (imagen != null)
-        		image.setImageBitmap(imagen);
-        }
-    }
-	
-*/    
-
-   
+	} 
 
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
@@ -451,33 +404,30 @@ private class ImageLoaderAsyncTask extends AsyncTask<URL, Void, Bitmap> {
 	 	switch (seccion) {
 		case ULTIMA_HORA:
 			
-			if (position >=0 && position <= 14){
-				idNota= excelsiorBean.getUltimaHora().get(position).idNota;
-			}
 
+			if (position >=1 && position <= 2){
+				idNota= excelsiorBean.getSeccionNacional().get(position-1).idNota;
+				idFoto= excelsiorBean.getSeccionNacional().get(position-1).idFotoPortada;
+			}
+			else if (position >=4 && position <= 5){
+				idNota= excelsiorBean.getSeccionGlobal().get(position-4).idNota;
+				idFoto= excelsiorBean.getSeccionGlobal().get(position-4).idFotoPortada;
+			}
+			else if (position >=7 && position <= 8){
+				idNota= excelsiorBean.getSeccionDinero().get(position-7).idNota;
+				idFoto= excelsiorBean.getSeccionDinero().get(position-7).idFotoPortada;
+			}
+			else if (position >=10 && position <= 11){
+				idNota= excelsiorBean.getSeccionComunidad().get(position-10).idNota;
+				idFoto= excelsiorBean.getSeccionComunidad().get(position-10).idFotoPortada;
+			}
+			else if (position >=13 && position <= 14){
+				idNota= excelsiorBean.getSeccionAdrenalina().get(position-13).idNota;
+				idFoto= excelsiorBean.getSeccionAdrenalina().get(position-13).idFotoPortada;
+			}
 			else if (position >=16 && position <= 17){
-				idNota= excelsiorBean.getSeccionNacional().get(position-16).idNota;
-				idFoto= excelsiorBean.getSeccionNacional().get(position-16).idFotoPortada;
-			}
-			else if (position >=19 && position <= 20){
-				idNota= excelsiorBean.getSeccionGlobal().get(position-19).idNota;
-				idFoto= excelsiorBean.getSeccionGlobal().get(position-19).idFotoPortada;
-			}
-			else if (position >=22 && position <= 23){
-				idNota= excelsiorBean.getSeccionDinero().get(position-22).idNota;
-				idFoto= excelsiorBean.getSeccionDinero().get(position-22).idFotoPortada;
-			}
-			else if (position >=25 && position <= 26){
-				idNota= excelsiorBean.getSeccionComunidad().get(position-25).idNota;
-				idFoto= excelsiorBean.getSeccionComunidad().get(position-25).idFotoPortada;
-			}
-			else if (position >=28 && position <= 29){
-				idNota= excelsiorBean.getSeccionAdrenalina().get(position-28).idNota;
-				idFoto= excelsiorBean.getSeccionAdrenalina().get(position-28).idFotoPortada;
-			}
-			else if (position >=31 && position <= 32){
-				idNota= excelsiorBean.getSeccionFuncion().get(position-31).idNota;
-				idFoto= excelsiorBean.getSeccionFuncion().get(position-31).idFotoPortada;
+				idNota= excelsiorBean.getSeccionFuncion().get(position-16).idNota;
+				idFoto= excelsiorBean.getSeccionFuncion().get(position-16).idFotoPortada;
 			}
 			
 			break;

@@ -25,6 +25,7 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 
 import com.blablahlabs.excelsior.beans.ExcelsiorBean;
+import com.blablahlabs.excelsior.beans.ExcelsiorFotoGaleriaBean;
 import com.blablahlabs.excelsior.beans.ExcelsiorGson;
 import com.blablahlabs.excelsior.beans.NotaBean;
 import com.blablahlabs.excelsior.recursos.Recursos;
@@ -80,6 +81,23 @@ public class Net {
 		return notaBean;
 	}
 	
+	public ExcelsiorFotoGaleriaBean getFotoGaleriaBean(int idFotoGaleria) throws IllegalStateException, IOException, URISyntaxException, JSONException{
+		
+		String ansHttpGet = null;
+		Gson gson = new Gson();
+		ExcelsiorFotoGaleriaBean bean = null;
+		
+		if (isOnline() )
+			ansHttpGet = inputStreamToString(getHttpGet(Recursos.URL_GALERIA_FOTOS + idFotoGaleria + Recursos.URL_NOTA_DETALLE_OUTTRO));
+		
+		if (ansHttpGet != null){
+			bean = gson.fromJson(ansHttpGet, ExcelsiorFotoGaleriaBean.class);
+			
+		}
+		
+		return bean;
+	}
+
 	
 	public Bitmap getImagenDetalle (int idNota)throws IllegalStateException, IOException, URISyntaxException{
 		

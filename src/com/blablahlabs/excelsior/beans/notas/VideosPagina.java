@@ -1,9 +1,13 @@
 package com.blablahlabs.excelsior.beans.notas;
 
+import java.io.Serializable;
+
 import com.google.gson.annotations.SerializedName;
 
-public class VideosPagina {
+public class VideosPagina  implements Serializable{
 	
+	private static final long serialVersionUID = -747908058046812182L;
+
 	@SerializedName("ID_Archivo")
 	public int idArchivo;
 	

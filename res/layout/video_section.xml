@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Starting with TableLayout-->
+<TableLayout 
+android:id="@+id/ParentRelativeLayout"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+xmlns:android="http://schemas.android.com/apk/res/android"
+style="@style/Theme.Excelsior">			
+	
+		<ListView
+			android:id="@android:id/list"
+			android:layout_width="fill_parent" 
+			android:layout_height="fill_parent"
+			android:layout_below="@+id/HorizontalScrollView"
+			android:headerDividersEnabled="true"
+			android:cacheColorHint="#DEDFD6"
+		/>
+	
+		
+</TableLayout>
+	<!--Finishing XML Description-->	

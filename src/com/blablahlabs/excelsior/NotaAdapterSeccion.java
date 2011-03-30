@@ -35,8 +35,13 @@ class NotaAdapterSeccion extends ArrayAdapter<NotaSeccion> {
             View v = convertView;
             if (v == null) {
                 LayoutInflater vi = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                v = vi.inflate(R.layout.row, null);
+                v = vi.inflate(R.layout.row, null);     
             }
+            else {          
+//            	v.findViewById(R.id.icon).setBackgroundResource(R.drawable.row_photo);
+            	v.findViewById(R.id.icon).setBackgroundDrawable(null);
+              }
+            
             NotaSeccion mnota = items.get(position);
             if (mnota != null) {
                     TextView tt = (TextView) v.findViewById(R.id.title);

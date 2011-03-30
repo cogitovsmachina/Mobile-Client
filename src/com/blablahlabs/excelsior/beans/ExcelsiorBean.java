@@ -1,5 +1,6 @@
 package com.blablahlabs.excelsior.beans;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
@@ -15,9 +16,14 @@ import com.blablahlabs.excelsior.beans.notas.NotaStage;
 import com.blablahlabs.excelsior.beans.notas.NotaUltimaHora;
 import com.blablahlabs.excelsior.beans.notas.VideosPagina;
 
-public class ExcelsiorBean {
+public class ExcelsiorBean  implements Serializable{
 
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private ExcelsiorGson excelsiorGson;
 
 	private List<Nota> principalPortada = new ArrayList<Nota>();
@@ -48,10 +54,10 @@ public class ExcelsiorBean {
 
 
 	private List<FotoGaleria> fotoGaleria  = new LinkedList<FotoGaleria>();//.fotoGaleria;
-	private List<VideosPagina> videosPagina1 = new LinkedList<VideosPagina>();
-	private List<VideosPagina> videosPagina2 = new LinkedList<VideosPagina>();
-	private List<VideosPagina> videosPagina3 = new LinkedList<VideosPagina>();
+	private List<VideosPagina> videosPagina = new LinkedList<VideosPagina>();
 
+
+	
 
 	private List<NotaImpresa> impreso   = new ArrayList<NotaImpresa>();
 
@@ -244,15 +250,22 @@ public class ExcelsiorBean {
 
 		//Fotogalerias y Videos
 		fotoGaleria  = new ArrayList<FotoGaleria>(excelsiorGson.fotoGaleria);
-		videosPagina1 = new ArrayList<VideosPagina>(excelsiorGson.videosPagina1);
-		videosPagina2 = new ArrayList<VideosPagina>(excelsiorGson.videosPagina2);
-		videosPagina3 = new ArrayList<VideosPagina>(excelsiorGson.videosPagina3);
 		
+		videosPagina.addAll(excelsiorGson.videosPagina1);
+		videosPagina.addAll(excelsiorGson.videosPagina2);
+		videosPagina.addAll(excelsiorGson.videosPagina2);
+		
+		/*
+		videosPagina.add((VideosPagina) excelsiorGson.videosPagina2);
+		videosPagina3 = new ArrayList<VideosPagina>(excelsiorGson.videosPagina3);
+		*/
 		
 		Collections.copy(fotoGaleria, excelsiorGson.fotoGaleria);
-		Collections.copy(videosPagina1, excelsiorGson.videosPagina1);
+		/*Collections.copy(videosPagina1, excelsiorGson.videosPagina1);
 		Collections.copy(videosPagina2, excelsiorGson.videosPagina2);
 		Collections.copy(videosPagina3, excelsiorGson.videosPagina3);
+		
+		*/
 		
 		
 		
@@ -382,7 +395,14 @@ public class ExcelsiorBean {
 	public void setImpreso(List<NotaImpresa> impreso) {
 		this.impreso = impreso;
 	}
+	
+	public List<VideosPagina> getVideosPagina() {
+		return videosPagina;
+	}
 
+	public void setVideosPagina(List<VideosPagina> videosPagina) {
+		this.videosPagina = videosPagina;
+	}
 	
 		
 }

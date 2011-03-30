@@ -111,6 +111,7 @@ public final class R {
         public static final int excelsior_logo_small=0x7f080011;
         public static final int gallery_image=0x7f080013;
         public static final int global=0x7f080005;
+        public static final int home_image=0x7f080016;
         public static final int icon=0x7f08000e;
         public static final int last_hour=0x7f080003;
         public static final int money=0x7f080006;
@@ -131,10 +132,12 @@ public final class R {
         public static final int main=0x7f030001;
         public static final int noteactivity=0x7f030002;
         public static final int row=0x7f030003;
-        public static final int window_title=0x7f030004;
+        public static final int video_section=0x7f030004;
+        public static final int window_title=0x7f030005;
     }
     public static final class menu {
         public static final int home_menu=0x7f070000;
+        public static final int videos_menu=0x7f070001;
     }
     public static final class string {
         public static final int app_name=0x7f060001;
