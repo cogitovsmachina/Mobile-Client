@@ -19,8 +19,7 @@
             android:screenOrientation="portrait"/>
             <activity android:name=".VideoActivity"
         android:screenOrientation="portrait"/>
-        <activity android:name=".VideoPlayer"
-        android:screenOrientation="portrait"/>
+        <activity android:name=".VideoPlayer"/>
 
     </application>
 </manifest>

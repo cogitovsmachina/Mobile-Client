@@ -48,7 +48,7 @@ public class Home extends ListActivity {
         IU.setCustomTitle(this);	
         setContentView(R.layout.main);
         setupViews();
-        refresh();
+        updateNews();
         
         
 		@SuppressWarnings("unused")
@@ -382,19 +382,18 @@ private View setTempAd(int drawable){
 				break;
 				
             case R.id.refresh: 
-            	refresh(); //refrescar las noticias
+            	updateNews();
             	break;
         }
         return true;
     }
-    private void refresh() {
+    private void updateNews() { 
 			new AsyncNotes(this).execute();
 	} 
 
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		super.onListItemClick(l, v, position, id);
-//	 	lastNewsAdapter.getItem(position);
 	 	
 	 	Integer idNota = null;
 	 	Integer idFoto = null;

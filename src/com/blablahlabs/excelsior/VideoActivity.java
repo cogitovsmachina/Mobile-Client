@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.androidtitlan.ac.sharemenu.ShareMenu;
 
+import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,9 +16,11 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
+import com.blablahlabs.excelsior.asynctasks.AsyncVideoImage;
 import com.blablahlabs.excelsior.beans.ExcelsiorBean;
 import com.blablahlabs.excelsior.beans.notas.VideosPagina;
 import com.blablahlabs.excelsior.recursos.IU;
@@ -35,6 +38,11 @@ public class VideoActivity extends ListActivity {
 	private ExcelsiorBean excelsiorBean;
 
 	private VideoCustomAdapter nAdapter;
+
+	private Activity activity;
+
+	private int idArchivo;
+
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -59,12 +67,11 @@ public class VideoActivity extends ListActivity {
 		
 	}
 	
+
 	private void buildVideoList() {
    		listVideoAdapter=new MergeAdapter();
 		
-   		
-		
-		 nAdapter = new VideoCustomAdapter(VideoActivity.this, R.layout.row_video, (ArrayList<VideosPagina>) bean);
+  		 nAdapter = new VideoCustomAdapter(VideoActivity.this, R.layout.row_video, (ArrayList<VideosPagina>) bean);
 		 listVideoAdapter.addAdapter(nAdapter);	
 		
 		//commit para actualizar la vista 

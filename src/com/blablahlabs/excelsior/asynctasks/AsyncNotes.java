@@ -42,8 +42,6 @@ public class AsyncNotes extends AsyncTask<URL, Void, ExcelsiorBean> {
 		ExcelsiorBean ans = null;
         try {
         	ans = net.getDataBean();
-        	
-
 
 		} catch (Exception e) {
 			Log.e(Recursos.APP,"Ocurrio un error");

@@ -3,7 +3,8 @@ package com.blablahlabs.excelsior;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.blablahlabs.excelsior.asynctasks.AsyncImage;
+import com.blablahlabs.excelsior.asynctasks.AsyncMainListImage;
+import com.blablahlabs.excelsior.asynctasks.AsyncVideoImage;
 import com.blablahlabs.excelsior.beans.notas.VideosPagina;
 
 import android.app.Activity;
@@ -21,6 +22,7 @@ class VideoCustomAdapter extends ArrayAdapter<VideosPagina> {
     private ArrayList<VideosPagina> items;
 	private Activity activity;
 	private Context context;
+	private ImageView img;
 
 
     public VideoCustomAdapter(Activity activity, int textViewResourceId, ArrayList<VideosPagina> items) {
@@ -42,10 +44,10 @@ class VideoCustomAdapter extends ArrayAdapter<VideosPagina> {
             VideosPagina mVideos = items.get(position);
             if (mVideos != null) {
                     TextView tt = (TextView) v.findViewById(R.id.title);
-//                    ImageView img = (ImageView) v.findViewById(R.id.icon);
+                    ImageView img = (ImageView) v.findViewById(R.id.icon);
                     if (tt != null)
                           tt.setText(Html.fromHtml(mVideos.titulo));
-//                    new AsyncImage(activity, mVideos.idArchivo, img).execute();
+                    new AsyncVideoImage(activity, mVideos.idArchivo, img).execute();
             }
             return v;
     }

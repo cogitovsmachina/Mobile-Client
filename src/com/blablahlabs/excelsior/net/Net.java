@@ -113,12 +113,22 @@ public class Net {
 		return image;
 	}
 	
-	public Bitmap getImagenLista (int idNota)throws IllegalStateException, IOException, URISyntaxException{
+	public Bitmap getImagenListaPrincipal (int idNota)throws IllegalStateException, IOException, URISyntaxException{
 		
 		Bitmap image = null;
 		
 		if (isOnline() )
 			image = inputStreamToBitMap (getHttpGet(Recursos.URL_IMAGEN_NOTA_LISTA_INTRO + idNota + Recursos.URL_IMAGEN_NOTA_OUTTRO) ) ;
+		
+		return image;
+	}
+	
+	public Bitmap getImagenVideoLista (int idArchivo)throws IllegalStateException, IOException, URISyntaxException{
+		
+		Bitmap image = null;
+		
+		if (isOnline() )
+			image = inputStreamToBitMap (getHttpGet(Recursos.URL_FOTO + idArchivo + Recursos.URL_IMAGEN_NOTA_OUTTRO) ) ;
 		
 		return image;
 	}

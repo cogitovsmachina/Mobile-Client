@@ -2,7 +2,7 @@ package com.blablahlabs.excelsior;
 
 import java.util.ArrayList;
 
-import com.blablahlabs.excelsior.asynctasks.AsyncImage;
+import com.blablahlabs.excelsior.asynctasks.AsyncMainListImage;
 import com.blablahlabs.excelsior.beans.notas.Nota;
 import com.blablahlabs.excelsior.beans.notas.NotaSeccion;
 
@@ -51,7 +51,7 @@ class NotaAdapterSeccion extends ArrayAdapter<NotaSeccion> {
                           tt.setText(Html.fromHtml(mnota.titulo));
                     if(bt != null)
                           bt.setText(Html.fromHtml(mnota.balazo));
-                    new AsyncImage(activity, mnota.idFotoPortada, img).execute();
+                    new AsyncMainListImage(activity, mnota.idFotoPortada, img).execute();
             }
             return v;
     }
