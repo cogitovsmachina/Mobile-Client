@@ -265,12 +265,7 @@ public class ExcelsiorBean  implements Serializable{
 		Collections.copy(videosPagina2, excelsiorGson.videosPagina2);
 		Collections.copy(videosPagina3, excelsiorGson.videosPagina3);
 		
-		*/
-		
-		
-		
-		
-		
+		*/		
 		
 		//Versiones Impresas
 		impreso.add(excelsiorGson.Impreso.nacional);
@@ -386,8 +381,6 @@ public class ExcelsiorBean  implements Serializable{
 		this.opinion = opinion;
 	}
 
-	
-
 	public List<NotaImpresa> getImpreso() {
 		return impreso;
 	}
@@ -403,6 +396,14 @@ public class ExcelsiorBean  implements Serializable{
 	public void setVideosPagina(List<VideosPagina> videosPagina) {
 		this.videosPagina = videosPagina;
 	}
-	
+
+	public List<FotoGaleria> getFotoGaleria() {
+		return fotoGaleria;
+	}
+
+	public void setFotoGaleria(List<FotoGaleria> fotoGaleria) {
+		this.fotoGaleria = fotoGaleria;
+	}
+		
 		
 }

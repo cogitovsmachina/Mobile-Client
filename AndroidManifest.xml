@@ -8,18 +8,21 @@
 <application android:icon="@drawable/icon" android:label="@string/app_name" 
 		 android:theme="@style/CustomTheme"> 
         <activity android:name="Home"
-                  android:label="@string/app_name">
+                  android:label="@string/app_name"
+                  android:screenOrientation="portrait">
                   
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-            <activity android:name=".NoteActivity"
+            <activity android:name="ViewNoteActivity"
             android:screenOrientation="portrait"/>
-            <activity android:name=".VideoActivity"
+            <activity android:name="VideoListActivity"
+       	 android:screenOrientation="portrait"/>
+      	 	 <activity android:name=".VideoPlayer"/>
+      	 	 <activity android:name="GalleryListActivity"
         android:screenOrientation="portrait"/>
-        <activity android:name=".VideoPlayer"/>
 
     </application>
 </manifest>

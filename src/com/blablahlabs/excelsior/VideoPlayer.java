@@ -32,7 +32,6 @@ public class VideoPlayer extends Activity {
 			videoView.setMediaController(mediaController);
 			videoView.requestFocus();
 			videoView.start();
-
 			mediaController.show();
 	  }
 

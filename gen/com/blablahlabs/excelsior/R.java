@@ -110,19 +110,19 @@ public final class R {
         public static final int adrenaline=0x7f080008;
         public static final int community=0x7f080007;
         public static final int excelsior_logo_small=0x7f080012;
-        public static final int gallery_image=0x7f080016;
+        public static final int gallery_image=0x7f080014;
         public static final int global=0x7f080005;
-        public static final int home_image=0x7f080017;
+        public static final int home_image=0x7f080015;
         public static final int icon=0x7f08000e;
         public static final int last_hour=0x7f080003;
         public static final int money=0x7f080006;
-        public static final int movies_image=0x7f080015;
+        public static final int movies_image=0x7f080017;
         public static final int national=0x7f080004;
         public static final int note_content=0x7f08000d;
         public static final int note_image=0x7f08000b;
         public static final int note_title=0x7f08000c;
         public static final int opinion=0x7f08000a;
-        public static final int refresh=0x7f080014;
+        public static final int refresh=0x7f080016;
         public static final int share_image=0x7f080013;
         public static final int shot=0x7f080010;
         public static final int show=0x7f080009;
@@ -133,14 +133,17 @@ public final class R {
         public static final int main=0x7f030001;
         public static final int noteactivity=0x7f030002;
         public static final int row=0x7f030003;
-        public static final int row_video=0x7f030004;
-        public static final int video_player=0x7f030005;
-        public static final int video_section=0x7f030006;
-        public static final int window_title=0x7f030007;
+        public static final int row_gallery=0x7f030004;
+        public static final int row_video=0x7f030005;
+        public static final int video_player=0x7f030006;
+        public static final int video_section=0x7f030007;
+        public static final int window_title=0x7f030008;
     }
     public static final class menu {
-        public static final int home_menu=0x7f070000;
-        public static final int videos_menu=0x7f070001;
+        public static final int gallery_menu=0x7f070000;
+        public static final int home_menu=0x7f070001;
+        public static final int note_menu=0x7f070002;
+        public static final int videos_menu=0x7f070003;
     }
     public static final class string {
         public static final int app_name=0x7f060001;
@@ -153,8 +156,6 @@ public final class R {
         /**  Base application theme is the default theme. 
          */
         public static final int Theme=0x7f050000;
-        /**  Variation on the Light theme that turns off the title 
-         */
         public static final int Theme_Excelsior=0x7f050001;
     }
 }

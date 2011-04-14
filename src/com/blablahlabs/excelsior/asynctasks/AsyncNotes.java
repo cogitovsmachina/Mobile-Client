@@ -3,6 +3,7 @@ package com.blablahlabs.excelsior.asynctasks;
 import java.net.URL;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.util.Log;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 import com.blablahlabs.excelsior.Home;
 import com.blablahlabs.excelsior.beans.ExcelsiorBean;
 import com.blablahlabs.excelsior.net.Net;
+import com.blablahlabs.excelsior.recursos.IU;
 import com.blablahlabs.excelsior.recursos.Recursos;
 
 
@@ -57,7 +59,7 @@ public class AsyncNotes extends AsyncTask<URL, Void, ExcelsiorBean> {
 	protected void onPostExecute(ExcelsiorBean excelsiorBean_) {
     	dialog.dismiss();
     	if (excelsiorBean_ == null){
-    		Toast.makeText(activity.getApplicationContext(), "Ha ocurrido un error, inténtalo más tarde", Toast.LENGTH_SHORT).show();
+    		IU.showInfoDialog(activity);
     	}
     	else{
     		((Home) activity).excelsiorBean=excelsiorBean_;

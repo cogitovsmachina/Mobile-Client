@@ -47,12 +47,9 @@ public class Home extends ListActivity {
         super.onCreate(savedInstanceState);
         IU.setCustomTitle(this);	
         setContentView(R.layout.main);
-        setupViews();
+        setupViews(); 
         updateNews();
-        
-        
-		@SuppressWarnings("unused")
-		boolean temp = false;
+       
     }
 
 	private void setupViews() {
@@ -65,7 +62,7 @@ public class Home extends ListActivity {
 		final RadioButton rFunction = (RadioButton)findViewById(R.id.show);
 		final RadioButton rOpinion = (RadioButton)findViewById(R.id.opinion);
 		
-		rLastNews.setPressed(true);
+		rLastNews.setChecked(true);
 		
 		rLastNews.setOnClickListener(new OnClickListener() {
 		    public void onClick(View v) {
@@ -135,7 +132,8 @@ public class Home extends ListActivity {
 		        } 
 		    }
 
-		});}
+		});
+		}
 
 	/*
 	 * 		Creating Headers and Adapters for each List
@@ -315,13 +313,12 @@ public class Home extends ListActivity {
 	private View buildHeader(String title, int background){
 		
 		TextView textview = new TextView(this);		
-		textview.setTextColor(R.color.header_text);
 		textview.setCursorVisible(false);
 		textview.setFocusable(false);
 		textview.setClickable(false);
 		textview.setFocusableInTouchMode(false);
 		textview.setText(title);
-		textview.setTextSize(25);
+		textview.setTextSize(20);
 		textview.setTypeface(Typeface.DEFAULT_BOLD);
 		textview.setBackgroundResource(background);
 		return(textview);	  	
@@ -360,9 +357,19 @@ private View setTempAd(int drawable){
             	Recursos.COMPARTIR_HOME);
             	break;
             	
-            case R.id.gallery_image:     
-            	IU.showToast(getApplicationContext(), "Quieres ir a una fotoGaleria!");
+            case R.id.gallery_image:
+            	ByteArrayOutputStream byteAO = new ByteArrayOutputStream();
+            	ObjectOutput output;
+            	try {
+            		output = new ObjectOutputStream(byteAO);
+            		output.writeObject(excelsiorBean.getFotoGaleria());
+            	} catch (IOException e) {
+            		e.printStackTrace();
+            		IU.showToast(Home.this , "Hubo un error al serializar: " + e.getLocalizedMessage());
+            	}   
+            	byte[] bytes = byteAO.toByteArray();
             	
+				startActivity( new Intent(this, GalleryListActivity.class).putExtra("bean", bytes));
             	break;
             	
             case R.id.movies_image:            	
@@ -374,11 +381,10 @@ private View setTempAd(int drawable){
             	} catch (IOException e) {
             		e.printStackTrace();
             		IU.showToast(Home.this , "Hubo un error al serializar: " + e.getLocalizedMessage());
-            		
             	}   
-            	byte[] bytes = bos.toByteArray();
+            	byte[] bytes1 = bos.toByteArray();
             	
-				startActivity( new Intent(this, VideoActivity.class).putExtra("bean", bytes));
+				startActivity( new Intent(this, VideoListActivity.class).putExtra("bean", bytes1));
 				break;
 				
             case R.id.refresh: 
@@ -462,7 +468,7 @@ private View setTempAd(int drawable){
 	}
 	 	
 	 	if (idNota != null){	 	
-			Intent i = new Intent(getApplication(), NoteActivity.class);  
+			Intent i = new Intent(getApplication(), ViewNoteActivity.class);  
 			i.putExtra("id_nota", idNota);
 			i.putExtra("id_foto", idFoto);
 			startActivity(i);

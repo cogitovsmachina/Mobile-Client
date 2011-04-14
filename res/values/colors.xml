@@ -5,7 +5,7 @@
     <color name="background">#ffDEDFD6</color>
     <color name="transparent">#00000000</color>
     <color name="ad_text">#ff000000</color>
-    <color name="header_text">#ffffffff</color>
+    <color name="header_text">#ffffffff</color>	
 	
 	<!-- Title Backgrounds for gradients -->
 	<color name="title_border">#FF282828</color>

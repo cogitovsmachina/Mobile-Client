@@ -11,20 +11,20 @@ import android.widget.ImageView;
 import com.blablahlabs.excelsior.net.Net;
 import com.blablahlabs.excelsior.recursos.Recursos;
 
-public class AsyncVideoImage extends AsyncTask<URL, Void, Bitmap> {
+public class AsyncGalleryImage extends AsyncTask<URL, Void, Bitmap> {
 	
 	private Activity activity;
 	private Net net;
 	private ImageView imagen;
 	private Bitmap img2;
-	private int idArchivo;
+	private int idFotoGaleria;
 	
 
 
-	public AsyncVideoImage (Activity activity, int idArchivo, ImageView imagen ){
+	public AsyncGalleryImage (Activity activity, int idFotoGaleria, ImageView imagen ){
 		
 			this.activity = activity;
-			this.idArchivo = idArchivo;
+			this.idFotoGaleria = idFotoGaleria;
 			this.imagen = imagen;
 		
 		return;
@@ -42,7 +42,7 @@ public class AsyncVideoImage extends AsyncTask<URL, Void, Bitmap> {
 	protected Bitmap doInBackground(URL... urls) {
 		Bitmap img = null;
         try {
-        	img = net.getImagenVideoLista(this.idArchivo);
+        	img = net.getImagenGaleriaLista(idFotoGaleria);
 		} catch (Exception e) {
 			Log.e(Recursos.APP,"Ocurrio un error");
 			Log.e(Recursos.APP,e.toString());
