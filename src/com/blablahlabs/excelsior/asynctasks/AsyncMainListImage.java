@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import com.blablahlabs.excelsior.R;
 import com.blablahlabs.excelsior.net.Net;
 import com.blablahlabs.excelsior.recursos.Recursos;
+import com.blablahlabs.excelsior.recursos.Recursos.ListaNota;
 
 
 public class AsyncMainListImage extends AsyncTask<URL, Void, Bitmap> {
@@ -20,14 +21,16 @@ public class AsyncMainListImage extends AsyncTask<URL, Void, Bitmap> {
 	private Net net;
 	private ImageView imagen;
 	private Bitmap img2;
+	private ListaNota lNota;
 	
 
 
-	public AsyncMainListImage (Activity activity, int idFoto, ImageView imagen ){
+	public AsyncMainListImage (Activity activity, int idFoto, ImageView imagen, ListaNota lNota ){
 		
 			this.activity = activity;
 			this.idFoto = idFoto;
 			this.imagen = imagen;
+			this.lNota = lNota;
 		
 		return;
 	}
@@ -46,7 +49,13 @@ public class AsyncMainListImage extends AsyncTask<URL, Void, Bitmap> {
 
 		Bitmap img = null;
         try {
+    		if(lNota == ListaNota.SECCION){
         	img = net.getImagenListaPrincipal(this.idFoto);
+    		}
+    		else if(lNota == ListaNota.OPINION){
+   			String temp = Recursos.URL_FOTO_OPINION + idFoto +"_v"+ Recursos.URL_IMAGEN_NOTA_OUTTRO;
+    		img = net.getImagen(Recursos.URL_FOTO_OPINION + idFoto +"_v"+ Recursos.URL_IMAGEN_NOTA_OUTTRO);
+    		}  	
 		} catch (Exception e) {
 			Log.e(Recursos.APP,"Ocurrio un error");
 			Log.e(Recursos.APP,e.toString());

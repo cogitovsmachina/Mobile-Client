@@ -116,30 +116,42 @@ public class Net {
 	public Bitmap getImagenListaPrincipal (int idNota)throws IllegalStateException, IOException, URISyntaxException{
 		
 		Bitmap image = null;
-		
-		if (isOnline() )
-			image = inputStreamToBitMap (getHttpGet(Recursos.URL_IMAGEN_NOTA_LISTA_INTRO + idNota + Recursos.URL_IMAGEN_NOTA_OUTTRO) ) ;
+		if (idNota != 0){
+			if (isOnline() )
+				image = inputStreamToBitMap (getHttpGet(Recursos.URL_IMAGEN_NOTA_LISTA_INTRO + idNota + Recursos.URL_IMAGEN_NOTA_OUTTRO) ) ;
+		}
 		
 		return image;
+		
 	}
 	
 	public Bitmap getImagenVideoLista (int idArchivo)throws IllegalStateException, IOException, URISyntaxException{
 		
 		Bitmap image = null;
-		
-		if (isOnline() )
-			image = inputStreamToBitMap (getHttpGet(Recursos.URL_FOTO + idArchivo + Recursos.URL_IMAGEN_NOTA_OUTTRO) ) ;
-		
+		if(idArchivo != 0){
+			if (isOnline() )
+				image = inputStreamToBitMap (getHttpGet(Recursos.URL_FOTO + idArchivo + Recursos.URL_IMAGEN_NOTA_OUTTRO) ) ;
+		}
 		return image;
 	}
 	
 	public Bitmap getImagenGaleriaLista (int idArchivo)throws IllegalStateException, IOException, URISyntaxException{
 		
 		Bitmap image = null;
+		if(idArchivo != 0){
+			if (isOnline() )
+				image = inputStreamToBitMap (getHttpGet(Recursos.URL_FOTO + idArchivo + Recursos.URL_IMAGEN_NOTA_OUTTRO) ) ;
+		}
+		return image;
+	}
+	
+	public Bitmap getImagen(String url)throws IllegalStateException, IOException, URISyntaxException{
 		
-		if (isOnline() )
-			image = inputStreamToBitMap (getHttpGet(Recursos.URL_FOTO + idArchivo + Recursos.URL_IMAGEN_NOTA_OUTTRO) ) ;
-		
+		Bitmap image = null;
+		if(url != null){
+			if (isOnline() )
+				image = inputStreamToBitMap (getHttpGet(url)) ;
+		}
 		return image;
 	}
 	

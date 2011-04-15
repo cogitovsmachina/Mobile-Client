@@ -41,5 +41,9 @@ public class Recursos {
 	    COMUNIDAD, ADRENALINA, FUNCION, OPINION 
 	}
 	
+	public static enum ListaNota {
+	    SECCION, OPINION 
+	}
+	
 	
 }

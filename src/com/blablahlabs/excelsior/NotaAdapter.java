@@ -14,7 +14,6 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 class NotaAdapter extends ArrayAdapter<NotaUltimaHora> {
-//class NotaAdapter extends ArrayAdapter<Nota> {
 
     private ArrayList<NotaUltimaHora> items;
 	private Context context;

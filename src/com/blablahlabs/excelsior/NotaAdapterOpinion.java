@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.blablahlabs.excelsior.asynctasks.AsyncMainListImage;
 import com.blablahlabs.excelsior.beans.notas.Nota;
+import com.blablahlabs.excelsior.beans.notas.NotaOpinion;
 import com.blablahlabs.excelsior.beans.notas.NotaSeccion;
 import com.blablahlabs.excelsior.recursos.Recursos.ListaNota;
 
@@ -17,14 +18,14 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-class NotaAdapterSeccion extends ArrayAdapter<NotaSeccion> {
+class NotaAdapterOpinion extends ArrayAdapter<NotaOpinion> {
 
-    private ArrayList<NotaSeccion> items;
+    private ArrayList<NotaOpinion> items;
 	private Activity activity;
 	private Context context;
 
 
-    public NotaAdapterSeccion(Activity activity, int textViewResourceId, ArrayList<NotaSeccion> items) {
+    public NotaAdapterOpinion(Activity activity, int textViewResourceId, ArrayList<NotaOpinion> items) {
             super(activity.getApplicationContext(), textViewResourceId, items);
             this.items = items;
             this.activity = activity;
@@ -43,16 +44,18 @@ class NotaAdapterSeccion extends ArrayAdapter<NotaSeccion> {
             	v.findViewById(R.id.icon).setBackgroundDrawable(null);
               }
             
-            NotaSeccion mnota = items.get(position);
+            NotaOpinion mnota = items.get(position);
             if (mnota != null) {
                     TextView tt = (TextView) v.findViewById(R.id.title);
                     TextView bt = (TextView) v.findViewById(R.id.shot);
                     ImageView img = (ImageView) v.findViewById(R.id.icon);
                     if (tt != null)
-                          tt.setText(Html.fromHtml(mnota.titulo));
+                          tt.setText(Html.fromHtml(mnota.autor));
                     if(bt != null)
-                          bt.setText(Html.fromHtml(mnota.balazo));
-                    new AsyncMainListImage(activity, mnota.idFotoPortada, img, ListaNota.SECCION).execute();
+                          bt.setText(Html.fromHtml(mnota.titulo));
+    
+                   int idImagen =Integer.parseInt(mnota.imageVertical.substring(0, mnota.imageVertical.length()-6));
+                    new AsyncMainListImage(activity, idImagen, img, ListaNota.OPINION).execute();
             }
             return v;
     }

@@ -27,6 +27,7 @@ import android.widget.TextView;
 
 import com.blablahlabs.excelsior.asynctasks.AsyncNotes;
 import com.blablahlabs.excelsior.beans.ExcelsiorBean;
+import com.blablahlabs.excelsior.beans.notas.NotaOpinion;
 import com.blablahlabs.excelsior.beans.notas.NotaSeccion;
 import com.blablahlabs.excelsior.recursos.IU;
 import com.blablahlabs.excelsior.recursos.Recursos;
@@ -292,15 +293,16 @@ public class Home extends ListActivity {
 	private void showOpinion() {
 		seccion = Seccion.OPINION;
 
-		mMergeAdapter=new MergeAdapter();
+//		mMergeAdapter=new MergeAdapter();
 		
+		setListAdapter(new NotaAdapterOpinion(Home.this, R.layout.row, (ArrayList<NotaOpinion>) excelsiorBean.getOpinion()));
+
+//		
+//		mMergeAdapter.addView(buildHeader("Opini—n", R.drawable.gradient_opinion_header));
+//		mMergeAdapter.addAdapter(buildOpinionList());			
+//		setListAdapter(mMergeAdapter);	
+//		
 		
-		/*
-		 * 		Building Opinion Adapter
-		 */
-		mMergeAdapter.addView(buildHeader("Opini—n", R.drawable.gradient_opinion_header));
-		mMergeAdapter.addAdapter(buildOpinionList());			
-		setListAdapter(mMergeAdapter);	
 	}
 	
 	//Opinion ListView
@@ -460,6 +462,8 @@ private View setTempAd(int drawable){
 			break;	
 		
 		case OPINION:	
+			idNota= excelsiorBean.getOpinion().get(position).idNota;
+			idFoto= excelsiorBean.getOpinion().get(position).idFotoPortada;
 			break;
 			
 		default: 

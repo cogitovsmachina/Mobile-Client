@@ -17,11 +17,7 @@ import com.blablahlabs.excelsior.beans.notas.NotaUltimaHora;
 import com.blablahlabs.excelsior.beans.notas.VideosPagina;
 
 public class ExcelsiorBean  implements Serializable{
-
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	private ExcelsiorGson excelsiorGson;
@@ -51,7 +47,6 @@ public class ExcelsiorBean  implements Serializable{
 	private List<NotaSeccion> seccionFuncion  = new ArrayList<NotaSeccion>();
 
 	private List<NotaOpinion> opinion  = new ArrayList<NotaOpinion>();
-
 
 	private List<FotoGaleria> fotoGaleria  = new ArrayList<FotoGaleria>();//.fotoGaleria;
 	private List<VideosPagina> videosPagina = new ArrayList<VideosPagina>();
@@ -225,27 +220,27 @@ public class ExcelsiorBean  implements Serializable{
 		//Opiniones
 		opinion.add(excelsiorGson.opinion.nacional.n1);
 		opinion.add(excelsiorGson.opinion.nacional.n2);
-		opinion.add(excelsiorGson.opinion.nacional.n3);
+//		opinion.add(excelsiorGson.opinion.nacional.n3);
 		
 		opinion.add(excelsiorGson.opinion.global.n1);
 		opinion.add(excelsiorGson.opinion.global.n2);
-		opinion.add(excelsiorGson.opinion.global.n3);
+//		opinion.add(excelsiorGson.opinion.global.n3);
 		
 		opinion.add(excelsiorGson.opinion.dinero.n1);
 		opinion.add(excelsiorGson.opinion.dinero.n2);
-		opinion.add(excelsiorGson.opinion.dinero.n3);
+//		opinion.add(excelsiorGson.opinion.dinero.n3);
 		
 		opinion.add(excelsiorGson.opinion.adrenalina.n1);
 		opinion.add(excelsiorGson.opinion.adrenalina.n2);
-		opinion.add(excelsiorGson.opinion.adrenalina.n3);
+//		opinion.add(excelsiorGson.opinion.adrenalina.n3);
 		
 		opinion.add(excelsiorGson.opinion.comunidad.n1);
 		opinion.add(excelsiorGson.opinion.comunidad.n2);
-		opinion.add(excelsiorGson.opinion.comunidad.n3);
+//		opinion.add(excelsiorGson.opinion.comunidad.n3);
 		
 		opinion.add(excelsiorGson.opinion.funcion.n1);
 		opinion.add(excelsiorGson.opinion.funcion.n2);
-		opinion.add(excelsiorGson.opinion.funcion.n3);
+//		opinion.add(excelsiorGson.opinion.funcion.n3);
 		
 
 		//Fotogalerias y Videos
