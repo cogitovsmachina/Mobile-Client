@@ -23,6 +23,8 @@
       	 	 <activity android:name=".VideoPlayer"/>
       	 	 <activity android:name="GalleryListActivity"
         android:screenOrientation="portrait"/>
+       		 <activity android:name="GalleryActivity"  
+        android:screenOrientation="portrait"/>
 
     </application>
 </manifest>

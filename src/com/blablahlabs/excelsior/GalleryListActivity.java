@@ -18,7 +18,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 
+import com.blablahlabs.excelsior.asynctasks.AsyncNotes;
+import com.blablahlabs.excelsior.asynctasks.AsyncPhotoGalleryImage;
 import com.blablahlabs.excelsior.beans.ExcelsiorBean;
+import com.blablahlabs.excelsior.beans.ExcelsiorFotoGaleria;
 import com.blablahlabs.excelsior.beans.notas.FotoGaleria;
 import com.blablahlabs.excelsior.recursos.IU;
 import com.blablahlabs.excelsior.recursos.Recursos;
@@ -39,6 +42,9 @@ public class GalleryListActivity extends ListActivity {
 	private int idArchivo;
 
 	private List<FotoGaleria> bean;
+	
+	public static ExcelsiorFotoGaleria excelsiorFotoGaleria;
+	
 
 
 	
@@ -63,6 +69,7 @@ public class GalleryListActivity extends ListActivity {
 				
 		buildGalleryList();
 		
+		activity = this;
 	}
 	
 
@@ -108,17 +115,19 @@ public class GalleryListActivity extends ListActivity {
         return true;
     }
     
-//    @Override
-//	protected void onListItemClick(ListView l, View v, int position, long id) {
-//		super.onListItemClick(l, v, position, id);
-//		
-//		String temp = beanGallery.get(position).titulo;
-//
-//		startActivity( new Intent(this, VideoPlayer.class).putExtra("titulo", temp));
-//		
-//			
-//		
-//    }
+    @Override
+	protected void onListItemClick(ListView l, View v, int position, long id) {
+		super.onListItemClick(l, v, position, id);
+		
+		//String temp = bean.get(position).titulo;
+		new AsyncPhotoGalleryImage(activity, bean.get(position).idGaleria).execute();
+
+
+//		startActivity( new Intent(this, ViewGallery.class).putExtra("titulo", temp));
+		
+			
+		
+    }
 
 
 }

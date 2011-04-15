@@ -47,7 +47,6 @@ style="@style/Theme.Excelsior"
 					android:id="@+id/note_content"
 					android:text="Contenido"
 					android:textColor="#ff000000"
-					
 				/>
 		</ScrollView>
 		
