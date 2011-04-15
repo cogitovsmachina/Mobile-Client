@@ -133,12 +133,12 @@ public class Net {
 		return image;
 	}
 	
-	public Bitmap getImagenGaleriaLista (int idFotoGaleria)throws IllegalStateException, IOException, URISyntaxException{
+	public Bitmap getImagenGaleriaLista (int idArchivo)throws IllegalStateException, IOException, URISyntaxException{
 		
 		Bitmap image = null;
 		
 		if (isOnline() )
-			image = inputStreamToBitMap (getHttpGet(Recursos.URL_GALERIA_FOTOS + idFotoGaleria + Recursos.URL_IMAGEN_NOTA_OUTTRO) ) ;
+			image = inputStreamToBitMap (getHttpGet(Recursos.URL_FOTO + idArchivo + Recursos.URL_IMAGEN_NOTA_OUTTRO) ) ;
 		
 		return image;
 	}

@@ -46,7 +46,7 @@ class GalleryCustomAdapter extends ArrayAdapter<FotoGaleria> {
                     ImageView img = (ImageView) v.findViewById(R.id.icon);
                     if (tt != null)
                           tt.setText(Html.fromHtml(mGallery.titulo));
-                    new AsyncGalleryImage(activity, mGallery.idGaleria, img).execute();
+                    new AsyncGalleryImage(activity, mGallery.idArchivo, img).execute();
             }
             return v;
     }

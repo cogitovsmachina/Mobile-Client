@@ -17,14 +17,14 @@ public class AsyncGalleryImage extends AsyncTask<URL, Void, Bitmap> {
 	private Net net;
 	private ImageView imagen;
 	private Bitmap img2;
-	private int idFotoGaleria;
+	private int idArchivo;
 	
 
 
-	public AsyncGalleryImage (Activity activity, int idFotoGaleria, ImageView imagen ){
+	public AsyncGalleryImage (Activity activity, int idArchivo, ImageView imagen ){
 		
 			this.activity = activity;
-			this.idFotoGaleria = idFotoGaleria;
+			this.idArchivo = idArchivo;
 			this.imagen = imagen;
 		
 		return;
@@ -42,7 +42,7 @@ public class AsyncGalleryImage extends AsyncTask<URL, Void, Bitmap> {
 	protected Bitmap doInBackground(URL... urls) {
 		Bitmap img = null;
         try {
-        	img = net.getImagenGaleriaLista(idFotoGaleria);
+        	img = net.getImagenGaleriaLista(idArchivo);
 		} catch (Exception e) {
 			Log.e(Recursos.APP,"Ocurrio un error");
 			Log.e(Recursos.APP,e.toString());
