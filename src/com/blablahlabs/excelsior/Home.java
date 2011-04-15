@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import org.androidtitlan.ac.sharemenu.ShareMenu;
 
@@ -18,9 +17,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.ArrayAdapter;
+import android.webkit.WebView;
 import android.widget.ImageView;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.TextView;
@@ -35,7 +33,6 @@ import com.blablahlabs.excelsior.recursos.Recursos.Seccion;
 import com.commonsware.cwac.merge.MergeAdapter;
 
 public class Home extends ListActivity {
-	private static String[] items={"lorem", "ipsum"};
 
 	private MergeAdapter mMergeAdapter=null;
 	private Seccion seccion = Seccion.ULTIMA_HORA;
@@ -160,6 +157,8 @@ public class Home extends ListActivity {
 		
 		NotaAdapterSeccion nAdapterSeccion;
 
+		//Ads
+		lastNewsAdapter.addView(setAd(), true);
 		
 		//Nacional
 		lastNewsAdapter.addView(buildHeader("Nacional", R.drawable.gradient_national_header));
@@ -296,21 +295,9 @@ public class Home extends ListActivity {
 //		mMergeAdapter=new MergeAdapter();
 		
 		setListAdapter(new NotaAdapterOpinion(Home.this, R.layout.row, (ArrayList<NotaOpinion>) excelsiorBean.getOpinion()));
-
-//		
-//		mMergeAdapter.addView(buildHeader("Opini—n", R.drawable.gradient_opinion_header));
-//		mMergeAdapter.addAdapter(buildOpinionList());			
-//		setListAdapter(mMergeAdapter);	
-//		
 		
 	}
 	
-	//Opinion ListView
-    private ListAdapter buildOpinionList() {
-    	return(new ArrayAdapter<String>(this,
-				android.R.layout.simple_list_item_1,
-				new ArrayList<String>(Arrays.asList(items))));
-	}
     
 	private View buildHeader(String title, int background){
 		
@@ -327,12 +314,10 @@ public class Home extends ListActivity {
 		
 	}
 	
-@SuppressWarnings("unused")
-private View setTempAd(int drawable){
-		ImageView imageView = new ImageView(this);		
-		imageView.setBackgroundResource(drawable);
-		imageView.setAdjustViewBounds(true);
-		return(imageView);	  	
+private WebView setAd(){
+		WebView ad = new WebView(this);	
+		ad.loadUrl("file:///android_asset/demo.html");
+		return(ad);	  	
 	}
     
     /*
@@ -410,29 +395,29 @@ private View setTempAd(int drawable){
 		case ULTIMA_HORA:
 			
 
-			if (position >=1 && position <= 2){
-				idNota= excelsiorBean.getSeccionNacional().get(position-1).idNota;
-				idFoto= excelsiorBean.getSeccionNacional().get(position-1).idFotoPortada;
+			if (position >=2 && position <= 3){
+				idNota= excelsiorBean.getSeccionNacional().get(position-2).idNota;
+				idFoto= excelsiorBean.getSeccionNacional().get(position-2).idFotoPortada;
 			}
-			else if (position >=4 && position <= 5){
-				idNota= excelsiorBean.getSeccionGlobal().get(position-4).idNota;
-				idFoto= excelsiorBean.getSeccionGlobal().get(position-4).idFotoPortada;
+			else if (position >=5 && position <= 6){
+				idNota= excelsiorBean.getSeccionGlobal().get(position-5).idNota;
+				idFoto= excelsiorBean.getSeccionGlobal().get(position-5).idFotoPortada;
 			}
-			else if (position >=7 && position <= 8){
-				idNota= excelsiorBean.getSeccionDinero().get(position-7).idNota;
-				idFoto= excelsiorBean.getSeccionDinero().get(position-7).idFotoPortada;
+			else if (position >=8 && position <= 9){
+				idNota= excelsiorBean.getSeccionDinero().get(position-8).idNota;
+				idFoto= excelsiorBean.getSeccionDinero().get(position-8).idFotoPortada;
 			}
-			else if (position >=10 && position <= 11){
-				idNota= excelsiorBean.getSeccionComunidad().get(position-10).idNota;
-				idFoto= excelsiorBean.getSeccionComunidad().get(position-10).idFotoPortada;
+			else if (position >=11 && position <= 12){
+				idNota= excelsiorBean.getSeccionComunidad().get(position-11).idNota;
+				idFoto= excelsiorBean.getSeccionComunidad().get(position-11).idFotoPortada;
 			}
-			else if (position >=13 && position <= 14){
-				idNota= excelsiorBean.getSeccionAdrenalina().get(position-13).idNota;
-				idFoto= excelsiorBean.getSeccionAdrenalina().get(position-13).idFotoPortada;
+			else if (position >=14 && position <= 15){
+				idNota= excelsiorBean.getSeccionAdrenalina().get(position-14).idNota;
+				idFoto= excelsiorBean.getSeccionAdrenalina().get(position-14).idFotoPortada;
 			}
-			else if (position >=16 && position <= 17){
-				idNota= excelsiorBean.getSeccionFuncion().get(position-16).idNota;
-				idFoto= excelsiorBean.getSeccionFuncion().get(position-16).idFotoPortada;
+			else if (position >=17 && position <= 18){
+				idNota= excelsiorBean.getSeccionFuncion().get(position-17).idNota;
+				idFoto= excelsiorBean.getSeccionFuncion().get(position-17).idFotoPortada;
 			}
 			
 			break;
