@@ -86,21 +86,24 @@ public final class R {
         public static final int gradient_money_header=0x7f02002d;
         public static final int gradient_national_header=0x7f02002e;
         public static final int gradient_opinion_header=0x7f02002f;
-        public static final int home=0x7f020030;
-        public static final int icon=0x7f020031;
-        public static final int list_selector_background=0x7f020032;
-        public static final int list_selector_background_disabled=0x7f020033;
-        public static final int list_selector_background_focus=0x7f020034;
-        public static final int list_selector_background_longpress=0x7f020035;
-        public static final int list_selector_background_pressed=0x7f020036;
-        public static final int list_selector_background_transition=0x7f020037;
-        public static final int logo_excelsior_small=0x7f020038;
-        public static final int movies=0x7f020039;
-        public static final int note_default_image=0x7f02003a;
-        public static final int photos=0x7f02003b;
-        public static final int reload=0x7f02003c;
-        public static final int row_photo=0x7f02003d;
-        public static final int share=0x7f02003e;
+        public static final int header=0x7f020030;
+        public static final int home=0x7f020031;
+        public static final int icon=0x7f020032;
+        public static final int list_selector_background=0x7f020033;
+        public static final int list_selector_background_disabled=0x7f020034;
+        public static final int list_selector_background_focus=0x7f020035;
+        public static final int list_selector_background_longpress=0x7f020036;
+        public static final int list_selector_background_pressed=0x7f020037;
+        public static final int list_selector_background_transition=0x7f020038;
+        public static final int logo_excelsior_small=0x7f020039;
+        public static final int menu_info=0x7f02003a;
+        public static final int menu_news=0x7f02003b;
+        public static final int movies=0x7f02003c;
+        public static final int note_default_image=0x7f02003d;
+        public static final int photos=0x7f02003e;
+        public static final int reload=0x7f02003f;
+        public static final int row_photo=0x7f020040;
+        public static final int share=0x7f020041;
     }
     public static final class id {
         public static final int ButtonsLinearLayout=0x7f080002;
@@ -118,6 +121,7 @@ public final class R {
         public static final int money=0x7f080006;
         public static final int movies_image=0x7f080017;
         public static final int national=0x7f080004;
+        public static final int news_image=0x7f080018;
         public static final int note_content=0x7f08000d;
         public static final int note_image=0x7f08000b;
         public static final int note_title=0x7f08000c;
@@ -142,8 +146,9 @@ public final class R {
     public static final class menu {
         public static final int gallery_menu=0x7f070000;
         public static final int home_menu=0x7f070001;
-        public static final int note_menu=0x7f070002;
-        public static final int videos_menu=0x7f070003;
+        public static final int menu=0x7f070002;
+        public static final int note_menu=0x7f070003;
+        public static final int videos_menu=0x7f070004;
     }
     public static final class string {
         public static final int app_name=0x7f060001;

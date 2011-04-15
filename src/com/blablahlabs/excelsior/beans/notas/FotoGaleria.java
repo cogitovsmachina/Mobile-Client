@@ -1,8 +1,10 @@
 package com.blablahlabs.excelsior.beans.notas;
 
+import java.io.Serializable;
+
 import com.google.gson.annotations.SerializedName;
 
-public class FotoGaleria {
+public class FotoGaleria implements Serializable {
 
 	@SerializedName("ID_Galeria")
 	public int idGaleria;

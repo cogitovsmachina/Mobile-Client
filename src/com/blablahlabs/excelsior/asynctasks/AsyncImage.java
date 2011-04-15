@@ -49,7 +49,7 @@ public class AsyncImage extends AsyncTask<URL, Void, Bitmap> {
 
 		Bitmap img = null;
         try {
-        	img = net.getImagenLista(this.idFoto);
+        	img = net.getImagenListaPrincipal(idFoto);
 		} catch (Exception e) {
 			Log.e(Recursos.APP,"Ocurrio un error");
 			Log.e(Recursos.APP,e.toString());

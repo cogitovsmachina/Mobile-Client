@@ -1,6 +1,5 @@
 package com.blablahlabs.excelsior.recursos;
 
-
 import com.blablahlabs.excelsior.R;
 
 import android.app.Activity;
