@@ -1,8 +1,12 @@
 package com.blablahlabs.excelsior;
 
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -98,18 +102,31 @@ public class GalleryListActivity extends ListActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+        
+        case R.id.home_image: 
+        	startActivity( new Intent(this, Home.class) );
+        	break;
+       
+            case R.id.movies_image:     
+            	ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            	ObjectOutput out;
+            	try {
+            		out = new ObjectOutputStream(bos);
+            		excelsiorBean = Home.excelsiorBean;
+            		out.writeObject(excelsiorBean.getVideosPagina());
+            	} catch (IOException e) {
+            		e.printStackTrace();
+            		IU.showToast(GalleryListActivity.this , "Hubo un error al serializar: " + e.getLocalizedMessage());
+            	}   
+            	byte[] bytes1 = bos.toByteArray();
+            	
+				startActivity( new Intent(this, VideoListActivity.class).putExtra("bean", bytes1));
+                                break;
+                                
             case R.id.share_image: 
             	ShareMenu.buildShareMenu(getApplicationContext(),
             			 Recursos.TITULO_COMPARTIR,
             			 Recursos.COMPARTIR_HOME);
-                                break;
-            case R.id.gallery_image:     
-            	IU.showToast(getApplicationContext(), "You want to go to gallery!");
-//				startActivity( new Intent(this, Home.class) );
-
-                                break;
-            case R.id.home_image: 
-				startActivity( new Intent(this, Home.class) );
                                 break;
         }
         return true;

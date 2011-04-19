@@ -36,7 +36,7 @@ public class Home extends ListActivity {
 
 	private MergeAdapter mMergeAdapter=null;
 	private Seccion seccion = Seccion.ULTIMA_HORA;
-	public ExcelsiorBean excelsiorBean;
+	public static ExcelsiorBean excelsiorBean;
 	private MergeAdapter lastNewsAdapter;
 
 	
@@ -337,6 +337,7 @@ private WebView setAd(){
 	*/
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+    	
         switch (item.getItemId()) {
             case R.id.share_image: 
             	ShareMenu.buildShareMenu(getApplicationContext(),
@@ -380,6 +381,7 @@ private WebView setAd(){
         }
         return true;
     }
+    
     private void updateNews() { 
 			new AsyncNotes(this).execute();
 	} 

@@ -82,12 +82,36 @@ public class ViewNoteActivity extends Activity {
             			" http://www.excelsior.com.mx/index.php?m=nota&id_nota="
             			+ bean.singleResponse.idNota);
                                 break;
-            case R.id.gallery_image:     
-            	Toast.makeText(this, "You want to go to gallery!", Toast.LENGTH_LONG).show();
+            case R.id.gallery_image:
+            	ByteArrayOutputStream byteAO = new ByteArrayOutputStream();
+            	ObjectOutput output;
+            	try {
+            		output = new ObjectOutputStream(byteAO);
+            		excelsiorBean = Home.excelsiorBean;
+            		output.writeObject(excelsiorBean.getFotoGaleria());
+            	} catch (IOException e) {
+            		e.printStackTrace();
+            		IU.showToast(ViewNoteActivity.this , "Hubo un error al serializar: " + e.getLocalizedMessage());
+            	}   
+            	byte[] bytes = byteAO.toByteArray();
+				startActivity( new Intent(this, GalleryListActivity.class).putExtra("bean", bytes));
+            	
                                 break;
-            case R.id.movies_image: 
-            	Toast.makeText(this, "You want to go to Videos!", Toast.LENGTH_LONG).show();
-                    break;
+            case R.id.movies_image:     
+            	ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            	ObjectOutput out;
+            	try {
+            		out = new ObjectOutputStream(bos);
+            		excelsiorBean = Home.excelsiorBean;
+            		out.writeObject(excelsiorBean.getVideosPagina());
+            	} catch (IOException e) {
+            		e.printStackTrace();
+            		IU.showToast(ViewNoteActivity.this , "Hubo un error al serializar: " + e.getLocalizedMessage());
+            	}   
+            	byte[] bytes1 = bos.toByteArray();
+            	
+				startActivity( new Intent(this, VideoListActivity.class).putExtra("bean", bytes1));
+                                break;
         }
         return true;
     }

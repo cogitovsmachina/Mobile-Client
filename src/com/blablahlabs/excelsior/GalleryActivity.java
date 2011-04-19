@@ -35,19 +35,6 @@ public class GalleryActivity extends Activity {
 	        IU.setCustomTitle(this);
 	        setContentView(R.layout.gallery);
 	       
-//	        
-//			Bundle extras = getIntent().getExtras();
-//			byte[] bytes =  extras.getByteArray("bean");
-//			
-//			ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
-//			ObjectInput in;
-//			try {
-//				in = new ObjectInputStream(bis);
-//				excelsiorFotoGaleria =  (ExcelsiorFotoGaleria) in.readObject();
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//				IU.showToast(GalleryActivity.this , "Hubo un error al deserializar: " + e.getLocalizedMessage());
-//			}
 	        
 	        excelsiorFotoGaleria = GalleryListActivity.excelsiorFotoGaleria;
 	        

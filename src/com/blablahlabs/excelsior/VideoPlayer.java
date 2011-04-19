@@ -1,16 +1,31 @@
 package com.blablahlabs.excelsior;
 
-import com.blablahlabs.excelsior.recursos.IU;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
+
+import org.androidtitlan.ac.sharemenu.ShareMenu;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.MediaController;
 import android.widget.VideoView;
+
+import com.blablahlabs.excelsior.beans.ExcelsiorBean;
+import com.blablahlabs.excelsior.recursos.IU;
+import com.blablahlabs.excelsior.recursos.Recursos;
 
 
 public class VideoPlayer extends Activity {
 	
-	  @Override
+	  private ExcelsiorBean excelsiorBean;
+
+	@Override
 	    public void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
 	        IU.setCustomTitle(this);
