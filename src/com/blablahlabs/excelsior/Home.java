@@ -247,7 +247,7 @@ public class Home extends ListActivity {
 	private void showGlobal() {
 		seccion = Seccion.GLOBAL;
 
-		setListAdapter(new NotaAdapterSeccion(Home.this, R.layout.row, (ArrayList<NotaSeccion>) excelsiorBean.getSeccionGlobal()));
+ 		setListAdapter(new NotaAdapterSeccion(Home.this, R.layout.row, (ArrayList<NotaSeccion>) excelsiorBean.getSeccionGlobal()));
 	}
 	
 	/*
@@ -331,10 +331,6 @@ private WebView setAd(){
         return true;
     }
     
-	
-	/*
-	*  Giving logic to the option menu 
-	*/
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
     	

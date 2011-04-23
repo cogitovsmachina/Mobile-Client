@@ -67,8 +67,8 @@ public class AsyncMainListImage extends AsyncTask<URL, Void, Bitmap> {
 
     @Override
 	protected void onPostExecute(Bitmap img) {    	
-    	int dstWidth = 101;
-		int dstHeight = 160;
+    	int dstWidth = 101; 
+		int dstHeight = 160; 
 		boolean filter = false;
 		if (img != null)
 		img2 = Bitmap.createScaledBitmap(img, dstWidth, dstHeight, filter);

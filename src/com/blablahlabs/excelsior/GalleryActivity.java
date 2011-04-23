@@ -1,5 +1,6 @@
 package com.blablahlabs.excelsior;
 
+import java.util.Collections;
 import java.util.List;
 
 import android.app.Activity;
@@ -38,10 +39,11 @@ public class GalleryActivity extends Activity {
 	        
 	        excelsiorFotoGaleria = GalleryListActivity.excelsiorFotoGaleria;
 	        
+	        Collections.reverse(excelsiorFotoGaleria.excelsiorSingleFotoGaleria);
+	         
 			imgView = (ImageView)findViewById(R.id.image);	
 			this.txtView = (TextView)findViewById(R.id.note_content);
 			
-	        //imgView.setImageResource(Imgid[0]);
 			imgView.setImageBitmap(excelsiorFotoGaleria.excelsiorSingleFotoGaleria.get(0).getImagen());
             txtView.setText(  excelsiorFotoGaleria.excelsiorSingleFotoGaleria.get(0).getDescripcion() );
 	        

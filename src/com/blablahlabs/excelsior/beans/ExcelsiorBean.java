@@ -126,11 +126,11 @@ public class ExcelsiorBean  implements Serializable{
 		seccionNacional.add(excelsiorGson.seccionNacional.n8);
 		seccionNacional.add(excelsiorGson.seccionNacional.n9);
 		seccionNacional.add(excelsiorGson.seccionNacional.n10);
-		seccionNacional.add(excelsiorGson.seccionNacional.n11);
-		seccionNacional.add(excelsiorGson.seccionNacional.n12);
-		seccionNacional.add(excelsiorGson.seccionNacional.n13);
-		seccionNacional.add(excelsiorGson.seccionNacional.n14);
-		seccionNacional.add(excelsiorGson.seccionNacional.n15);
+//		seccionNacional.add(excelsiorGson.seccionNacional.n11);
+//		seccionNacional.add(excelsiorGson.seccionNacional.n12);
+//		seccionNacional.add(excelsiorGson.seccionNacional.n13);
+//		seccionNacional.add(excelsiorGson.seccionNacional.n14);
+//		seccionNacional.add(excelsiorGson.seccionNacional.n15);
 
 //		seccionGlobal.add(excelsiorGson.seccionGlobal.nP);
 		seccionGlobal.add(excelsiorGson.seccionGlobal.n1);
@@ -143,11 +143,11 @@ public class ExcelsiorBean  implements Serializable{
 		seccionGlobal.add(excelsiorGson.seccionGlobal.n8);
 		seccionGlobal.add(excelsiorGson.seccionGlobal.n9);
 		seccionGlobal.add(excelsiorGson.seccionGlobal.n10);
-		seccionGlobal.add(excelsiorGson.seccionGlobal.n11);
-		seccionGlobal.add(excelsiorGson.seccionGlobal.n12);
-		seccionGlobal.add(excelsiorGson.seccionGlobal.n13);
-		seccionGlobal.add(excelsiorGson.seccionGlobal.n14);
-		seccionGlobal.add(excelsiorGson.seccionGlobal.n15);
+//		seccionGlobal.add(excelsiorGson.seccionGlobal.n11);
+//		seccionGlobal.add(excelsiorGson.seccionGlobal.n12);
+//		seccionGlobal.add(excelsiorGson.seccionGlobal.n13);
+//		seccionGlobal.add(excelsiorGson.seccionGlobal.n14);
+//		seccionGlobal.add(excelsiorGson.seccionGlobal.n15);
 		
 //		seccionDinero.add(excelsiorGson.seccionDinero.nP);
 		seccionDinero.add(excelsiorGson.seccionDinero.n1);
@@ -159,12 +159,12 @@ public class ExcelsiorBean  implements Serializable{
 		seccionDinero.add(excelsiorGson.seccionDinero.n7);
 		seccionDinero.add(excelsiorGson.seccionDinero.n8);
 		seccionDinero.add(excelsiorGson.seccionDinero.n9);
-		seccionDinero.add(excelsiorGson.seccionDinero.n10);
-		seccionDinero.add(excelsiorGson.seccionDinero.n11);
-		seccionDinero.add(excelsiorGson.seccionDinero.n12);
-		seccionDinero.add(excelsiorGson.seccionDinero.n13);
-		seccionDinero.add(excelsiorGson.seccionDinero.n14);
-		seccionDinero.add(excelsiorGson.seccionDinero.n15);
+//		seccionDinero.add(excelsiorGson.seccionDinero.n10);
+//		seccionDinero.add(excelsiorGson.seccionDinero.n11);
+//		seccionDinero.add(excelsiorGson.seccionDinero.n12);
+//		seccionDinero.add(excelsiorGson.seccionDinero.n13);
+//		seccionDinero.add(excelsiorGson.seccionDinero.n14);
+//		seccionDinero.add(excelsiorGson.seccionDinero.n15);
 		
 //		seccionAdrenalina.add(excelsiorGson.seccionAdrenalina.nP);
 		seccionAdrenalina.add(excelsiorGson.seccionAdrenalina.n1);
@@ -177,11 +177,11 @@ public class ExcelsiorBean  implements Serializable{
 		seccionAdrenalina.add(excelsiorGson.seccionAdrenalina.n8);
 		seccionAdrenalina.add(excelsiorGson.seccionAdrenalina.n9);
 		seccionAdrenalina.add(excelsiorGson.seccionAdrenalina.n10);
-		seccionAdrenalina.add(excelsiorGson.seccionAdrenalina.n11);
-		seccionAdrenalina.add(excelsiorGson.seccionAdrenalina.n12);
-		seccionAdrenalina.add(excelsiorGson.seccionAdrenalina.n13);
-		seccionAdrenalina.add(excelsiorGson.seccionAdrenalina.n14);
-		seccionAdrenalina.add(excelsiorGson.seccionAdrenalina.n15);
+//		seccionAdrenalina.add(excelsiorGson.seccionAdrenalina.n11);
+//		seccionAdrenalina.add(excelsiorGson.seccionAdrenalina.n12);
+//		seccionAdrenalina.add(excelsiorGson.seccionAdrenalina.n13);
+//		seccionAdrenalina.add(excelsiorGson.seccionAdrenalina.n14);
+//		seccionAdrenalina.add(excelsiorGson.seccionAdrenalina.n15);
 		
 //		seccionComunidad.add(excelsiorGson.seccionComunidad.nP);
 		seccionComunidad.add(excelsiorGson.seccionComunidad.n1);
@@ -194,11 +194,11 @@ public class ExcelsiorBean  implements Serializable{
 		seccionComunidad.add(excelsiorGson.seccionComunidad.n8);
 		seccionComunidad.add(excelsiorGson.seccionComunidad.n9);
 		seccionComunidad.add(excelsiorGson.seccionComunidad.n10);
-		seccionComunidad.add(excelsiorGson.seccionComunidad.n11);
-		seccionComunidad.add(excelsiorGson.seccionComunidad.n12);
-		seccionComunidad.add(excelsiorGson.seccionComunidad.n13);
-		seccionComunidad.add(excelsiorGson.seccionComunidad.n14);
-		seccionComunidad.add(excelsiorGson.seccionComunidad.n15);
+//		seccionComunidad.add(excelsiorGson.seccionComunidad.n11);
+//		seccionComunidad.add(excelsiorGson.seccionComunidad.n12);
+//		seccionComunidad.add(excelsiorGson.seccionComunidad.n13);
+//		seccionComunidad.add(excelsiorGson.seccionComunidad.n14);
+//		seccionComunidad.add(excelsiorGson.seccionComunidad.n15);
 		
 //		seccionFuncion.add(excelsiorGson.seccionFuncion.nP);
 		seccionFuncion.add(excelsiorGson.seccionFuncion.n1);
@@ -210,12 +210,12 @@ public class ExcelsiorBean  implements Serializable{
 		seccionFuncion.add(excelsiorGson.seccionFuncion.n7);
 		seccionFuncion.add(excelsiorGson.seccionFuncion.n8);
 		seccionFuncion.add(excelsiorGson.seccionFuncion.n9);
-		seccionFuncion.add(excelsiorGson.seccionFuncion.n10);
-		seccionFuncion.add(excelsiorGson.seccionFuncion.n11);
-		seccionFuncion.add(excelsiorGson.seccionFuncion.n12);
-		seccionFuncion.add(excelsiorGson.seccionFuncion.n13);
-		seccionFuncion.add(excelsiorGson.seccionFuncion.n14);
-		seccionFuncion.add(excelsiorGson.seccionFuncion.n15);
+//		seccionFuncion.add(excelsiorGson.seccionFuncion.n10);
+//		seccionFuncion.add(excelsiorGson.seccionFuncion.n11);
+//		seccionFuncion.add(excelsiorGson.seccionFuncion.n12);
+//		seccionFuncion.add(excelsiorGson.seccionFuncion.n13);
+//		seccionFuncion.add(excelsiorGson.seccionFuncion.n14);
+//		seccionFuncion.add(excelsiorGson.seccionFuncion.n15);
 		
 		//Opiniones
 		opinion.add(excelsiorGson.opinion.nacional.n1);
