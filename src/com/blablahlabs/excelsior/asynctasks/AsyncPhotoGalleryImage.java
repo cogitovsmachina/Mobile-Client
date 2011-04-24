@@ -80,21 +80,7 @@ public class AsyncPhotoGalleryImage extends AsyncTask<URL, Void, Bitmap> {
 
     @Override
 	protected void onPostExecute(Bitmap img) {    	
-        
     	dialog.dismiss();
-    	
-//    	ByteArrayOutputStream bos = new ByteArrayOutputStream();
-//    	ObjectOutput out;
-//    	try {
-//    		out = new ObjectOutputStream(bos);
-//    		out.writeObject( excelsiorFotoGaleria );
-//    	} catch (IOException e) {
-//    		e.printStackTrace();
-//    		IU.showToast(activity , "Hubo un error al serializar: " + e.getLocalizedMessage());
-//    	}
-//    	
-//    	byte[] bytes1 = bos.toByteArray();
-    	
     	if ( excelsiorFotoGaleria == null  || excelsiorFotoGaleria.excelsiorSingleFotoGaleria.size() <=0 ){
     		IU.showToast(activity.getApplicationContext(), "Ocurrio un error al cargar la FotoGaleria");
     	} 

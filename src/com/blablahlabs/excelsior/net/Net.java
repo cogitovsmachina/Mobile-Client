@@ -1,15 +1,14 @@
- package com.blablahlabs.excelsior.net;
+package com.blablahlabs.excelsior.net;
 
+import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URL;
+import java.net.URLConnection;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
@@ -41,14 +40,14 @@ public class Net {
     	this.preferences  = PreferenceManager.getDefaultSharedPreferences(context);
 	}
 	
-	public  ExcelsiorBean  getDataBean() throws IllegalStateException, IOException, URISyntaxException, JSONException{
+	public  ExcelsiorBean getDataBean() throws IllegalStateException, IOException, URISyntaxException, JSONException{
 
 		String ansHttpGet = null;
 		Gson gson = new Gson();
 		ExcelsiorBean excelsiorBean = null;
 		
 		if (isOnline() )
-			ansHttpGet = inputStreamToString (getHttpGet(Recursos.URL_GENERAL) );
+			ansHttpGet = inputStreamToString (doHttpGet(Recursos.URL_GENERAL) );
 		else{
 			ansHttpGet = loadData();			
 		}
@@ -70,7 +69,7 @@ public class Net {
 		NotaBean notaBean = null;
 	
 		if (isOnline() )
-			ansHttpGet = inputStreamToString (getHttpGet(Recursos.URL_NOTA_DETALLE_INTRO + idNota + Recursos.URL_NOTA_DETALLE_OUTTRO) ) ;
+			ansHttpGet = inputStreamToString (doHttpGet(Recursos.URL_NOTA_DETALLE_INTRO + idNota + Recursos.URL_NOTA_DETALLE_OUTTRO) ) ;
 		
 		if (ansHttpGet != null){
 			notaBean = gson.fromJson(ansHttpGet, NotaBean.class);
@@ -88,7 +87,7 @@ public class Net {
 		ExcelsiorFotoGaleriaBean bean = null;
 		
 		if (isOnline() )
-			ansHttpGet = inputStreamToString(getHttpGet(Recursos.URL_GALERIA_FOTOS + idFotoGaleria + Recursos.URL_NOTA_DETALLE_OUTTRO));
+			ansHttpGet = inputStreamToString(doHttpGet(Recursos.URL_GALERIA_FOTOS + idFotoGaleria + Recursos.URL_NOTA_DETALLE_OUTTRO));
 		
 		if (ansHttpGet != null){
 			bean = gson.fromJson(ansHttpGet, ExcelsiorFotoGaleriaBean.class);
@@ -107,7 +106,7 @@ public class Net {
 		
 		if (isOnline() ){
 			url = Recursos.URL_IMAGEN_NOTA_INTRO + idNota + Recursos.URL_IMAGEN_NOTA_OUTTRO;
-			input = getHttpGet(url);
+			input = doHttpGet(url);
 			image = inputStreamToBitMap (input ) ;
 		}
 		return image;
@@ -118,7 +117,7 @@ public class Net {
 		Bitmap image = null;
 		if (idNota != 0){
 			if (isOnline() )
-				image = inputStreamToBitMap (getHttpGet(Recursos.URL_IMAGEN_NOTA_LISTA_INTRO + idNota + Recursos.URL_IMAGEN_NOTA_OUTTRO) ) ;
+				image = inputStreamToBitMap (doHttpGet(Recursos.URL_IMAGEN_NOTA_LISTA_INTRO + idNota + Recursos.URL_IMAGEN_NOTA_OUTTRO) ) ;
 		}
 		
 		return image;
@@ -130,7 +129,7 @@ public class Net {
 		Bitmap image = null;
 		if(idArchivo != 0){
 			if (isOnline() )
-				image = inputStreamToBitMap (getHttpGet(Recursos.URL_FOTO + idArchivo + Recursos.URL_IMAGEN_NOTA_OUTTRO) ) ;
+				image = inputStreamToBitMap (doHttpGet(Recursos.URL_FOTO + idArchivo + Recursos.URL_IMAGEN_NOTA_OUTTRO) ) ;
 		}
 		return image;
 	}
@@ -140,7 +139,7 @@ public class Net {
 		Bitmap image = null;
 		if(idArchivo != 0){
 			if (isOnline() )
-				image = inputStreamToBitMap (getHttpGet(Recursos.URL_FOTO + idArchivo + Recursos.URL_IMAGEN_NOTA_OUTTRO) ) ;
+				image = inputStreamToBitMap (doHttpGet(Recursos.URL_FOTO + idArchivo + Recursos.URL_IMAGEN_NOTA_OUTTRO) ) ;
 		}
 		return image;
 	}
@@ -150,45 +149,45 @@ public class Net {
 		Bitmap image = null;
 		if(url != null){
 			if (isOnline() )
-				image = inputStreamToBitMap (getHttpGet(url)) ;
+				image = inputStreamToBitMap (doHttpGet(url)) ;
 		}
 		return image;
 	}
 	
 	
 	
-	private  InputStream getHttpGet(String url) throws IllegalStateException, IOException, URISyntaxException{
+	private  InputStream doHttpGet(String urlString) throws IOException{
 		
-		URI myURI = null;
-		InputStream input = null;
-		
-		myURI = new URI(url);
-		
-		HttpParams httpParameters = new BasicHttpParams();
-		// Set the timeout in milliseconds until a connection is established.
-		int timeoutConnection = 12000;
-		HttpConnectionParams.setConnectionTimeout(httpParameters, timeoutConnection);
-		// Set the default socket timeout (SO_TIMEOUT) 
-		// in milliseconds which is the timeout for waiting for data.
-		int timeoutSocket = 15000;
-		HttpConnectionParams.setSoTimeout(httpParameters, timeoutSocket);
-		
-		HttpClient httpClient = new DefaultHttpClient(httpParameters);
-		HttpGet getMethod = new HttpGet(myURI);
-		HttpResponse webServerResponse = null;
-		
-		webServerResponse = httpClient.execute(getMethod);
-
-		HttpEntity httpEntity = webServerResponse.getEntity();
-		
-		if (httpEntity != null) {
-			 input = httpEntity.getContent();
-		}
-		
-		return input;
-		//return slurp(input);
+		InputStream inputStream = null;
+        int response = -1;
+               
+        URL url = new URL(urlString); 
+        URLConnection conn = url.openConnection();
+                 
+        if (!(conn instanceof HttpURLConnection))                     
+            throw new IOException("Not an HTTP connection");
+        
+        try{
+            HttpURLConnection httpConn = (HttpURLConnection) conn;
+            httpConn.setInstanceFollowRedirects(true);
+            httpConn.setRequestMethod("GET");
+            httpConn.setUseCaches(true);
+            Object content = httpConn.getContent();
+    		if( content instanceof Bitmap ){
+    			Bitmap bitmap = (Bitmap)content;
+    		}
+            
+            response = httpConn.getResponseCode();                 
+            if (response == HttpURLConnection.HTTP_OK) {
+                inputStream = httpConn.getInputStream();                                 
+            }                     
+        }
+        catch (Exception ex)
+        {
+            throw new IOException("Error connecting" + ex);            
+        }
+        return inputStream;
 	}
-	
 		
 	public String inputStreamToString (InputStream in) throws IOException {
 	    StringBuilder out = new StringBuilder();
@@ -203,8 +202,6 @@ public class Net {
 		Bitmap bitmap = null;
 		
 		bitmap=BitmapFactory.decodeStream( in ); 
-		
-		
 		return bitmap;
 	}
 	

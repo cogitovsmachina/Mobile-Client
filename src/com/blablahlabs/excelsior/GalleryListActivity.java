@@ -138,12 +138,7 @@ public class GalleryListActivity extends ListActivity {
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		super.onListItemClick(l, v, position, id);
 		
-		//String temp = bean.get(position).titulo;
-		new AsyncPhotoGalleryImage(activity, bean.get(position).idGaleria).execute();
-
-
-//		startActivity( new Intent(this, ViewGallery.class).putExtra("titulo", temp));
-		
+		new AsyncPhotoGalleryImage(activity, bean.get(position).idGaleria).execute();		
 			
 		
     }
