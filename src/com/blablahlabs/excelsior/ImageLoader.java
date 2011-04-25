@@ -176,11 +176,9 @@ public class ImageLoader {
                         
 //                        if(tag!=null && ((String)tag).equals(photoToLoad.url)){
                         String urlToDownload = photoToLoad.url;
-                        String idFotoPortada = tag.toString();
+                        String idImage = tag.toString();
                         
-                        Log.e("Excelsior", "suckea");
-                        
-                        if(idFotoPortada!=null && urlToDownload.contains(idFotoPortada)){
+                        if(tag!=null && urlToDownload.contains(idImage)){
                             BitmapDisplayer bd=new BitmapDisplayer(bmp, photoToLoad.imageView);
                             Activity a=(Activity)photoToLoad.imageView.getContext();
                             a.runOnUiThread(bd);

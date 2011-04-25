@@ -22,7 +22,6 @@ class NotaAdapterSeccion extends ArrayAdapter<NotaSeccion> {
 	private Context context;
 	private LayoutInflater inflater;
 	private ImageLoader imageLoader;
-	private String[] data;
 	
 
 
