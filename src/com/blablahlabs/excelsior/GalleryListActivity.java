@@ -48,6 +48,8 @@ public class GalleryListActivity extends ListActivity {
 	private int idArchivo;
 
 	private List<FotoGaleria> bean;
+
+	private ImageLoader imageLoader;
 	
 	public static ExcelsiorFotoGaleria excelsiorFotoGaleria;
 	
@@ -136,8 +138,7 @@ public class GalleryListActivity extends ListActivity {
     
     @Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
-		super.onListItemClick(l, v, position, id);
-		
+		super.onListItemClick(l, v, position, id);		
 		new AsyncPhotoGalleryImage(activity, bean.get(position).idGaleria).execute();		
 			
 		

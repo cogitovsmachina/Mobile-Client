@@ -114,7 +114,9 @@ public class ImageLoader {
             //decode with inSampleSize
             BitmapFactory.Options o2 = new BitmapFactory.Options();
             o2.inSampleSize=scale;
-            return BitmapFactory.decodeStream(new FileInputStream(f), null, o2);
+            Bitmap bmp = BitmapFactory.decodeStream(new FileInputStream(f), null, o2);
+            Log.e("some", "some");
+          return bmp;
         } catch (FileNotFoundException e) {}
         return null;
     }

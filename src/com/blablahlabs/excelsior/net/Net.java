@@ -1,17 +1,14 @@
 package com.blablahlabs.excelsior.net;
 
-import java.io.BufferedInputStream;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
-import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLConnection;
 
-import org.apache.http.params.BasicHttpParams;
-import org.apache.http.params.HttpConnectionParams;
-import org.apache.http.params.HttpParams;
+import org.apache.commons.io.IOUtils;
 import org.json.JSONException;
 
 import android.content.Context;
@@ -34,6 +31,8 @@ public class Net {
 	
 	private Context context;
 	private SharedPreferences preferences;
+	private Bitmap bmp;
+	private InputStream input;
 
 	public Net(Context context){
 		this.context = context;
@@ -141,6 +140,7 @@ public class Net {
 			if (isOnline() )
 				image = inputStreamToBitMap (doHttpGet(Recursos.URL_FOTO + idArchivo + Recursos.URL_IMAGEN_NOTA_OUTTRO) ) ;
 		}
+		
 		return image;
 	}
 	
@@ -199,13 +199,10 @@ public class Net {
 	}
 
 	public  Bitmap inputStreamToBitMap (InputStream in) throws IOException {
-		Bitmap bitmap = null;
-		
+				Bitmap bitmap = null;
 		bitmap=BitmapFactory.decodeStream( in ); 
 		return bitmap;
 	}
-	
-	
 	
 	private  boolean isOnline() {		
 		ConnectivityManager cm = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);

@@ -15,6 +15,7 @@ import android.widget.BaseAdapter;
 import android.widget.Gallery;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.blablahlabs.excelsior.beans.ExcelsiorFotoGaleria;
 import com.blablahlabs.excelsior.beans.ExcelsiorSingleFotoGaleria;
@@ -22,13 +23,24 @@ import com.blablahlabs.excelsior.recursos.IU;
 
 
 public class GalleryActivity extends Activity {
-	
-	private ExcelsiorFotoGaleria excelsiorFotoGaleria;
-	
-		private Gallery gallery; 
-	    private ImageView imgView;
 
-		private TextView txtView;
+	@Override
+	protected void onPause() {
+		gallery.destroyDrawingCache();
+		gallery.removeAllViewsInLayout();
+		gallery = null;
+		
+        excelsiorFotoGaleria = null;
+        GalleryListActivity.excelsiorFotoGaleria = null;
+		super.onPause();
+	}
+
+	private ExcelsiorFotoGaleria excelsiorFotoGaleria;
+	private Gallery gallery; 
+    private ImageView imgView;
+	private TextView txtView;
+		
+		
 	
 	  @Override
 	    public void onCreate(Bundle savedInstanceState) {
@@ -74,9 +86,7 @@ public class GalleryActivity extends Activity {
 	        }
 
 	        public int getCount() {
-	        	return excelsiorSingleFotoGaleria.size();
-	            
-	             
+	        	return excelsiorSingleFotoGaleria.size();	             
 	        }
 
 	        public Object getItem(int position) {
@@ -94,7 +104,7 @@ public class GalleryActivity extends Activity {
 	            imgView.setLayoutParams(new Gallery.LayoutParams(140, 100));
 	            imgView.setScaleType(ImageView.ScaleType.FIT_XY);
 	            imgView.setBackgroundResource(GalItemBg);
-
+	            
 	            return imgView;
 	        }
 	    }

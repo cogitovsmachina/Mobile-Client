@@ -1,9 +1,5 @@
 package com.blablahlabs.excelsior.asynctasks;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutput;
-import java.io.ObjectOutputStream;
 import java.net.URL;
 
 import android.app.Activity;
@@ -12,12 +8,9 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.ImageView;
 
 import com.blablahlabs.excelsior.GalleryActivity;
 import com.blablahlabs.excelsior.GalleryListActivity;
-import com.blablahlabs.excelsior.Home;
-import com.blablahlabs.excelsior.VideoListActivity;
 import com.blablahlabs.excelsior.beans.ExcelsiorFotoGaleria;
 import com.blablahlabs.excelsior.beans.ExcelsiorFotoGaleriaBean;
 import com.blablahlabs.excelsior.beans.notas.GetGalleryResponse;
@@ -64,7 +57,7 @@ public class AsyncPhotoGalleryImage extends AsyncTask<URL, Void, Bitmap> {
         	bean.getGalleryResponse.remove(0);
         	for (GetGalleryResponse iterator :bean.getGalleryResponse){
         		img = net.getImagenGaleriaLista(iterator.idArchivo);
-
+        		
         		excelsiorFotoGaleria.agregar(img, iterator.descripcion);
         		
         	}
@@ -86,7 +79,7 @@ public class AsyncPhotoGalleryImage extends AsyncTask<URL, Void, Bitmap> {
     	} 
     	else{
     		((GalleryListActivity) activity).excelsiorFotoGaleria = excelsiorFotoGaleria;
-    		activity.startActivity( new Intent(activity, GalleryActivity.class)/*.<putExtra("bean", bytes1)*/);
+    		activity.startActivity( new Intent(activity, GalleryActivity.class));
     	}
 
     }
