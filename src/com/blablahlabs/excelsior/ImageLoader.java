@@ -14,31 +14,37 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.util.Log;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 public class ImageLoader {
+	
     
-    //the simplest in-memory cache implementation. This should be replaced with something like SoftReference or BitmapOptions.inPurgeable(since 1.6)
+
+
+	//the simplest in-memory cache implementation. This should be replaced with something like SoftReference or BitmapOptions.inPurgeable(since 1.6)
     private HashMap<String, Bitmap> cache=new HashMap<String, Bitmap>();
     
     private File cacheDir;
-    
+
+
+	private Context context;
+
     public ImageLoader(Context context){
+    	this.context = context;
         //Make the background thead low priority. This way it will not affect the UI performance
         photoLoaderThread.setPriority(Thread.NORM_PRIORITY-1);
         
         //Find the dir to save cached images
         if (android.os.Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED))
-            cacheDir=new File(android.os.Environment.getExternalStorageDirectory(),"LazyList");
+            cacheDir=new File(android.os.Environment.getExternalStorageDirectory(),"Excelsior");
         else
             cacheDir=context.getCacheDir();
         if(!cacheDir.exists())
             cacheDir.mkdirs();
     }
     
-    final int stub_id= R.drawable.row_photo;
+    final int row_Excelsior= R.drawable.row_photo;
+
     public void DisplayImage(String url, Activity activity, ImageView imageView)
     {
         if(cache.containsKey(url))
@@ -46,7 +52,7 @@ public class ImageLoader {
         else
         {
             queuePhoto(url, activity, imageView);
-            imageView.setImageResource(stub_id);
+            imageView.setImageResource(row_Excelsior);
         }    
     }
         
@@ -67,32 +73,34 @@ public class ImageLoader {
     
     private Bitmap getBitmap(String url) 
     {
-        //I identify images by hashcode. Not a perfect solution, good for the demo.
+
+        //I identify images by hashcode. Not a perfect solution.
         String filename=String.valueOf(url.hashCode());
         File f=new File(cacheDir, filename);
         
         //from SD cache
         Bitmap b = decodeFile(f);
-        if(b!=null)
+        if(b!=null && b.getHeight()<=195)
             return b;
-        
         //from web
         try {
             Bitmap bitmap=null;
             InputStream is=new URL(url).openStream();
             OutputStream os = new FileOutputStream(f);
             Utils.CopyStream(is, os);
-            os.close();
+            os.close(); 
             bitmap = decodeFile(f);
             return bitmap;
         } catch (Exception ex){
            ex.printStackTrace();
-           return null;
-        }
+       		return null;      
+       		}
     }
 
     //decodes image and scales it to reduce memory consumption
     private Bitmap decodeFile(File f){
+
+		Bitmap bitmap_Ex = BitmapFactory.decodeResource(context.getResources() , row_Excelsior);
         try {
             //decode image size
             BitmapFactory.Options o = new BitmapFactory.Options();
@@ -115,8 +123,11 @@ public class ImageLoader {
             BitmapFactory.Options o2 = new BitmapFactory.Options();
             o2.inSampleSize=scale;
             Bitmap bmp = BitmapFactory.decodeStream(new FileInputStream(f), null, o2);
-            Log.e("some", "some");
+            if(bmp.getWidth()<=195)
           return bmp;
+            else
+            	return bitmap_Ex;
+
         } catch (FileNotFoundException e) {}
         return null;
     }
@@ -205,10 +216,10 @@ public class ImageLoader {
         public BitmapDisplayer(Bitmap b, ImageView i){bitmap=b;imageView=i;}
         public void run()
         {
-            if(bitmap!=null)
+            if(bitmap!=null && bitmap.getWidth()<=195)
                 imageView.setImageBitmap(bitmap);
             else
-                imageView.setImageResource(stub_id);
+                imageView.setImageResource(R.drawable.row_photo);
         }
     }
 

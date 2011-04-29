@@ -24,6 +24,17 @@ import com.blablahlabs.excelsior.recursos.IU;
 
 public class GalleryActivity extends Activity {
 
+//	@Override
+//	protected void onDestroy() {
+//		gallery.destroyDrawingCache();
+//		gallery.removeAllViewsInLayout();
+//		gallery = null;
+//		
+//        excelsiorFotoGaleria = null;
+//        GalleryListActivity.excelsiorFotoGaleria = null;
+//		super.onDestroy();
+//	}
+
 	@Override
 	protected void onPause() {
 		gallery.destroyDrawingCache();
