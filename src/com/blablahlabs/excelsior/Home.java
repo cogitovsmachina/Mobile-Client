@@ -39,11 +39,10 @@ public class Home extends ListActivity {
 	
 
 	@Override
-	protected void onPause() {
+	protected void onDestroy() {
 		ImageLoader mImageLoader = new ImageLoader(this);
 		mImageLoader.clearCache();
-		super.onPause();
-		Toast.makeText(this, "Cache Deleted", 1000).show();
+		super.onDestroy();
 	}
 	
 	private MergeAdapter mMergeAdapter=null;
