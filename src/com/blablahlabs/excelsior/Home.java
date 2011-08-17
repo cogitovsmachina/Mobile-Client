@@ -22,6 +22,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.blablahlabs.excelsior.asynctasks.AsyncNotes;
 import com.blablahlabs.excelsior.beans.ExcelsiorBean;
@@ -31,9 +32,20 @@ import com.blablahlabs.excelsior.recursos.IU;
 import com.blablahlabs.excelsior.recursos.Recursos;
 import com.blablahlabs.excelsior.recursos.Recursos.Seccion;
 import com.commonsware.cwac.merge.MergeAdapter;
+import com.blablahlabs.excelsior.ImageLoader;
 
 public class Home extends ListActivity {
+	
+	
 
+	@Override
+	protected void onPause() {
+		ImageLoader mImageLoader = new ImageLoader(this);
+		mImageLoader.clearCache();
+		super.onPause();
+		Toast.makeText(this, "Cache Deleted", 1000).show();
+	}
+	
 	private MergeAdapter mMergeAdapter=null;
 	private Seccion seccion = Seccion.ULTIMA_HORA;
 	public static ExcelsiorBean excelsiorBean;
@@ -47,8 +59,8 @@ public class Home extends ListActivity {
         setContentView(R.layout.main);
         setupViews(); 
         updateNews();
-       
     }
+	
 
 	private void setupViews() {
 		final RadioButton rLastNews = (RadioButton)findViewById(R.id.last_hour);

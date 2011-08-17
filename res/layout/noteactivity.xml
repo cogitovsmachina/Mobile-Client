@@ -16,7 +16,8 @@ style="@style/Theme.Excelsior"
 			android:layout_margin="4dip"
 			android:scaleType="center"
 			/>
-		<TextView
+				   		
+	   		<TextView
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
 			android:id="@+id/note_title"
@@ -31,6 +32,7 @@ style="@style/Theme.Excelsior"
 			android:layout_marginRight="15dip"
 			android:textColor="#ff000000"
 		/>
+
 		<ScrollView
 			android:orientation="vertical"
 			android:layout_width="fill_parent"
@@ -41,6 +43,7 @@ style="@style/Theme.Excelsior"
 			android:layout_marginRight="15dip"
 			android:layout_below="@id/note_title"
 	   		>
+	   		
 				<TextView
 					android:layout_width="fill_parent"
 					android:layout_height="wrap_content"

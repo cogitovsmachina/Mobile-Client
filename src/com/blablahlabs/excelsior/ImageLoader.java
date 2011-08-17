@@ -17,15 +17,10 @@ import android.graphics.BitmapFactory;
 import android.widget.ImageView;
 
 public class ImageLoader {
-	
-    
-
-
 	//the simplest in-memory cache implementation. This should be replaced with something like SoftReference or BitmapOptions.inPurgeable(since 1.6)
     private HashMap<String, Bitmap> cache=new HashMap<String, Bitmap>();
     
     private File cacheDir;
-
 
 	private Context context;
 
@@ -153,7 +148,7 @@ public class ImageLoader {
     //stores list of photos to download
     class PhotosQueue
     {
-        private Stack<PhotoToLoad> photosToLoad=new Stack<PhotoToLoad>();
+        private Stack<PhotoToLoad> photosToLoad = new Stack<PhotoToLoad>();
         
         //removes all instances of this ImageView
         public void Clean(ImageView image)
@@ -167,7 +162,7 @@ public class ImageLoader {
         }
     }
     
-    class PhotosLoader extends Thread {
+    class PhotoLoader extends Thread {
         public void run() {
             try {
                 while(true)
@@ -175,7 +170,7 @@ public class ImageLoader {
                     //thread waits until there are any images to load in the queue
                     if(photosQueue.photosToLoad.size()==0)
                         synchronized(photosQueue.photosToLoad){
-                            photosQueue.photosToLoad.wait();
+                        	photosQueue.photosToLoad.wait();
                         }
                     if(photosQueue.photosToLoad.size()!=0)
                     {
@@ -206,7 +201,7 @@ public class ImageLoader {
         }
     }
     
-    PhotosLoader photoLoaderThread=new PhotosLoader();
+    PhotoLoader photoLoaderThread=new PhotoLoader();
     
     //Used to display bitmap in the UI thread
     class BitmapDisplayer implements Runnable
@@ -232,5 +227,5 @@ public class ImageLoader {
         for(File f:files)
             f.delete();
     }
-
+    
 }
