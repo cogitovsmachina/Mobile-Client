@@ -49,6 +49,7 @@ public class Home extends ListActivity {
 	private Seccion seccion = Seccion.ULTIMA_HORA;
 	public static ExcelsiorBean excelsiorBean;
 	private MergeAdapter lastNewsAdapter;
+	private NotaAdapterOpinion nAdapterOpinion;
 
 	
 	@Override
@@ -164,12 +165,13 @@ public class Home extends ListActivity {
 		ArrayList<NotaSeccion> itemsSeccionComunidad = new ArrayList<NotaSeccion>();
 		ArrayList<NotaSeccion> itemsSeccionAdrenalina = new ArrayList<NotaSeccion>();
 		ArrayList<NotaSeccion> itemsSeccionFuncion = new ArrayList<NotaSeccion>();
+		ArrayList<NotaOpinion> itemsSeccionOpinion = new ArrayList<NotaOpinion>();
 		
 		
 		NotaAdapterSeccion nAdapterSeccion;
 
 		//Ads
-		lastNewsAdapter.addView(setAd(), true);
+		lastNewsAdapter.addView(setAd("file:///android_asset/home_start.html"), true);
 		
 		//Nacional
 		lastNewsAdapter.addView(buildHeader("Nacional", R.drawable.gradient_national_header));
@@ -204,7 +206,8 @@ public class Home extends ListActivity {
 		nAdapterSeccion = new NotaAdapterSeccion(Home.this, R.layout.row, itemsSeccionDinero);
 		 	lastNewsAdapter.addAdapter(nAdapterSeccion);
 		
-		 	
+		//Ads
+		lastNewsAdapter.addView(setAd("file:///android_asset/home_middle.html"), true);
 		 	
 		//Comunidad
 		lastNewsAdapter.addView(buildHeader("Comunidad", R.drawable.gradient_community_header));
@@ -234,7 +237,20 @@ public class Home extends ListActivity {
 		itemsSeccionFuncion.add(excelsiorBean.getSeccionFuncion().get(1));
 		
 		nAdapterSeccion = new NotaAdapterSeccion(Home.this, R.layout.row, itemsSeccionFuncion);
-		 	lastNewsAdapter.addAdapter(nAdapterSeccion);	
+		 	lastNewsAdapter.addAdapter(nAdapterSeccion);
+		 	
+		 	
+		//Opinion
+		lastNewsAdapter.addView(buildHeader("Opini—n", R.drawable.gradient_opinion_header));
+
+		itemsSeccionOpinion.add(excelsiorBean.getOpinion().get(0));
+		itemsSeccionOpinion.add(excelsiorBean.getOpinion().get(1));
+		
+		nAdapterOpinion = new NotaAdapterOpinion(Home.this, R.layout.row, itemsSeccionOpinion);
+		lastNewsAdapter.addAdapter(nAdapterOpinion);
+		
+		//Ads
+		lastNewsAdapter.addView(setAd("file:///android_asset/home_bottom.html"), true);
 		 	
 		//commit para actualizar la vista 
 		setListAdapter(lastNewsAdapter);
@@ -325,9 +341,10 @@ public class Home extends ListActivity {
 		
 	}
 	
-private WebView setAd(){
+private WebView setAd(String file){
 		WebView ad = new WebView(this);	
-		ad.loadUrl("file:///android_asset/demo.html");
+		ad.loadUrl(file);
+//		ad.loadUrl("file:///android_asset/demo.html");
 		return(ad);	  	
 	}
     
