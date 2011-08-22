@@ -17,6 +17,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -50,6 +51,8 @@ public class Home extends ListActivity {
 	public static ExcelsiorBean excelsiorBean;
 	private MergeAdapter lastNewsAdapter;
 	private NotaAdapterOpinion nAdapterOpinion;
+	private MergeAdapter mNationalMergeAdapter;
+	private MergeAdapter mGlobalMergeAdapter;
 
 	
 	@Override
@@ -264,7 +267,14 @@ public class Home extends ListActivity {
 	 */
 	private void showNational() {	
 		seccion = Seccion.NACIONAL;
-		setListAdapter(new NotaAdapterSeccion(Home.this, R.layout.row, (ArrayList<NotaSeccion>) excelsiorBean.getSeccionNacional()));
+		
+   		mNationalMergeAdapter=new MergeAdapter();
+
+		mNationalMergeAdapter.addView(setAd("file:///android_asset/national_start.html"), true);
+		mNationalMergeAdapter.addAdapter(new NotaAdapterSeccion(Home.this, R.layout.row, (ArrayList<NotaSeccion>) excelsiorBean.getSeccionNacional()));
+		mNationalMergeAdapter.addView(setAd("file:///android_asset/national_bottom.html"), true);
+		setListAdapter(mNationalMergeAdapter);		
+		
 	
 	}
 	
@@ -273,8 +283,15 @@ public class Home extends ListActivity {
 	 */
 	private void showGlobal() {
 		seccion = Seccion.GLOBAL;
+		
+		mGlobalMergeAdapter = new MergeAdapter();
 
- 		setListAdapter(new NotaAdapterSeccion(Home.this, R.layout.row, (ArrayList<NotaSeccion>) excelsiorBean.getSeccionGlobal()));
+		mGlobalMergeAdapter.addView(setAd("file:///android_asset/national_start.html"), true);
+		mGlobalMergeAdapter.addAdapter(new NotaAdapterSeccion(Home.this, R.layout.row, (ArrayList<NotaSeccion>) excelsiorBean.getSeccionGlobal()));
+		mGlobalMergeAdapter.addView(setAd("file:///android_asset/national_bottom.html"), true);
+		setListAdapter(mGlobalMergeAdapter);		
+
+
 	}
 	
 	/*
@@ -344,7 +361,8 @@ public class Home extends ListActivity {
 private WebView setAd(String file){
 		WebView ad = new WebView(this);	
 		ad.loadUrl(file);
-//		ad.loadUrl("file:///android_asset/demo.html");
+		ad.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
+		//		ad.setBackgroundColor(R.color.background_ad);
 		return(ad);	  	
 	}
     

@@ -11,17 +11,17 @@ public final class R {
     public static final class attr {
     }
     public static final class color {
-        public static final int ad_text=0x7f040004;
         public static final int adrenaline_header_finish=0x7f040010;
         public static final int adrenaline_header_start=0x7f04000f;
         public static final int background=0x7f040002;
+        public static final int background_ad=0x7f040005;
         public static final int community_header_finish=0x7f04000e;
         public static final int community_header_start=0x7f04000d;
         public static final int function_header_finish=0x7f040012;
         public static final int function_header_start=0x7f040011;
         public static final int global_header_finish=0x7f04000a;
         public static final int global_header_start=0x7f040009;
-        public static final int header_text=0x7f040005;
+        public static final int header_text=0x7f040004;
         public static final int money_header_finish=0x7f04000c;
         public static final int money_header_start=0x7f04000b;
         public static final int national_header_finish=0x7f040008;
