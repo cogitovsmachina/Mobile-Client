@@ -481,48 +481,52 @@ private WebView setAd(String file){
 				idNota= excelsiorBean.getSeccionDinero().get(position-8).idNota;
 				idFoto= excelsiorBean.getSeccionDinero().get(position-8).idFotoPortada;
 			}
-			else if (position >=11 && position <= 12){
-				idNota= excelsiorBean.getSeccionComunidad().get(position-11).idNota;
-				idFoto= excelsiorBean.getSeccionComunidad().get(position-11).idFotoPortada;
+			else if (position >=12 && position <= 13){
+				idNota= excelsiorBean.getSeccionComunidad().get(position-12).idNota;
+				idFoto= excelsiorBean.getSeccionComunidad().get(position-12).idFotoPortada;
 			}
-			else if (position >=14 && position <= 15){
-				idNota= excelsiorBean.getSeccionAdrenalina().get(position-14).idNota;
-				idFoto= excelsiorBean.getSeccionAdrenalina().get(position-14).idFotoPortada;
+			else if (position >=15 && position <= 16){
+				idNota= excelsiorBean.getSeccionAdrenalina().get(position-15).idNota;
+				idFoto= excelsiorBean.getSeccionAdrenalina().get(position-15).idFotoPortada;
 			}
-			else if (position >=17 && position <= 18){
-				idNota= excelsiorBean.getSeccionFuncion().get(position-17).idNota;
-				idFoto= excelsiorBean.getSeccionFuncion().get(position-17).idFotoPortada;
+			else if (position >=18 && position <= 19){
+				idNota= excelsiorBean.getSeccionFuncion().get(position-18).idNota;
+				idFoto= excelsiorBean.getSeccionFuncion().get(position-18).idFotoPortada;
+			}
+			else if (position >=21 && position <= 22){
+				idNota = excelsiorBean.getOpinion().get(position-21).idNota;
+				idFoto = excelsiorBean.getOpinion().get(position-21).idFotoPortada;
 			}
 			
 			break;
 		case NACIONAL:
-			idNota= excelsiorBean.getSeccionNacional().get(position).idNota;
-			idFoto= excelsiorBean.getSeccionNacional().get(position).idFotoPortada;
+			idNota= excelsiorBean.getSeccionNacional().get(position-1).idNota;
+			idFoto= excelsiorBean.getSeccionNacional().get(position-1).idFotoPortada;
 			break;
 		case GLOBAL:
-			idNota= excelsiorBean.getSeccionGlobal().get(position).idNota;
-			idFoto= excelsiorBean.getSeccionGlobal().get(position).idFotoPortada;
+			idNota= excelsiorBean.getSeccionGlobal().get(position-1).idNota;
+			idFoto= excelsiorBean.getSeccionGlobal().get(position-1).idFotoPortada;
 			break;
 		case DINERO:
-			idNota= excelsiorBean.getSeccionDinero().get(position).idNota;
-			idFoto= excelsiorBean.getSeccionDinero().get(position).idFotoPortada;
+			idNota= excelsiorBean.getSeccionDinero().get(position-1).idNota;
+			idFoto= excelsiorBean.getSeccionDinero().get(position-1).idFotoPortada;
 			break;
 		case COMUNIDAD:
-			idNota= excelsiorBean.getSeccionComunidad().get(position).idNota;
-			idFoto= excelsiorBean.getSeccionComunidad().get(position).idFotoPortada;
+			idNota= excelsiorBean.getSeccionComunidad().get(position-1).idNota;
+			idFoto= excelsiorBean.getSeccionComunidad().get(position-1).idFotoPortada;
 			break;
 		case ADRENALINA:
-			idNota= excelsiorBean.getSeccionAdrenalina().get(position).idNota;
-			idFoto= excelsiorBean.getSeccionAdrenalina().get(position).idFotoPortada;
+			idNota= excelsiorBean.getSeccionAdrenalina().get(position-1).idNota;
+			idFoto= excelsiorBean.getSeccionAdrenalina().get(position-1).idFotoPortada;
 			break;
 		case FUNCION:
-			idNota= excelsiorBean.getSeccionFuncion().get(position).idNota;
-			idFoto= excelsiorBean.getSeccionFuncion().get(position).idFotoPortada;
+			idNota= excelsiorBean.getSeccionFuncion().get(position-1).idNota;
+			idFoto= excelsiorBean.getSeccionFuncion().get(position-1).idFotoPortada;
 			break;	
 		
 		case OPINION:	
-			idNota= excelsiorBean.getOpinion().get(position).idNota;
-			idFoto= excelsiorBean.getOpinion().get(position).idFotoPortada;
+			idNota= excelsiorBean.getOpinion().get(position-1).idNota;
+			idFoto= excelsiorBean.getOpinion().get(position-1).idFotoPortada;
 			break;
 			
 		default: 
