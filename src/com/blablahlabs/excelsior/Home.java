@@ -53,6 +53,11 @@ public class Home extends ListActivity {
 	private NotaAdapterOpinion nAdapterOpinion;
 	private MergeAdapter mNationalMergeAdapter;
 	private MergeAdapter mGlobalMergeAdapter;
+	private MergeAdapter mMoneyAdapter;
+	private MergeAdapter mCommunityAdapter;
+	private MergeAdapter mAdrenalineAdapter;
+	private MergeAdapter mFunctionAdapter;
+	private MergeAdapter mOpinionAdapter;
 
 	
 	@Override
@@ -174,7 +179,7 @@ public class Home extends ListActivity {
 		NotaAdapterSeccion nAdapterSeccion;
 
 		//Ads
-		lastNewsAdapter.addView(setAd("file:///android_asset/home_start.html"), true);
+		lastNewsAdapter.addView(setAd("file:///android_asset/ad.html"), true);
 		
 		//Nacional
 		lastNewsAdapter.addView(buildHeader("Nacional", R.drawable.gradient_national_header));
@@ -210,7 +215,7 @@ public class Home extends ListActivity {
 		 	lastNewsAdapter.addAdapter(nAdapterSeccion);
 		
 		//Ads
-		lastNewsAdapter.addView(setAd("file:///android_asset/home_middle.html"), true);
+		lastNewsAdapter.addView(setAd("file:///android_asset/ad.html"), true);
 		 	
 		//Comunidad
 		lastNewsAdapter.addView(buildHeader("Comunidad", R.drawable.gradient_community_header));
@@ -253,7 +258,7 @@ public class Home extends ListActivity {
 		lastNewsAdapter.addAdapter(nAdapterOpinion);
 		
 		//Ads
-		lastNewsAdapter.addView(setAd("file:///android_asset/home_bottom.html"), true);
+		lastNewsAdapter.addView(setAd("file:///android_asset/ad.html"), true);
 		 	
 		//commit para actualizar la vista 
 		setListAdapter(lastNewsAdapter);
@@ -270,9 +275,9 @@ public class Home extends ListActivity {
 		
    		mNationalMergeAdapter=new MergeAdapter();
 
-		mNationalMergeAdapter.addView(setAd("file:///android_asset/national_start.html"), true);
+		mNationalMergeAdapter.addView(setAd("file:///android_asset/ad.html"), true);
 		mNationalMergeAdapter.addAdapter(new NotaAdapterSeccion(Home.this, R.layout.row, (ArrayList<NotaSeccion>) excelsiorBean.getSeccionNacional()));
-		mNationalMergeAdapter.addView(setAd("file:///android_asset/national_bottom.html"), true);
+		mNationalMergeAdapter.addView(setAd("file:///android_asset/ad.html"), true);
 		setListAdapter(mNationalMergeAdapter);		
 		
 	
@@ -286,11 +291,10 @@ public class Home extends ListActivity {
 		
 		mGlobalMergeAdapter = new MergeAdapter();
 
-		mGlobalMergeAdapter.addView(setAd("file:///android_asset/national_start.html"), true);
+		mGlobalMergeAdapter.addView(setAd("file:///android_asset/ad.html"), true);
 		mGlobalMergeAdapter.addAdapter(new NotaAdapterSeccion(Home.this, R.layout.row, (ArrayList<NotaSeccion>) excelsiorBean.getSeccionGlobal()));
-		mGlobalMergeAdapter.addView(setAd("file:///android_asset/national_bottom.html"), true);
+		mGlobalMergeAdapter.addView(setAd("file:///android_asset/ad.html"), true);
 		setListAdapter(mGlobalMergeAdapter);		
-
 
 	}
 	
@@ -300,7 +304,12 @@ public class Home extends ListActivity {
 	protected void showMoney() {
 		seccion = Seccion.DINERO;
 
-		setListAdapter(new NotaAdapterSeccion(Home.this, R.layout.row, (ArrayList<NotaSeccion>) excelsiorBean.getSeccionDinero()));
+		mMoneyAdapter = new MergeAdapter();
+
+		mMoneyAdapter.addView(setAd("file:///android_asset/ad.html"), true);
+		mMoneyAdapter.addAdapter(new NotaAdapterSeccion(Home.this, R.layout.row, (ArrayList<NotaSeccion>) excelsiorBean.getSeccionDinero()));
+		mMoneyAdapter.addView(setAd("file:///android_asset/ad.html"), true);
+		setListAdapter(mMoneyAdapter);
 	}
 
 	
@@ -310,7 +319,12 @@ public class Home extends ListActivity {
 	private void showCommunity() {
 		seccion = Seccion.COMUNIDAD;
 
-		setListAdapter(new NotaAdapterSeccion(Home.this, R.layout.row, (ArrayList<NotaSeccion>) excelsiorBean.getSeccionComunidad()));
+		mCommunityAdapter = new MergeAdapter();
+
+		mCommunityAdapter.addView(setAd("file:///android_asset/ad.html"), true);
+		mCommunityAdapter.addAdapter(new NotaAdapterSeccion(Home.this, R.layout.row, (ArrayList<NotaSeccion>) excelsiorBean.getSeccionComunidad()));
+		mCommunityAdapter.addView(setAd("file:///android_asset/ad.html"), true);
+		setListAdapter(mCommunityAdapter);
 	}
 	
 	/*
@@ -318,9 +332,14 @@ public class Home extends ListActivity {
 	 */
 	private void showAdrenaline() {
 		seccion = Seccion.ADRENALINA;
+		
+		mAdrenalineAdapter = new MergeAdapter();
 
-		setListAdapter(new NotaAdapterSeccion(Home.this, R.layout.row, (ArrayList<NotaSeccion>) excelsiorBean.getSeccionAdrenalina()));
-
+		mAdrenalineAdapter.addView(setAd("file:///android_asset/ad.html"), true);
+		mAdrenalineAdapter.addAdapter(new NotaAdapterSeccion(Home.this, R.layout.row, (ArrayList<NotaSeccion>) excelsiorBean.getSeccionAdrenalina()));
+		mAdrenalineAdapter.addView(setAd("file:///android_asset/ad.html"), true);
+		setListAdapter(mAdrenalineAdapter);
+		
 	}
 	
 	/*
@@ -328,18 +347,25 @@ public class Home extends ListActivity {
 	 */
 	private void showFunction() {
 		seccion = Seccion.FUNCION;
+		
+		mFunctionAdapter = new MergeAdapter();
 
-		setListAdapter(new NotaAdapterSeccion(Home.this, R.layout.row, (ArrayList<NotaSeccion>) excelsiorBean.getSeccionFuncion()));
+		mFunctionAdapter.addView(setAd("file:///android_asset/ad.html"), true);
+		mFunctionAdapter.addAdapter(new NotaAdapterSeccion(Home.this, R.layout.row, (ArrayList<NotaSeccion>) excelsiorBean.getSeccionFuncion()));
+		mFunctionAdapter.addView(setAd("file:///android_asset/ad.html"), true);
+		setListAdapter(mFunctionAdapter);
 
 	}
 	
 	private void showOpinion() {
 		seccion = Seccion.OPINION;
 
-//		mMergeAdapter=new MergeAdapter();
-		
-		setListAdapter(new NotaAdapterOpinion(Home.this, R.layout.row, (ArrayList<NotaOpinion>) excelsiorBean.getOpinion()));
-		
+		mOpinionAdapter=new MergeAdapter();
+		mOpinionAdapter.addView(setAd("file:///android_asset/ad.html"), true);
+		mOpinionAdapter.addAdapter(new NotaAdapterOpinion(Home.this, R.layout.row, (ArrayList<NotaOpinion>) excelsiorBean.getOpinion()));
+		mOpinionAdapter.addView(setAd("file:///android_asset/ad.html"), true);
+		setListAdapter(mOpinionAdapter);
+				
 	}
 	
     
