@@ -12,6 +12,7 @@ import org.androidtitlan.ac.sharemenu.ShareMenu;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -33,6 +34,12 @@ import com.blablahlabs.excelsior.recursos.IU;
 import com.blablahlabs.excelsior.recursos.Recursos;
 public class ViewNoteActivity extends Activity {
 	
+	@Override
+	public void onConfigurationChanged(Configuration newConfig) {
+		super.onConfigurationChanged(newConfig);
+	}
+
+
 	private ProgressDialog dialog;
 	private int idNota;
 	private int idFoto;

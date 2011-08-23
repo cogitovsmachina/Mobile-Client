@@ -10,6 +10,7 @@ import org.androidtitlan.ac.sharemenu.ShareMenu;
 
 import android.app.ListActivity;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Menu;
@@ -36,8 +37,11 @@ import com.commonsware.cwac.merge.MergeAdapter;
 import com.blablahlabs.excelsior.ImageLoader;
 
 public class Home extends ListActivity {
-	
-	
+	@Override
+	public void onConfigurationChanged(Configuration newConfig) {
+		super.onConfigurationChanged(newConfig);
+	}
+
 
 	@Override
 	protected void onDestroy() {

@@ -1,6 +1,7 @@
                                                         package com.blablahlabs.excelsior;
 
 import android.app.Activity;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 import android.widget.MediaController;
@@ -11,6 +12,11 @@ import com.blablahlabs.excelsior.recursos.IU;
 
 
 public class VideoPlayer extends Activity {
+	
+	@Override
+	public void onConfigurationChanged(Configuration newConfig) {
+		super.onConfigurationChanged(newConfig);
+	}
 	
 	  private ExcelsiorBean excelsiorBean;
 

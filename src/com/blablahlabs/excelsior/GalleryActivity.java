@@ -5,6 +5,7 @@ import java.util.List;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.view.View;
@@ -24,16 +25,10 @@ import com.blablahlabs.excelsior.recursos.IU;
 
 public class GalleryActivity extends Activity {
 
-//	@Override
-//	protected void onDestroy() {
-//		gallery.destroyDrawingCache();
-//		gallery.removeAllViewsInLayout();
-//		gallery = null;
-//		
-//        excelsiorFotoGaleria = null;
-//        GalleryListActivity.excelsiorFotoGaleria = null;
-//		super.onDestroy();
-//	}
+	@Override
+	public void onConfigurationChanged(Configuration newConfig) {
+		super.onConfigurationChanged(newConfig);
+	}
 
 	@Override
 	protected void onPause() {
